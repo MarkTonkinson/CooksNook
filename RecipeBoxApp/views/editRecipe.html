@@ -1,0 +1,54 @@
+<h2>Edit Recipe</h2>
+
+<form class='form-inline'>
+	           
+		<div class='col-md-1'>
+		
+		   
+		    
+		    <div class='form-group'>
+		    	<input ng-model="recipe.author" placeholder="Recipe Author"/>
+		    </div>
+
+		    <div class='form-group'>
+		    	<input ng-model="recipe.recipeName" placeholder="Recipe Name"/>
+		    </div>
+
+<!-- Checkboxes for choosing location of the recipe -->
+		    <div class="radio">
+                <label>
+			        <input type="radio" ng-model="recipe.location" value="Personal" checked>Personal
+			    </label>
+            </div> 
+
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="recipe.location" value="Website">Website
+			    </label>
+            </div>
+
+            <div class="radio">
+                <label>
+                    <input type="radio" ng-model="recipe.location" value="Book">Book
+			    </label>
+		    </div>
+
+		</div>
+
+	<!-- Titles -->
+	<div class='col-md-12'> Quantity Measurement Ingredient </div>
+
+    <div ng-repeat="ingredient in recipe.ingredients" class="form-group col-md-12">
+        <input placeholder="#" class="num-ing" ng-model="recipe.ingredients[$index].qty"/>
+   
+        <input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='recipe.ingredients[$index].meas'/>
+ 
+        <input placeholder='Ingredient' class="ing-name" ng-model='recipe.ingredients[$index].ing'/>
+    </div>
+    
+
+
+<div class="col-md-12">
+	<button ng-click="addIngredient()">Add Ingredient</button>
+  	<button href='#/home/{{user}}' ng-click="editRecipe()">Edit Recipe</button>
+</form>
