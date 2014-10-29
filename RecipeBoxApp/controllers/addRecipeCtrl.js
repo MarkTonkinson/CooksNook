@@ -3,15 +3,16 @@ var app = angular.module("RecipeBoxApp");
 app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore){
 
 	$scope.newRecipe = {
-		ingredients: [{},{},{},{},{},{},{},{},{},{},{}]   //why do I have to specify?  What will happen when I submit 3 ingredients instead of the max?
+		ingredients: [{},{},{},{},{},{}]   //why do I have to specify?  What will happen when I submit 3 ingredients instead of the max?
 	}
-
+	
+	$scope.addIngredient = function(){
+		$scope.newRecipe.ingredients.push({});
+	}
 
 	$scope.submitRecipe = function(){
 		//get the user's info
-		var getUser = $cookieStore.get('user');
-		var user = getUser._id; //the username may not be unique, the link should be
-		//console.log(user);
+		var user = $cookieStore.get('user');
 		
 
 		//stop from posting the empty objects
@@ -23,12 +24,9 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore){
 			} 
 		$scope.newRecipe.ingredients = newIngArr;
 		}
-
-		
-
 		
 		//console.log($scope.newRecipe);
-		recipeService.addNewRecipe($scope.newRecipe, user);
+		recipeService.addNewRecipe($scope.newRecipe, user._id);
 	
 	}
 

@@ -34,7 +34,7 @@
 		</div>
 
 	<!-- Titles -->
-	<div> Quantity Measurement Ingredient </div>
+	<div class='col-md-12'> Quantity Measurement Ingredient </div>
 
     <div ng-repeat="ingredient in newRecipe.ingredients" class="form-group col-md-12">
         <input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[$index].qty"/>
@@ -43,94 +43,11 @@
  
         <input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[$index].ing'/>
     </div>
-    <!-- <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[0].qty"/>
+    
    
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[0].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[0].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[1].qty"/>
    
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[1].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[1].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[2].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[2].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[2].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[3].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[3].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[3].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[4].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[4].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[4].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[5].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[5].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[5].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[6].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[6].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[6].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[7].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[7].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[7].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[8].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[8].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[8].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[9].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[9].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[9].ing'/>
-    </div>
-
-    <div class="form-group col-md-12">
-    	<input placeholder="#" class="num-ing" ng-model="newRecipe.ingredients[10].qty"/>
-   
-    	<input placeholder="Cup, Tblspn, etc" class="meas-ing" ng-model='newRecipe.ingredients[10].meas'/>
- 
-    	<input placeholder='Ingredient' class="ing-name" ng-model='newRecipe.ingredients[10].ing'/>
-    </div> -->
 
 <div class="col-md-12">
+     <button ng-click="addIngredient()">Add Ingredient</button>
     <button ng-click="submitRecipe()">Submit New Recipe</button>
 </form>

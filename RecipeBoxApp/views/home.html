@@ -9,7 +9,9 @@ but I think the current way is more intuitive -->
 	{{recipe.author}}
 	{{recipe.recipeName}}
 	{{recipe.ingredients}}
+	{{recipe._id}}
 	<button ng-click='removeRecipe(recipe._id)'>Remove Recipe</button>
+	<a href="/#/editRecipe/{{user}}/{{recipe._id}}">Edit</a>
 </div>
     
 

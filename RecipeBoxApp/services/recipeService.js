@@ -3,31 +3,68 @@ var app = angular.module('RecipeBoxApp');
 app.service('recipeService', function($http, $q){
 
 	this.addNewRecipe = function(recipe, userid){
-		//console.log(recipe)
-		//console.log(userid)
+		console.log(recipe)
+		console.log(userid)
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
 			url: 'http://localhost:3000/recipes/' + userid,
 			data: recipe
 		}).then(function(res){
-			console.log('recipe id? ', res.data[0]._id)
+			console.log('recipe id? ', res)
 			deferred.resolve(res);
 		})
 		return deferred.promise
 		
 	}
 
+	//not using this currently
 	this.getRecipes = function(){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
 			url: 'http://localhost:3000/recipes'
 		}).then(function(res){
+			//console.log('recipes', res);
+			deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
+
+	
+	this.getUserRecipes = function(id){
+		console.log('did we get ', id)
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'http://localhost:3000/api/user/recipes/' + id
+		}).then(function(res){
 			console.log('recipes', res);
 			deferred.resolve(res.data);
 		})
 		return deferred.promise;
+	}
+
+	this.getRecipeById = function(recipeid){ 
+		console.log('got the id from routes ', recipeid);
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'http://localhost:3000/api/get/recipe/' + recipeid
+		}).then(function(res){
+			//console.log('got recipe by id', res.data)
+			deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
+
+	this.editRecipe = function(recipeid, recipe){ 
+		
+		return $http({
+			method: 'PUT',
+			url: 'http://localhost:3000/api/update/recipes/' + recipeid,
+			data: recipe
+		})
 	}
 
 	this.deleteRecipe = function(recipeId){

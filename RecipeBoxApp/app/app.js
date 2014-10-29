@@ -11,8 +11,8 @@ app.config(['$routeProvider', function($routeProvider){
 		controller: 'homeCtrl',
 		resolve: 
 			{
-			user: function(userService){
-				return userService.getFacebookUser();
+			user: function(userService, $route){
+				return userService.getFacebookUser($route.current.params.user);
 			}
 		}
 	})
@@ -26,7 +26,33 @@ app.config(['$routeProvider', function($routeProvider){
 		// }
 		
 	})
+	.when('/editRecipe/:person/:recipeid', {
+		templateUrl: '../views/editRecipe.html',
+		controller: 'editRecipeCtrl',
+		resolve: {
+			getRecipe: function($route, recipeService){
+				return recipeService.getRecipeById($route.current.params.recipeid)
+			}
+		}
+
+	})
 	.otherwise({
 		redirectTo: '/'
 	})
 }])
+
+
+// app.config(function($httpProvider){
+// 	$httpProvider.interceptors.push(function($q, $location){
+// 		return {
+// 			'responseError': function(rejection){
+// 				if(rejection.status === 401){
+// 					$location.path('/');
+// 				}
+// 				return $q.reject(rejection)
+// 			}
+// 		}
+// 	})
+// })
+
+

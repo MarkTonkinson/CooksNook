@@ -17,7 +17,7 @@
         <h5>Make Connections. Organize. Eat more variety with less.<h5>
     </header>
     <div class="col-md-10"></div>
-    <div class="col-md-2">{{username.userName}} Logout</div>
+    <div class="col-md-2">{{username.userName}} <a ng-click="logout()" href='/logout'>Logout<a></div>
     <div class="recipebox">
         <div class="views"> 
             <a href="#/testTemplate"><button class="b1">Search</button></a>  <!-- link to the state-->
@@ -57,5 +57,7 @@
 <script src="controllers/addRecipeCtrl.js"></script>
 <script src="controllers/homeCtrl.js"></script>
 <script src="controllers/indexCtrl.js"></script>
+<script src="controllers/editRecipeCtrl.js"></script>
+<script src="controllers/loginCtrl.js"></script>
 </body>
 </html>
