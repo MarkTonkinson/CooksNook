@@ -33,20 +33,20 @@ app.service('recipeService', function($http, $q){
 
 	
 	this.getUserRecipes = function(id){
-		console.log('did we get ', id)
+		//console.log('did we get ', id)
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
 			url: 'http://localhost:3000/api/user/recipes/' + id
 		}).then(function(res){
-			console.log('recipes', res);
+			//console.log('recipes', res);
 			deferred.resolve(res.data);
 		})
 		return deferred.promise;
 	}
 
 	this.getRecipeById = function(recipeid){ 
-		console.log('got the id from routes ', recipeid);
+		//console.log('got the id from routes ', recipeid);
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
@@ -67,10 +67,11 @@ app.service('recipeService', function($http, $q){
 		})
 	}
 
-	this.deleteRecipe = function(recipeId){
+	this.deleteRecipe = function(recipeId, fbId){
+		console.log(recipeId  + ' and ' + fbId)
 		$http({
 			method: 'DELETE',
-			url: 'http://localhost:3000/recipes/' + recipeId
+			url: 'http://localhost:3000/api/' +fbId +'/recipe/' + recipeId
 		});
 
 	}

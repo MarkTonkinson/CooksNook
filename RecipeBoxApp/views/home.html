@@ -5,13 +5,13 @@ but I think the current way is more intuitive -->
 {{user.userName}}
 
 
-<div ng-repeat='recipe in recipes'>
-	{{recipe.author}}
-	{{recipe.recipeName}}
-	{{recipe.ingredients}}
-	{{recipe._id}}
-	<button ng-click='removeRecipe(recipe._id)'>Remove Recipe</button>
-	<a href="/#/editRecipe/{{user}}/{{recipe._id}}">Edit</a>
+<div class="col-md-2" ng-repeat='recipe in recipes'>
+	<p>Author: {{recipe.author}}</p>
+	<a href="/#/recipe/{{recipe._id}}" <p>Recipe Name: {{recipe.recipeName}} </p> </a>
+	<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
+	
+	<button ng-show="checkPermissions(recipe.permissionsTag)" ng-click='removeRecipe(recipe._id)'>Remove Recipe</button>
+	<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user}}/{{recipe._id}}">Edit</a>
 </div>
     
 

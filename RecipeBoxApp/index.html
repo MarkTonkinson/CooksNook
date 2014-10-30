@@ -20,7 +20,7 @@
     <div class="col-md-2">{{username.userName}} <a ng-click="logout()" href='/logout'>Logout<a></div>
     <div class="recipebox">
         <div class="views"> 
-            <a href="#/testTemplate"><button class="b1">Search</button></a>  <!-- link to the state-->
+            <a href="#/search/{{username.userName}}"><button class="b1">Search</button></a>  <!-- link to the state-->
             <a href="#/home/{{username.userName}}"><button class="b2">Home</button></a>
             <a href="#/RecipeBox/{{username.userName}}"><button class="b3">Favorites</button></a>
             <a href="#/newRecipe/{{username.userName}}"><button class="b4">Add Recipe</button></a>
@@ -54,10 +54,13 @@
 <script src = 'app/app.js'></script>
 <script src="services/recipeService.js"></script>
 <script src="services/userService.js"></script>
+<script src="services/searchService.js"></script>
 <script src="controllers/addRecipeCtrl.js"></script>
 <script src="controllers/homeCtrl.js"></script>
 <script src="controllers/indexCtrl.js"></script>
 <script src="controllers/editRecipeCtrl.js"></script>
 <script src="controllers/loginCtrl.js"></script>
+<script src="controllers/searchCtrl.js"></script>
+<script src="controllers/singleRecipeCtrl.js"></script>
 </body>
 </html>

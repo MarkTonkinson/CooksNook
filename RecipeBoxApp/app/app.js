@@ -6,6 +6,10 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl: '../views/login.html',
 		controller: 'indexCtrl'
 	})
+	.when('/search/:user',{
+		templateUrl: '../views/search.html',
+		controller: 'searchCtrl'
+	})
 	.when('/home/:user', {
 		templateUrl: '../views/home.html',
 		controller: 'homeCtrl',
@@ -35,6 +39,15 @@ app.config(['$routeProvider', function($routeProvider){
 			}
 		}
 
+	})
+	.when('/recipe/:recipeid', {
+		templateUrl: '../views/singlerecipe.html',
+		controller: 'singleRecipeCtrl',
+		resolve: {
+			getRecipeToView: function($route, recipeService){
+				return recipeService.getRecipeById($route.current.params.recipeid);
+			}
+		}
 	})
 	.otherwise({
 		redirectTo: '/'

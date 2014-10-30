@@ -3,11 +3,11 @@ var app = angular.module('RecipeBoxApp');
 app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $routeParams, $location, $cookieStore){
 	$scope.recipe = getRecipe;
 	
-
+	$scope.getUsername();
 	var user = $cookieStore.get('user');
 	
 	$scope.user = user.userName;
-	console.log("hey there ", $scope.user)
+	//console.log("hey there ", $scope.user)
 
 
 	$scope.editRecipe = function(){
@@ -27,7 +27,9 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 
 		recipeService.editRecipe(id, $scope.recipe)
 		.then(function(res){
-			$location.path('/home/' + $scope.user)
+			$scope.recipe = '';
+			$location.path('/home/' + $scope.user);
+
 		})
 	}
 

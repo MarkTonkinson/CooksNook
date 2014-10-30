@@ -1,23 +1,23 @@
 <h2>Edit Recipe</h2>
 
-<form class='form-inline'>
+<form name="editRecipeForm" class='form-inline' novalidate>
 	           
 		<div class='col-md-1'>
 		
 		   
 		    
 		    <div class='form-group'>
-		    	<input ng-model="recipe.author" placeholder="Recipe Author"/>
+		    	<input ng-model="recipe.author" placeholder="Recipe Author" required/>
 		    </div>
 
 		    <div class='form-group'>
-		    	<input ng-model="recipe.recipeName" placeholder="Recipe Name"/>
+		    	<input ng-model="recipe.recipeName" placeholder="Recipe Name" required/>
 		    </div>
 
 <!-- Checkboxes for choosing location of the recipe -->
 		    <div class="radio">
                 <label>
-			        <input type="radio" ng-model="recipe.location" value="Personal" checked>Personal
+			        <input type="radio" ng-model="recipe.location" value="Personal" required>Personal
 			    </label>
             </div> 
 
@@ -50,5 +50,5 @@
 
 <div class="col-md-12">
 	<button ng-click="addIngredient()">Add Ingredient</button>
-  	<button href='#/home/{{user}}' ng-click="editRecipe()">Edit Recipe</button>
+  	<button ng-disabled="editRecipeForm.$invalid" ng-click="editRecipe()">Edit Recipe</button>
 </form>
