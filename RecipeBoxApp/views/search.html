@@ -1,0 +1,64 @@
+<div class="viewer">
+	<div class="container">
+		
+		<h2>Search Your Recipes</h2>
+		<strong>
+		<p>**Our baby search engine is only robust enough to support search for a single <u>exact</u> term at this time.</p>
+		<p>Example: tomato will only return tomatoes, not tomatoes or tomato past</p>
+		</strong>
+
+	
+		
+
+		<h4>Choose a Search Term: </h4>
+		<select ng-change="searching()" ng-model="selected">
+			<option ng-repeat="search in searchTypes" value="{{search}}">{{search}}</option>
+		</select>
+	
+		<p></p>
+
+		<form ng-show='ingredient'>
+			<p> Search by Ingredient
+			<input spellcheck='true' placeholder='Search an ingredient' ng-model="searchText"/>
+			<button ng-click="search()">Search by Ingredient</button>
+			
+		</form>
+		
+
+
+		<form ng-show='location'>
+			<p> Search: Personal, Book, or Website</p>
+			<input spellcheck='true' placeholder="Type" ng-model="locationSearchText"/>
+			<button ng-click="searchLocation()">Search</button>
+		</form>
+
+		<form ng-show='author'>
+			<p> Search by Author</p>
+			<input spellcheck='true' placeholder="Author" ng-model="authorSearchText"/>
+			<button ng-click="searchAuthor()">Search</button>
+		</form>
+
+		<form ng-show='recipeName'>
+			<p> Search by Recipe Name</p>
+			<input spellcheck='true' placeholder="Recipe Name" ng-model="recipeNameSearchText"/>
+			<button ng-click="searchRecipeName()">Search</button>
+		</form>
+
+
+
+		<h3>Results</h3>
+		<div><input placeholder="Filter results" ng-model="stuff"></div>
+		
+			<div class="col-md-2 recipe" ng-repeat="recipe in recipes|filter: stuff">
+				<p>Author: {{recipe.author}}</p>
+				<a href="/#/recipe/{{recipe._id}}"><p>Recipe Name: {{recipe.recipeName}}</p></a>
+				<p>Recipe Location: {{recipe.location}}</p>
+				<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
+			</div>
+		
+
+	</div>
+
+</div>
+
+

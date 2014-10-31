@@ -1,4 +1,4 @@
-var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies']);
+var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
@@ -29,6 +29,10 @@ app.config(['$routeProvider', function($routeProvider){
 		// 	}
 		// }
 		
+	})
+	.when('/favorites/:user',{
+		templateUrl: '../views/favorites.html',
+		controller: 'favoritesCtrl'
 	})
 	.when('/editRecipe/:person/:recipeid', {
 		templateUrl: '../views/editRecipe.html',

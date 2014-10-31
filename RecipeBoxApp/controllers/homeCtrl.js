@@ -17,15 +17,38 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 			return false
 		}
 	}
+
+	$scope.checkFavorites = function(recipeid){
+		if($scope.user.favorites.indexOf(recipeid) !== -1){
+			//console.log($scope.user.favorites)
+			return false
+		} else {
+			return true
+		}
+
+	}
+
+
 	$scope.getRecipes = function(){
 		recipeService.getUserRecipes($scope.user.facebookId)
 		.then(function(res){
+			
 			$scope.recipes = res;		
 		})
 	}
 	$scope.getRecipes();
+	//$scope.checkFavorites();
 	
 	
+	
+
+	$scope.addToFavorites = function(recipeid){
+		$scope.user.favorites.push(recipeid);
+		recipeService.favoriteRecipe($scope.user)
+		.then(function(res){
+			console.log($scope.user);
+		})
+	}
 	
 	
 	

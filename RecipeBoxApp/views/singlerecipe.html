@@ -1,0 +1,32 @@
+<div class="viewer">
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-md-4">
+				<h2>{{recipe.recipeName}}</h2>
+				<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user}}/{{recipe._id}}">Edit</a>
+
+				<p>Author: {{recipe.author}}<p>
+				<p>{{recipe.location}}</p>
+				<a href="{{recipe.recipeUrl}}"><p>{{recipe.recipeUrl}}</p></a>
+				<p>{{recipe.bookTitle}} {{recipe.bookPageNumber}}</p>
+				
+			</div>
+			
+			<div class="col-md-4">
+				<p><strong>Ingredients</strong></p>
+				<p ng-repeat="ingredient in recipe.ingredients">
+					{{ingredient.qty}} {{ingredient.meas}} {{ingredient.ing}}
+				</p>
+			</div>
+			
+			<div class="col-md-4">
+				<p><strong>Instructions</strong></p>
+				<p ng-repeat="instruction in recipe.instructions">
+					{{instruction.step}}
+				</p>
+			</div>
+
+		</div>
+	</div>
+</div>

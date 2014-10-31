@@ -9,6 +9,23 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 	$scope.user = user.userName;
 	//console.log("hey there ", $scope.user)
 
+	$scope.require = function(){
+		if($scope.recipe.location === 'Website'){
+			$scope.websiteRequired = true;
+			$scope.bookRequired = false;
+			$scope.recipe.bookTitle = '';
+			$scope.recipe.bookPageNumber = '';
+
+		} else if ($scope.newRecipe.location === 'Book'){
+			$scope.bookRequired = true;
+			$scope.websiteRequired = false;
+			$scope.recipe.recipeUrl = '';
+		} else {
+			$scope.websiteRequired =false;
+			$scope.bookRequired = false; 
+		}
+		console.log("check requirement", $scope.websiteRequired + ' ' + $scope.bookRequired)
+	}
 
 	$scope.editRecipe = function(){
 		var paramsid = $routeParams //comes back as an object, very interesting
@@ -25,6 +42,18 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 		$scope.recipe.ingredients = newIngArr;
 		}
 
+		var arr2 = $scope.recipe.instructions
+		console.log(arr2)
+		var instArr = []
+		for(var j = 0; j < arr2.length; j++){
+			if(Object.keys(arr2[j]).length > 0){
+				instArr.push(arr2[j])
+			}		
+		}
+		$scope.recipe.instructions = instArr;
+		
+
+
 		recipeService.editRecipe(id, $scope.recipe)
 		.then(function(res){
 			$scope.recipe = '';
@@ -35,6 +64,19 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 
 	$scope.addIngredient = function(){
 		$scope.recipe.ingredients.push({});
+	}
+
+	$scope.addStep = function(){
+		$scope.recipe.instructions.push({});
+	}
+
+	$scope.removeIngredient = function(index){
+		//console.log('indexed ing ',index)
+		$scope.recipe.ingredients.splice(index, 1)
+	}
+
+	$scope.removeStep = function(index){
+		$scope.recipe.instructions.splice(index, 1)
 	}
 
 })
