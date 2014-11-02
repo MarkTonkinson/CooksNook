@@ -12,17 +12,29 @@
     
 <body ng-controller='indexCtrl'>
   
-
+        <div class="row">
+            <div class="top-border col-md-12">
+                <img src="images/fruitTarts.jpg"/>
+                <img src="images/capreseSalad.jpg"/>
+                <img src="images/inTheKitchen.jpg"/>
+            </div>
+    </div>
     <header>
-        <h1>Recipe Monkey<h1>
+        <h1>Cook's Nook<h1>
         <h5>Make Connections. Organize. Eat more variety with less.<h5>
     </header>
     <div class="container">
     <div class="row">
         <div class="col-md-10"></div>
-        <div class="col-md-2">{{username.userName}} <a ng-click="logout()" href='/logout'>Logout<a></div>
+        <div class="col-md-2">{{username.userName}} <a ng-show="showLogout()" ng-click="logout()" href='/logout'>Logout<a>
+        <div ng-show="showLogin()">
+        <a ng-click="login()" href="/auth/facebook">Login</a>
+        or <a href="#/"> Register</a>
+        </div>
+        </div>
         
-        <div class="recipebox col-md-12">
+        
+        <div class="searchbar col-md-12">
             <div class="views"> 
                 <a href="#/search/{{username.userName}}"><button class="b">Search</button></a>  <!-- link to the state-->
                 <a href="#/home/{{username.userName}}"><button class="b">Home</button></a>
@@ -34,12 +46,14 @@
       
         </div>
   
-        <div class="row">
+       
     
             <div ng-view></div>
     
-        </div>   
+
+
     </div>  
+
   
 
 
@@ -61,6 +75,7 @@
 <script src="controllers/searchCtrl.js"></script>
 <script src="controllers/singleRecipeCtrl.js"></script>
 <script src="controllers/favoritesCtrl.js"></script>
+<script src="recipeBookmarklet.js"></script>
 
 </body>
 </html>

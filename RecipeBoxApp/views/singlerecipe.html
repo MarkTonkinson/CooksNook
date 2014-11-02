@@ -4,23 +4,38 @@
 			
 			<div class="col-md-4">
 				<h2>{{recipe.recipeName}}</h2>
-				<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user}}/{{recipe._id}}">Edit</a>
+				<!-- Shows if user can delete -->
+				<a ng-show="checkPermissions(recipe.permissionsTag)" ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
+
+				<!-- Shows if not a favorite -->
+				<a ng-click="addToFavorites(recipe._id)" ng-show="checkFavorites(recipe._id)">  <i class="fa fa-star-o fa-lg"></i>  </a>
+				
+				<!-- shows up if a favorite -->
+				<a ng-click="unfavorite(recipe._id)" ng-show="checkFavorites2(recipe._id)">  <i class="fa fa-star fa-lg"></i>  </a> 
+
+				<!-- Shows up if can edit -->
+
+				<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"> <span class="iconPipe"> | </span> <i class="fa fa-pencil fa-lg"> </i> </a>
 
 				<p>Author: {{recipe.author}}<p>
 				<p>{{recipe.location}}</p>
 				<a href="{{recipe.recipeUrl}}"><p>{{recipe.recipeUrl}}</p></a>
-				<p>{{recipe.bookTitle}} {{recipe.bookPageNumber}}</p>
+				<p ng-show="checkForBook({{recipe.bookPageNumber}})">{{recipe.bookTitle}} : pg.{{recipe.bookPageNumber}}</p>
 				
 			</div>
+
 			
 			<div class="col-md-4">
+				<h2 class="hide-it">I'm Invisible</h2>
 				<p><strong>Ingredients</strong></p>
 				<p ng-repeat="ingredient in recipe.ingredients">
 					{{ingredient.qty}} {{ingredient.meas}} {{ingredient.ing}}
 				</p>
+			
 			</div>
 			
 			<div class="col-md-4">
+				<h2 class="hide-it">I'm Invisible</h2>
 				<p><strong>Instructions</strong></p>
 				<p ng-repeat="instruction in recipe.instructions">
 					{{instruction.step}}

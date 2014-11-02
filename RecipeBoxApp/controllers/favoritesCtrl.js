@@ -22,12 +22,17 @@ app.controller('favoritesCtrl', function($scope, $location, recipeService, $cook
 	$scope.unfavorite = function(recipeid){
 		var arr = $scope.user.favorites;
 		console.log(recipeid)
+		console.log(arr)
 		for(var i = 0; i < arr.length; i++){
-			arr.splice(arr[i],1)
-			break;
+			if(arr[i] === recipeid){
+				arr.splice(i,1)
+				break;
+			}
+			//
+			//
 			}
 		
-		debugger;
+		//debugger;
 		recipeService.favoriteRecipe($scope.user)
 		.then(function(res){
 			$scope.getRecipes();
@@ -35,7 +40,9 @@ app.controller('favoritesCtrl', function($scope, $location, recipeService, $cook
 	}
 
 	$scope.checkPermissions = function(permish){
-		if(permish === 'shared'){
+		if ($scope.user.admin === true){
+			return true
+		} else if (permish === 'shared'){
 			return false
 		} else if (permish === $scope.user._id){
 			return true

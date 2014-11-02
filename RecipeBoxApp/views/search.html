@@ -26,10 +26,10 @@
 		
 
 
-		<form ng-show='location'>
-			<p> Search: Personal, Book, or Website</p>
-			<input spellcheck='true' placeholder="Type" ng-model="locationSearchText"/>
-			<button ng-click="searchLocation()">Search</button>
+		<form role="form" name="typeForm" ng-show='location' novalidate>
+			<p> Use Search Term: Personal, Book, or Website</p>
+			<input spellcheck='true' placeholder="Personal, Book, or Website" ng-model="locationSearchText"/>
+			<button ng-click="searchLocation()" >Search</button>
 		</form>
 
 		<form ng-show='author'>
@@ -49,12 +49,28 @@
 		<h3>Results</h3>
 		<div><input placeholder="Filter results" ng-model="stuff"></div>
 		
-			<div class="col-md-2 recipe" ng-repeat="recipe in recipes|filter: stuff">
-				<p>Author: {{recipe.author}}</p>
-				<a href="/#/recipe/{{recipe._id}}"><p>Recipe Name: {{recipe.recipeName}}</p></a>
-				<p>Recipe Location: {{recipe.location}}</p>
-				<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
-			</div>
+		<div class="col-md-2 recipe" ng-repeat="recipe in recipes|filter: stuff">
+			
+			<a href="/#/recipe/{{recipe._id}}"><p>{{recipe.recipeName}} - {{recipe.author}}</p></a>
+			<p>{{recipe.bookTitle}} <a>{{recipe.recipeUrl}}</a></p>
+			<p ng-show="checkForBook({{recipe.bookPageNumber}})">page:{{recipe.bookPageNumber}}</p>
+
+			<!-- Shows if user can delete -->
+			<a ng-show="checkPermissions(recipe.permissionsTag)" ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
+
+			<!-- Shows if not a favorite -->
+			<a ng-click="addToFavorites(recipe._id)" ng-show="checkFavorites(recipe._id)">  <i class="fa fa-star-o fa-lg"></i>  </a>
+			
+			<!-- shows up if a favorite -->
+			<a ng-click="unfavorite(recipe._id)" ng-show="checkFavorites2(recipe._id)">  <i class="fa fa-star fa-lg"></i>  </a> 
+
+			<!-- Shows up if can edit -->
+
+			<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"> <span class="iconPipe"> | </span> <i class="fa fa-pencil fa-lg"> </i> </a>
+
+
+			<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
+		</div>
 		
 
 	</div>

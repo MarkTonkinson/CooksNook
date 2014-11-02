@@ -9,6 +9,7 @@ pids
 
 node_modules
 server.js
+recipeBookmarklet.js
 lib
 *.docx
 package.json

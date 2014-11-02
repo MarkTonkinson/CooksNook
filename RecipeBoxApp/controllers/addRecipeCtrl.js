@@ -41,7 +41,7 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 			$scope.bookRequired = true;
 			$scope.websiteRequired = false;
 			$scope.newRecipe.recipeUrl = '';
-		} else {
+		} else if($scope.newRecipe.location === 'Personal'){
 			$scope.websiteRequired =false;
 			$scope.bookRequired = false; 
 		}

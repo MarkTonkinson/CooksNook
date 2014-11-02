@@ -1,23 +1,59 @@
 body {
-	font-family: Georgia,Special Elite;
+	font-family: Georgia;
 	
 	background-color: #00899B;
-	background-color:#f5f5f5;
+	background-color:rgba(179, 182, 148, .45);
 	
-	color:#00899B;
-	color:#3C9892;
+	color:black;
 	/*color:#4c2221;*/
 }
 /*MAIN BUTTONS*/
-.b {
-	padding:1rem;
-	width:10rem;
-}
+
 input {
 	padding:5px;
 	width: 30rem;
 	margin:1rem 0 1rem 0;
 }
+/*The NavBar called search bar not to interfere- don't really search here*/
+.searchbar {
+	
+}
+
+
+.b {
+	padding:1rem;
+	background-image: none;
+	width:10rem;
+	height:50px;
+	background-color:#f5f5f5;
+	border-style:none;
+	border: 1px solid #912522;
+	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
+
+	
+    
+    margin-right: -3px;
+    
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.b:focus{
+	outline: 0;
+}
+.b a {
+	text-decoration: none;
+}
+
+/*BORDER ALONG TOP*/
+.top-border {
+	height:15rem;
+	background-color:rgba(0,0,0,.78);
+}
+.top-border>img {
+	height:15rem;
+}
+
+/*RECIPE INPUTS FOR ADD AND EDIT RECIPE*/
 .qty-input {
 	width:4rem;
 }
@@ -36,29 +72,60 @@ input {
 
 /*Every view has a div defined by this- I may not need max-height . . .*/
 .viewer {
-	border: 2px solid black;
+	border: 2px solid #912522;
 	min-height:500px;
 	max-height:2000px;
-	overflow:scroll;
+	overflow-x:hidden;
+	overflow-y:scroll;
 	background-color: white;
-	color:brown;
+	border-style:1px solid black;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	color:#912522;
+	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
+}
+.viewer  a {
+	text-decoration: none;
 }
 
 
 /*For Each Recipe in HOME and Search*/
 .recipe{
-	min-height: 200px;
+	height: 300px;
 	margin:10px;
 	border:1px solid black;
 	background-color: white;
+	overflow:scroll;
 }
 
 
 /*Font Awesome Icon Manipulations*/
+.iconPipe {
+	color:black;
+	font-size: 1.2rem;
+	margin-right: .5rem;
+	margin-left: .5rem;
+}
+.fa:hover{
+	cursor:pointer;
+}
 .fa-star-o {
 	color:yellow;
 }
+
+.fa-star {
+	color: yellow;
+}
 .fa-ban {
 	color:rgb(200,200,200);
+}
+.fa-trash {
+	color:red;
+}
+
+/*Single Recipe View*/
+
+.hide-it {
+	visibility: hidden;
 }
 
