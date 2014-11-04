@@ -5,7 +5,13 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 	$scope.getUsername = function(){
 		$scope.username = $cookieStore.get('user');
 	}
-	
+
+	$scope.loginSpinner = false;
+
+	$scope.showLoginSpinner = function(){
+		console.log('did we make it?')
+		$scope.loginSpinner = true;
+	}
 	//TODO: why is this running several times?
 	//the scope must be getting recreated several times
 	$scope.showLogin = function(){

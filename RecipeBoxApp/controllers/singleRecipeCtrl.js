@@ -1,8 +1,9 @@
 var app = angular.module('RecipeBoxApp');
 
-app.controller('singleRecipeCtrl', function($scope, getRecipeToView, recipeService, $cookieStore){
+app.controller('singleRecipeCtrl', function($scope, getRecipeToView, recipeService, $location, $cookieStore){
 	$scope.getUsername();
 	 $scope.recipe = getRecipeToView
+	 console.log($scope.recipe)
 	$scope.getUser = function(){
 		if(!$scope.username){
 			//console.log("we are ok")
@@ -26,6 +27,13 @@ app.controller('singleRecipeCtrl', function($scope, getRecipeToView, recipeServi
 			return false
 		}
 	}
+
+
+	$scope.removeRecipe = function(recipeId){
+		recipeService.deleteRecipe(recipeId, $scope.user.facebookId);
+		$location.path('/home/' + $scope.username)
+	}
+
 
 	$scope.checkForBook = function(page){
 		console.log('the page', page)

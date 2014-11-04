@@ -19,7 +19,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 	}
 
 	this.favoriteRecipe = function(user){
-		//console.log('on the way to favorites', user);
+		console.log('on the way to favorites', user);
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
@@ -29,7 +29,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 			updatedData = res.data;
 			$cookieStore.put('user', updatedData)
 			deferred.resolve(res);
-			//console.log('user favorited ', updatedData)
+			console.log('user favorited ', updatedData)
 		})
 		return deferred.promise
 	}

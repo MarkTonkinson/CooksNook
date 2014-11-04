@@ -1,4 +1,4 @@
-var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate']);
+var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate', 'ngSanitize']);
 
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider

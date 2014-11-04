@@ -3,7 +3,7 @@
 		<div class="row">
 			
 			<div class="col-md-4">
-				<h2>{{recipe.recipeName}}</h2>
+				<a href="{{recipe.recipeUrl}}"><h2>{{recipe.recipeName}}</h2></a>
 				<!-- Shows if user can delete -->
 				<a ng-show="checkPermissions(recipe.permissionsTag)" ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
 
@@ -19,7 +19,7 @@
 
 				<p>Author: {{recipe.author}}<p>
 				<p>{{recipe.location}}</p>
-				<a href="{{recipe.recipeUrl}}"><p>{{recipe.recipeUrl}}</p></a>
+				
 				<p ng-show="checkForBook({{recipe.bookPageNumber}})">{{recipe.bookTitle}} : pg.{{recipe.bookPageNumber}}</p>
 				
 			</div>
@@ -38,6 +38,8 @@
 				<h2 class="hide-it">I'm Invisible</h2>
 				<p><strong>Instructions</strong></p>
 				<p ng-repeat="instruction in recipe.instructions">
+					<p ng-bind-html="recipe.instructions[0]"></p>
+
 					{{instruction.step}}
 				</p>
 			</div>

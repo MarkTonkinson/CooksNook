@@ -1,6 +1,6 @@
 var app = angular.module("RecipeBoxApp");
 
-app.controller("searchCtrl", function($scope, searchService, $cookieStore){
+app.controller("searchCtrl", function($scope, searchService, $cookieStore, recipeService){
 	
 	$scope.getUsername();
 	$scope.user = $cookieStore.get('user');
