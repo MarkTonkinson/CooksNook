@@ -18,5 +18,18 @@ app.service('userService', function($http, $q, $cookieStore){
 			return deferred.promise;
 		}
 	}
+	// this.softRemove = function(userid, user){
+
+	// 	var deferred = $q.defer();
+	// 		$http ({
+	// 			method: 'GET',
+	// 			url: 'http://localhost:3000/me'
+	// 		}).then(function(res){
+	// 			var fbUser = res.data;
+	// 			$cookieStore.put('user', fbUser);
+	// 			deferred.resolve(fbUser);
+	// 		})
+	// 		return deferred.promise;
+	// }
 
 })

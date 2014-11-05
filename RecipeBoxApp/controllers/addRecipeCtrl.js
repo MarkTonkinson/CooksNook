@@ -7,6 +7,7 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 	$scope.person = user.userName;
 	console.log('the user ',$scope.person)
 
+	$scope.recipeNameUsed = false;
 	$scope.newRecipe = {
 		ingredients: [{},{},{},{},{},{}],   //why do I have to specify?  What will happen when I submit 3 ingredients instead of the max?
 		instructions:[{},{},{},{},{},{}]
@@ -79,8 +80,14 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 		//console.log($scope.newRecipe);
 		recipeService.addNewRecipe($scope.newRecipe, user._id)
 		.then(function(res){
-			$scope.newRecipe = ''
-			$location.path('/home/' + $scope.person)
+			if(res.data === "alreadyhaveit"){
+				//alert("You've already used this name, please use a different name for your recipe.")
+				$scope.recipeNameUsed = true;
+			} else {
+				$scope.newRecipe = ''
+				$location.path('/home/' + $scope.person)
+			}
+			
 		})
 		
 	}

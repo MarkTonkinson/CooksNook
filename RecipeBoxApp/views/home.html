@@ -22,7 +22,7 @@
 					<a href="/#/recipe/{{recipe._id}}"> <p> {{recipe.recipeName}}  - {{recipe.author}}</p></a>
 					
 					<!-- Shows if user can delete -->
-					<a ng-show="checkPermissions(recipe.permissionsTag)" ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
+					<a  ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
 
 					<!-- Shows if not a favorite -->
 					<a ng-click="addToFavorites(recipe._id)" ng-show="checkFavorites(recipe._id)">  <i class="fa fa-star-o fa-lg"></i>  </a>

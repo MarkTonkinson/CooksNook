@@ -11,6 +11,8 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 	//
 	//this happens in part because I wrote the code so it wouldn't ping the server every single time 
 	//the page needed something off the user . . 
+	//I could also fix this by picking more specific data to store to the cookie rather than everything-
+	//that would just get more busy  . . .
 
 	$scope.getUsername();
 
@@ -52,6 +54,11 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 	$scope.removeRecipe = function(recipeId){
 		recipeService.deleteRecipe(recipeId, $scope.user.facebookId);
 		$scope.getRecipes();
+	}
+
+	$scope.softRemove = function(recipeid){
+		userService.updateUser($scope.user)
+		$scope.getRecipes();
 	}	
 
 
@@ -81,8 +88,11 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 
 	$scope.addToFavorites = function(recipeid){
 		$scope.user.favorites.push(recipeid);
-
-		recipeService.favoriteRecipe($scope.user)
+		var favoritesReqBody = {
+			_id : $scope.user._id,
+			favorites : $scope.user.favorites
+		}
+		recipeService.favoriteRecipe(favoritesReqBody)
 		.then(function(res){
 			//console.log($scope.user);
 		})
@@ -90,8 +100,10 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 
 	$scope.unfavorite = function(recipeid){
 		var arr = $scope.user.favorites;
-		//console.log(recipeid)
-		//console.log(arr)
+		var unfavoriteReqBody = {
+			_id : $scope.user._id,
+			favorites : $scope.user.favorites
+		}
 		for(var i = 0; i < arr.length; i++){
 			if(arr[i] === recipeid){
 				arr.splice(i,1)
@@ -102,7 +114,7 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 			}
 		
 		//debugger;
-		recipeService.favoriteRecipe($scope.user)
+		recipeService.favoriteRecipe(unfavoriteReqBody)
 		.then(function(res){
 			$scope.getRecipes();
 		})

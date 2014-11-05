@@ -116,7 +116,12 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 
 	$scope.addToFavorites = function(recipeid){
 		$scope.user.favorites.push(recipeid);
-		recipeService.favoriteRecipe($scope.user)
+
+		var favoritesReqBody = {
+			_id : $scope.user._id,
+			favorites : $scope.user.favorites
+		}
+		recipeService.favoriteRecipe(favoritesReqBody)
 		.then(function(res){
 			//console.log($scope.user);
 		})
@@ -124,19 +129,20 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 
 	$scope.unfavorite = function(recipeid){
 		var arr = $scope.user.favorites;
-		//console.log(recipeid)
-		//console.log(arr)
+
 		for(var i = 0; i < arr.length; i++){
 			if(arr[i] === recipeid){
 				arr.splice(i,1)
 				break;
 			}
-			//
-			//
-			}
+
+		}
 		
-		//debugger;
-		recipeService.favoriteRecipe($scope.user)
+		var unfavoriteReqBody = {
+			_id : $scope.user._id,
+			favorites : $scope.user.favorites
+		}
+		recipeService.favoriteRecipe(unfavoriteReqBody)
 		.then(function(res){
 			$scope.getRecipes();
 		})

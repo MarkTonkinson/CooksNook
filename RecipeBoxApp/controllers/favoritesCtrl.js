@@ -21,19 +21,19 @@ app.controller('favoritesCtrl', function($scope, $location, recipeService, $cook
 
 	$scope.unfavorite = function(recipeid){
 		var arr = $scope.user.favorites;
-		console.log(recipeid)
-		console.log(arr)
+		
 		for(var i = 0; i < arr.length; i++){
 			if(arr[i] === recipeid){
 				arr.splice(i,1)
 				break;
 			}
-			//
-			//
-			}
+		}
+		var unfavoriteReqBody = {
+			_id : $scope.user._id,
+			favorites : $scope.user.favorites
+		}
 		
-		//debugger;
-		recipeService.favoriteRecipe($scope.user)
+		recipeService.favoriteRecipe(unfavoriteReqBody)
 		.then(function(res){
 			$scope.getRecipes();
 		})
