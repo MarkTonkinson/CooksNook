@@ -69,6 +69,27 @@ app.config(['$routeProvider', function($routeProvider){
 			}
 		}
 	})
+	.when('/PublicCollections', {
+		templateUrl: '../views/publicCollections.html',
+		controller: 'publicCollectionsCtrl',
+		resolve: {
+			getPublicCollections: function(userService){
+				return userService.getPublicCollections();
+			}
+		}
+	})
+	.when('/PublicCollection/:id/:collectionName', {
+		templateUrl: '../views/publicCollection.html',
+		controller: 'publicCollectionCtrl',
+		resolve: {
+			getCollection: function($route, userService){
+				return userService.getCollection($route.current.params.id);
+			},
+			getCollectionRecipes: function($route, userService){
+				return userService.getRecipesInCollection($route.current.params.id);
+			}
+		}
+	})
 	.otherwise({
 		redirectTo: '/'
 	})

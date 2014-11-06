@@ -1,0 +1,9 @@
+<div class="viewer container">
+
+	<h2>Public Recipe Collections</h2>
+	<h4>Just click to add to your recipe book</h4>
+	
+	<div ng-repeat="collection in collections">
+		<a href='#/PublicCollection/{{collection._id}}/{{collection.collectionName}}'>{{collection.collectionName}}</a>
+	</div>
+</div>

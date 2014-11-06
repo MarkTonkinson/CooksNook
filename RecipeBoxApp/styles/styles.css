@@ -9,6 +9,13 @@ body {
 	/*color:#4c2221;*/
 }
 /*MAIN BUTTONS*/
+.cook-button {
+	padding:5px;
+	width:10rem;
+	background-color:white;
+
+	border-radius: 5px;
+}
 
 input {
 	padding:5px;
@@ -24,7 +31,7 @@ input {
 .b {
 	/*padding:1rem;*/
 	background-image: none;
-	width:10rem;
+	width:14rem;
 	/*height:50px;*/
 	background-color:white;
 	border-style:none;
@@ -150,4 +157,7 @@ input {
 	/*color: white;*/
 }
 
-
+/*For the SINGLE COLLECTION*/
+.collection-divider {
+	padding-left:2rem;
+}

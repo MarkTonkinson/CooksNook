@@ -18,18 +18,18 @@ app.service('recipeService', function($http, $q, $cookieStore){
 		
 	}
 
-	this.favoriteRecipe = function(user){
-		console.log('on the way to favorites', user);
+	this.updateUser = function(user){
+		console.log('on the way to update whatever', user);
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/user/favorites/' + user,
+			url: 'http://localhost:3000/api/user/update/' + user,
 			data: user 
 		}).then(function(res){
 			updatedData = res.data;
 			$cookieStore.put('user', updatedData)
 			deferred.resolve(res);
-			console.log('user favorited ', updatedData)
+			console.log('user updated ', updatedData)
 		})
 		return deferred.promise
 	}
@@ -48,12 +48,12 @@ app.service('recipeService', function($http, $q, $cookieStore){
 	}
 
 	
-	this.getUserRecipes = function(id){
+	this.getUserRecipes = function(facebookid){
 		//console.log('did we get ', id)
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://localhost:3000/api/user/recipes/' + id
+			url: 'http://localhost:3000/api/user/recipes/' + facebookid
 		}).then(function(res){
 			//console.log('recipes', res);
 			deferred.resolve(res.data);

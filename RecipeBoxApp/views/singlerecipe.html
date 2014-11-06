@@ -4,18 +4,26 @@
 			
 			<div class="col-md-4">
 				<a href="{{recipe.recipeUrl}}"><h2>{{recipe.recipeName}}</h2></a>
+
+				<button class="cook-button" ng-show='!hasRecipe' ng-click="addRecipe({{user._id}})">Add This Recipe</button>
 				<!-- Shows if user can delete -->
-				<a ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
-
-				<!-- Shows if not a favorite -->
-				<a ng-click="addToFavorites(recipe._id)" ng-show="checkFavorites(recipe._id)">  <i class="fa fa-star-o fa-lg"></i>  </a>
 				
-				<!-- shows up if a favorite -->
-				<a ng-click="unfavorite(recipe._id)" ng-show="checkFavorites2(recipe._id)">  <i class="fa fa-star fa-lg"></i>  </a> 
+				<!-- TODO: I may not need this now -->
+				<div ng-show="hasRecipe">
 
-				<!-- Shows up if can edit -->
+					<a ng-show="canDelete" ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
 
-				<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"> <span class="iconPipe"> | </span> <i class="fa fa-pencil fa-lg"> </i> </a>
+					<!-- Shows if not a favorite -->
+					<a ng-click="addToFavorites(recipe._id)" ng-show="checkFavorites(recipe._id)">  <i class="fa fa-star-o fa-lg"></i>  </a>
+					
+					<!-- shows up if a favorite -->
+					<a ng-click="unfavorite(recipe._id)" ng-show="checkFavorites2(recipe._id)">  <i class="fa fa-star fa-lg"></i>  </a> 
+
+					<!-- Shows up if can edit -->
+
+					<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"> <span class="iconPipe"> | </span> <i class="fa fa-pencil fa-lg"> </i> </a>
+
+				</div>
 
 				<p>Author: {{recipe.author}}<p>
 				<p>{{recipe.location}}</p>

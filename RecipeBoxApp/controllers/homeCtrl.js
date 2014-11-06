@@ -81,7 +81,7 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 		})
 	}
 	$scope.getRecipes();
-
+	//TODO: Need to look in to which I'm using
 	$scope.removeRecipe = function(recipeId){
 		recipeService.deleteRecipe(recipeId, $scope.user.facebookId);
 		$scope.getRecipes();
@@ -123,7 +123,7 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 			_id : $scope.user._id,
 			favorites : $scope.user.favorites
 		}
-		recipeService.favoriteRecipe(favoritesReqBody)
+		recipeService.updateUser(favoritesReqBody)
 		.then(function(res){
 			//console.log($scope.user);
 		})
@@ -145,7 +145,7 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 			}
 		
 		//debugger;
-		recipeService.favoriteRecipe(unfavoriteReqBody)
+		recipeService.updateUser(unfavoriteReqBody)
 		.then(function(res){
 			$scope.getRecipes();
 		})

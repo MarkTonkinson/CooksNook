@@ -78,4 +78,27 @@ app.service('userService', function($http, $q, $cookieStore){
 		return deferred.promise;
 	}
 
+	this.deleteUserCollection = function(collectionid, userid){
+		var deferred = $q.defer();
+		$http({
+			method: 'DELETE',
+			url: 'http://localhost:3000/api/collections/' + collectionid + '/' +userid
+		}).then(function(res){
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
+
+	this.getPublicCollections = function(){
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'http://localhost:3000/api/publicCollections'
+		}).then(function(res){
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+
+	}
+
 })

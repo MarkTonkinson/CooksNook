@@ -121,7 +121,7 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 			_id : $scope.user._id,
 			favorites : $scope.user.favorites
 		}
-		recipeService.favoriteRecipe(favoritesReqBody)
+		recipeService.updateUser(favoritesReqBody)
 		.then(function(res){
 			//console.log($scope.user);
 		})
@@ -142,7 +142,7 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 			_id : $scope.user._id,
 			favorites : $scope.user.favorites
 		}
-		recipeService.favoriteRecipe(unfavoriteReqBody)
+		recipeService.updateUser(unfavoriteReqBody)
 		.then(function(res){
 			$scope.getRecipes();
 		})

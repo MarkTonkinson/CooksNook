@@ -33,7 +33,7 @@ app.controller('favoritesCtrl', function($scope, $location, recipeService, $cook
 			favorites : $scope.user.favorites
 		}
 		
-		recipeService.favoriteRecipe(unfavoriteReqBody)
+		recipeService.updateUser(unfavoriteReqBody)
 		.then(function(res){
 			$scope.getRecipes();
 		})
