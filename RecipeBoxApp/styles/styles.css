@@ -92,11 +92,14 @@ input {
 
 
 /*For Each Recipe in HOME and Search*/
-.recipe{
+.recipe {
 	height: 300px;
 	min-width:200px;
-	margin:10px;
+	margin:2rem;
+	margin-left: 4rem;
+	margin-right: 5rem;
 	border:1px solid black;
+	border-radius:5px;
 	color:black;
 	background-color: white;
 	overflow:scroll;

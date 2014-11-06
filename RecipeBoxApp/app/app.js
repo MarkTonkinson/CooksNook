@@ -34,6 +34,10 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl: '../views/favorites.html',
 		controller: 'favoritesCtrl'
 	})
+	.when('/collections/:user',{
+		templateUrl: '../views/collections.html',
+		controller: 'collectionsCtrl'
+	})
 	.when('/editRecipe/:person/:recipeid', {
 		templateUrl: '../views/editRecipe.html',
 		controller: 'editRecipeCtrl',
@@ -50,6 +54,18 @@ app.config(['$routeProvider', function($routeProvider){
 		resolve: {
 			getRecipeToView: function($route, recipeService){
 				return recipeService.getRecipeById($route.current.params.recipeid);
+			}
+		}
+	})
+	.when('/collection/:id/:collectionName', {
+		templateUrl: '../views/collection.html',
+		controller: 'singleCollectionCtrl',
+		resolve: {
+			getCollection: function($route, userService){
+				return userService.getCollection($route.current.params.id);
+			},
+			getCollectionRecipes: function($route, userService){
+				return userService.getRecipesInCollection($route.current.params.id);
 			}
 		}
 	})

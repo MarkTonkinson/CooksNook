@@ -35,7 +35,38 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 		}
 	}
 
+	$scope.getCollections = function(){
+		userService.getCollections($scope.user._id)
+		.then(function(res){
+			console.log(res)
+		$scope.collections = res;
+		})
+	}
+
+	$scope.getCollections();
+
+
+	$scope.checkCollection = function(addornot, recipeid){
+		if(addornot === 'spliceValue'){
+			$scope.selectedCollection.recipes.splice($scope.selectedCollection.recipes.indexOf(recipeid), 1);
+		} else if (addornot === 'pushRecipe') {
+			$scope.selectedCollection.recipes.push(recipeid);
+		
+		} 
+	}
 	
+
+
+	$scope.pushToCollection = function(recipeid){
+		$scope.selectedCollection.recipes.push(recipeid);
+
+	}
+	$scope.updateCollection = function(){
+		userService.updateCollection($scope.selectedCollection, $scope.user._id)
+		.then(function(res){
+			$scope.selectedCollection = ''
+		})
+	}	
 	
 
 //*****************Getting/Deleting Recipes*************

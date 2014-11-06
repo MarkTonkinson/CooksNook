@@ -18,18 +18,64 @@ app.service('userService', function($http, $q, $cookieStore){
 			return deferred.promise;
 		}
 	}
-	// this.softRemove = function(userid, user){
+	
+	this.saveCollection = function(newCollection, userid){
+		var deferred = $q.defer();
+		$http({
+			method: 'POST',
+			url: 'http://localhost:3000/api/collections/' + userid,
+			data: newCollection
+		}).then(function(res){
+			return deferred.resolve(res.data)
+		})
+		return deferred.promise
 
-	// 	var deferred = $q.defer();
-	// 		$http ({
-	// 			method: 'GET',
-	// 			url: 'http://localhost:3000/me'
-	// 		}).then(function(res){
-	// 			var fbUser = res.data;
-	// 			$cookieStore.put('user', fbUser);
-	// 			deferred.resolve(fbUser);
-	// 		})
-	// 		return deferred.promise;
-	// }
+	}
+
+	this.updateCollection = function(collection, userid){
+		var deferred = $q.defer();
+		$http({
+			method: 'PUT',
+			url: 'http://localhost:3000/api/collections/' + userid,
+			data: collection
+		}).then(function(res){
+			return deferred.resolve(res.data)
+		})
+		return deferred.promise
+	}
+
+	this.getCollections = function(userid){
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'http://localhost:3000/api/collections/' + userid
+		}).then(function(res){
+			return deferred.resolve(res.data)
+		})
+		return deferred.promise
+	}
+
+	this.getCollection = function(collectionid){
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'http://localhost:3000/api/collection/' + collectionid
+		}).then(function(res){
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;	
+	}
+
+	this.getRecipesInCollection = function(collectionid){
+		console.log(collectionid)
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'http://localhost:3000/api/recipesInCollection/' + collectionid
+		}).then(function(res){
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
 
 })

@@ -5,7 +5,7 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 	$scope.getUsername();
 	var user = $cookieStore.get('user');
 	$scope.person = user.userName;
-	console.log('the user ',$scope.person)
+	//console.log('the user ',$scope.person)
 
 	$scope.recipeNameUsed = false;
 	$scope.newRecipe = {
@@ -80,7 +80,7 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 		//console.log($scope.newRecipe);
 		recipeService.addNewRecipe($scope.newRecipe, user._id)
 		.then(function(res){
-			if(res.data === "alreadyhaveit"){
+			if(res.data === "You already have this recipe. :)"){
 				//alert("You've already used this name, please use a different name for your recipe.")
 				$scope.recipeNameUsed = true;
 			} else {
