@@ -1,7 +1,7 @@
 var app = angular.module('RecipeBoxApp');
 
 app.service('userService', function($http, $q, $cookieStore){
-	var domainName = 'cooknookcollection.com'
+	
 	this.getFacebookUser = function(){
 		if($cookieStore.get('user')){
 			//console.log('we already did this');  //if they are already here, we don't need to do this resolve over again- it will get undefined
@@ -9,7 +9,7 @@ app.service('userService', function($http, $q, $cookieStore){
 			var deferred = $q.defer();
 			$http ({
 				method: 'GET',
-				url: 'http://' + domainName + '/me'
+				url: '/me'
 			}).then(function(res){
 				var fbUser = res.data;
 				$cookieStore.put('user', fbUser);
@@ -24,7 +24,7 @@ app.service('userService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: 'http://' + domainName + '/api/collections/' + userid,
+			url: '/api/collections/' + userid,
 			data: newCollection
 		}).then(function(res){
 			return deferred.resolve(res.data)
@@ -37,7 +37,7 @@ app.service('userService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://' + domainName + '/api/collections/' + userid,
+			url: '/api/collections/' + userid,
 			data: collection
 		}).then(function(res){
 			return deferred.resolve(res.data)
@@ -49,7 +49,7 @@ app.service('userService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://' + domainName + '/api/collections/' + userid
+			url: '/api/collections/' + userid
 		}).then(function(res){
 			return deferred.resolve(res.data)
 		})
@@ -60,7 +60,7 @@ app.service('userService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://' + domainName + '/api/collection/' + collectionid
+			url: '/api/collection/' + collectionid
 		}).then(function(res){
 			return deferred.resolve(res.data);
 		})
@@ -72,7 +72,7 @@ app.service('userService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://' + domainName + '/api/recipesInCollection/' + collectionid
+			url: '/api/recipesInCollection/' + collectionid
 		}).then(function(res){
 			return deferred.resolve(res.data);
 		})
@@ -83,7 +83,7 @@ app.service('userService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'DELETE',
-			url: 'http://' + domainName + '/api/collections/' + collectionid + '/' +userid
+			url: '/api/collections/' + collectionid + '/' +userid
 		}).then(function(res){
 			return deferred.resolve(res.data);
 		})
@@ -94,7 +94,7 @@ app.service('userService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://' + domainName + '/api/publicCollections'
+			url: '/api/publicCollections'
 		}).then(function(res){
 			return deferred.resolve(res.data);
 		})

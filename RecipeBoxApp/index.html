@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="RecipeBoxApp">
     <head>
-        <Title>RecipeBoxApp</Title>
-        
+        <Title>Cook's Nook</Title>
+        <link rel="Shortcut Icon" href="favicon.png" type="image/png">
         <!-- <link href='http://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'> -->
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -34,6 +34,7 @@
     <div class="row">
         <div class="col-md-10"></div>
         <div class="col-md-2">{{username.userName}} <a ng-show="showLogout()" ng-click="logout()" href='/logout'>Logout<a>
+        <p ng-show="showLogout()"><a href="#/CooksNookBookMarklet">Add Bookmarklet</a></p>
         <div ng-show="showLogin()">
         <a ng-click="login()" href="/auth/facebook">Login</a>
         or <a href="#/"> Register</a>
@@ -89,6 +90,7 @@
 <script src="controllers/singleCollectionCtrl.js"></script>
 <script src="controllers/publicCollectionsCtrl.js"></script>
 <script src="controllers/publicCollectionCtrl.js"></script>
+<script src="controllers/bookmarkletCtrl.js"></script>
 
 
 </body>

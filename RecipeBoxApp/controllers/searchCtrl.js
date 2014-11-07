@@ -77,6 +77,15 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 		})
 	}
 
+	$scope.recipeImageShow = function(recipeimage){
+		if(recipeimage ===''){
+			return true
+		} else if (recipeimage === 'none'){
+			return false
+		} else {
+			return true
+		}
+	}
 
 	$scope.checkPermissions = function(permish){
 		if($scope.user.admin === true){

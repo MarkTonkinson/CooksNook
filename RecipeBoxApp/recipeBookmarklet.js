@@ -30,6 +30,7 @@
 		(window.myBookmarklet = function() {
 			//recipe constructor for all websites
 			var domainName = 'cooknookcollection.com'
+			var domainName='localhost:3000'
 			var getLocal = function() {
 				
 				var uId = localStorage.getItem('local');
@@ -172,7 +173,7 @@
 
 
 			//***************GET SKINNY TASTE RECIPE***********************
-
+			//not using right now because it is broken
 			var getSkinnyTasteRecipe = function(){
 				var author = 'Skinny Taste';
 				var recipeName = document.getElementsByClassName('post-title')[0].innerText;
@@ -225,8 +226,9 @@
 				var author = document.getElementsByClassName('source-name')[0].innerText.replace('From', '');
 				
 				var recipeName = document.getElementsByClassName('primary')[1].getElementsByTagName('h1')[0].innerText;
-				var recipeImage = 'none';
-				console.log(recipeName)
+				var recipeImage = document.getElementsByClassName('image')[1].getElementsByTagName('img')[0].currentSrc;
+				//console.log(recipeImage)
+				//console.log(recipeName)
 				var ings = document.getElementsByClassName("ingredient");
 
 				//console.log(ings);
@@ -244,7 +246,7 @@
 				var yield = document.getElementsByClassName('yield')[0].innerText;
 
 				var finalRecipe = new Recipe(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions);
-				console.log(finalRecipe);
+				//console.log(finalRecipe);
 				postRecipe(finalRecipe);
 			}
 
@@ -256,9 +258,9 @@
 					getRecipeFromAllRecipes();
 				} else if(host === 'thepioneerwoman.com'){
 					getPioneerWomanRecipe();
-				} else if(host === 'www.skinnytaste.com'){
-					getSkinnyTasteRecipe();
-					alert("Cook's Nook- make sure you verify that SkinnyTaste recipes come out right.  Email us if there are errors.")
+				// } else if(host === 'www.skinnytaste.com'){
+				// 	getSkinnyTasteRecipe();
+				// 	alert("Cook's Nook- make sure you verify that SkinnyTaste recipes come out right.  Email us if there are errors.")
 				} else if(host === 'www.yummly.com'){
 					getYummlyRecipe();
 				} else {

@@ -62,6 +62,15 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, rec
 	$scope.getUser();
 
 
+	$scope.recipeImageShow = function(recipeimage){
+		if(recipeimage ===''){
+			return true
+		} else if (recipeimage === 'none'){
+			return false
+		} else {
+			return true
+		}
+	}
 
 
 	

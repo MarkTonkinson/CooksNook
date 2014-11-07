@@ -5,6 +5,8 @@ body {
 	background-color:rgba(179, 182, 148, .45);
 	
 	background-color:white;
+/*	background-color: #FFC16C;
+	background-color: #0A5A9C;*/
 	
 
 	
@@ -37,6 +39,11 @@ button:focus {
 	outline: 0;
 }
 
+.button-on-white {
+	border: 1px solid rgba(0, 0, 0, .25);
+	margin: 2rem 0;	
+}
+
 select {
 	font-size:2rem;
 
@@ -56,13 +63,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 input {
-	padding:5px;
+	padding: .8rem;
 	width: 30rem;
-	margin:1rem 0 1rem 0;
+	margin: 1rem 0 1rem 0;
 	box-shadow: 2px 5px 9px -2px rgba(0, 0, 0, .5);
 	border-radius: 10px;
 	border-style: hidden;
+
 }
+input:focus {
+	outline: 0;
+}
+
+.input-on-white {
+	border-style: solid;
+	border-color: rgba(0,0,0,.2);
+}
+
 
 
 /*The NavBar called search bar not to interfere- don't really search here*/
@@ -98,6 +115,7 @@ input {
 	height:12rem;
 	background-color:rgba(0,0,0,.78);
 	padding-left:0;
+	background-color:#0A5A9C;
 }
 .top-border img {
 	height:12rem;
@@ -138,25 +156,146 @@ input {
 	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
 	color:rgba(0, 0, 0, .78);
 	background-color: #428CCA;
+/*	background-color: #0A5A9C;
+	background-color: #FFC16C;*/
 }
 .viewer  a {
 	text-decoration: none;
 }
 
+.custom-htag {
+	color:#1916A9;
+	width: 33rem;
+	background-color: white;
+	box-shadow: 2px -2px 5px 0px rgb(10,10,10);
+	padding: 2rem 4rem;
+	margin: 4rem;
+	border-radius:1rem;
+}
 
+
+.collection-manager-box {
+	color:#1916A9;
+	width: 45rem;
+	background-color: white;
+	box-shadow: 2px -2px 5px 0px rgb(10,10,10);
+	padding: 1rem 2rem;
+	margin: 4rem;
+	border-radius:1rem;
+}
 /*For Each Recipe in HOME and Search*/
 .recipe {
 	height: 300px;
 	min-width:200px;
-	margin:2rem;
-	margin-left: 4rem;
+	margin:2rem 5rem 2rem 4rem;
+/*	margin-left: 4rem;
 	margin-right: 5rem;
+	margin-bottom:2rem;*/
 	border:1px solid black;
 	border-radius:5px;
 	color:black;
 	background-color: white;
 	overflow:scroll;
+	padding: 1.5rem 1rem
+}
+.recipe img {
+	height:9rem;
+}
+.recipe-border {
+	border-left:1px solid rgba(0,0,0,.25);
+	min-height: 200px;
+}
+
+/*This is for individual recipe page*/
+.single-recipe-view {
+	margin: 3rem;
+	height:50rem;
+	background-color: white;
+	border: 1px solid black;
+	overflow: scroll;
+}
+.single-recipe-view img {
+	height: 20rem;
+}
+
+.search-view {
+
+	padding: 2rem;
+	margin: 3rem;
+	min-height: 40rem;
+	max-height:200rem;
+	/*background-color: white;
+	border: 1px double black;*/
+
+	overflow: scroll;
+}
+
+.search-nav{
+	padding:2rem;
+	margin-left: -2rem;
+	margin-right: 5rem;
+	background-color: white;
+	border: 1px double black;
+	border-radius: 5px;
+}
+
+.search-nav button {
+	border-color: rgba(0, 0, 0, .2);
+	width:20rem;
+}
+
+.search-nav input {
+	border-style: solid;
+	border-color: rgba(0,0,0,.2);
+}
+
+.search-recipe {
+	height: 300px;
+	min-width:200px;
+	margin:2rem;
+	margin-left: 4rem;
+	margin-right: 4rem;
+	border:1px solid black;
+	border-radius:5px;
+	color:black;
+	background-color: white;
+	overflow: scroll;
 	padding-top: 1rem;
+}
+
+.search-recipe img {
+	height:9rem;
+}
+
+.home-view {
+	padding: 1rem;
+	margin: 2rem;
+	background-color: white;
+}
+
+
+.collection-view {
+	padding: 2rem;
+	margin: 3rem;
+	background-color: white;
+
+}
+
+.collection-recipe {
+	border: 1px solid black;
+	margin: 1rem 0 1rem 0;
+	padding: 1rem;
+	width: 30rem;
+	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
+}
+
+.collection-recipe img {
+	text-align: center;
+	height: 14rem;
+	border: 1px solid rgba(0, 0, 0, .26);
+	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
+	margin-left:auto;
+	margin-right:auto;
 }
 
 /*Controls Ingredient head format in .recipe box*/
@@ -176,11 +315,11 @@ input {
 	cursor:pointer;
 }
 .fa-star-o {
-	color: rgb(200, 200, 84);
+	color: #FFC921;
 }
 
 .fa-star {
-	color: rgb(200, 200, 84);
+	color: #FFC921;
 }
 .fa-ban {
 	color:rgb(200,200,200);
@@ -202,11 +341,30 @@ input {
 }
 
 /*add-recipe view*/
-.add-recipe {
-	/*color: white;*/
+.add-recipe-view {
+	padding: 1rem;
+	margin: 2rem 1rem;
+	/*background-color: #FFC16C;
+	background-color: #428CCA;*/
+	background-color:white;
+}
+
+.add-recipe-view input {
+	border-style: solid;
+	border-color: rgba(0,0,0,.2);
+}
+
+.instruction-input {
+	width:29rem;
 }
 
 /*For the SINGLE COLLECTION*/
 .collection-divider {
 	padding-left:2rem;
 }
+
+.bookmarklet {
+	background-color:#FFE69A;
+}
+
+

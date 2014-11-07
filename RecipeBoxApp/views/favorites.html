@@ -1,29 +1,33 @@
-<div class="viewer">
+<div class="viewer container">
 
-
-<div class="container">
 	<h2>{{user.userName}}'s Favorites</h2>
-	<div class="col-md-2 recipe" ng-repeat='recipe in recipes'>
-		
-		<a href="/#/recipe/{{recipe._id}}"><p>{{recipe.recipeName}}  - {{recipe.author}} </p></a>
+	
+	<div class="col-md-5 recipe" ng-repeat='recipe in recipes'>
+		<div class="row">
+			<div class="col-md-4">
+				<a href="/#/recipe/{{recipe._id}}"><p>{{recipe.recipeName}}  - {{recipe.author}} </p></a>
 
-		<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"><i class="fa fa-pencil fa-lg"></i><span class="iconPipe"> | </span></a>
-		<!-- remove from favorite -->
+				<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"><i class="fa fa-pencil fa-lg"></i><span class="iconPipe"> | </span></a>
+				<!-- remove from favorite -->
 
-		
-		<i ng-click="unfavorite(recipe._id)" class="fa fa-star fa-lg"></i>
-		  
-		
-		
-		<!-- I don't think you need to delete recipes 
-		when it is a favorite -->
-		<!-- <p><a ng-show="checkPermissions(recipe.permissionsTag)" ng-click='removeRecipe(recipe._id)'>Delete Recipe</a></p> -->
+				
+				<i ng-click="unfavorite(recipe._id)" class="fa fa-star fa-lg"></i>
 
+				<br>
+				<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/>
+			</div>
+				  
+				
+				
+				<!-- I don't think you need to delete recipes 
+				when it is a favorite -->
+				<!-- <p><a ng-show="checkPermissions(recipe.permissionsTag)" ng-click='removeRecipe(recipe._id)'>Delete Recipe</a></p> -->
 
-		<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
-		
-
-		
+			<div class="col-md-8 recipe-border">
+				<p class='ingredients'>Ingredients</p>
+				<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
+			</div>
+		</div>		
 		
 	</div>
 

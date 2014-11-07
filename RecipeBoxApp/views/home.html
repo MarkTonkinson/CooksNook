@@ -1,6 +1,6 @@
 <div class="viewer container">
 	
-	<a draggable="true" href="javascript:(function(){localStorage.setItem('local',JSON.stringify('{{user._id}}'));document.body.appendChild(document.createElement('script')).src='http://cooknookcollection.com/recipeBookmarklet.js';})();">{{user.userName}}'s Bookmarklet</a>
+	
 
 	<!-- The other way it could go is to have one input box and just ng-repeat to display each added ingredient
 	but I think the current way is more intuitive -->
@@ -9,19 +9,28 @@
 	<!-- <div class="container"> -->
 		<div class="row">
 			<div class="col-md-12">
-				<h1>{{user.userName}}'s Recipes</h1>
-				
-				<div ng-show="recipeSpinner">
-					<i class="fa fa-spinner fa-2x fa-spin"></i>
-					<h5>Loading your recipes</h5>
-				</div>
-				
-				<div class="col-md-12">
-					<h4>Collections</h4>
-					<select ng-options="collection.collectionName for collection in collections" ng-model="selectedCollection"></select>
-					<button ng-click="updateCollection()">Save Collection</button>
-					<!-- {{selectedCollection}} -->
+				<div class="row">
 
+					<div class="col-md-6">
+						<h3 class="custom-htag">{{user.userName}}'s Recipes</h3>
+
+						
+						
+						<h5 class="custom-htag" ng-show="recipeSpinner">Loading your recipes . . .<i class="fa fa-spinner fa-2x fa-spin"></i></h5>
+					
+					</div>
+
+					
+					
+					
+					
+					<div ng-show="existsCollection" class="col-md-6 collection-manager-box">
+						<h4>Manage Collections</h4>
+						<select ng-options="collection.collectionName for collection in collections" ng-model="selectedCollection"></select>
+						<button class="button-on-white" ng-click="updateCollection()">Save Collection</button>
+						<!-- {{selectedCollection}} -->
+
+					</div>
 				</div>
 				
 
@@ -50,10 +59,13 @@
 								<div ng-show="selectedCollection">
 									<p>Add To Collection?</p>
 								 	<input  class="overide-input" type="checkbox" ng-model="addornot" ng-true-value="pushRecipe" ng-false-value="spliceValue" ng-change="checkCollection(addornot, recipe._id)" ng-checked="selectedCollection.recipes.indexOf(recipe._id) > -1">
-								</div>	
+								</div>
+
+								<br>
+								<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/>	
 							</div>
 
-							<div class="col-md-8">
+							<div class="col-md-8 recipe-border">
 								<!-- The List of Ingredients -->
 								<p class='ingredients'>Ingredients</p>
 								<li ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</li>

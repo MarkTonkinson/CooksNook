@@ -18,6 +18,16 @@ app.controller('favoritesCtrl', function($scope, $location, recipeService, $cook
 		})
 	}
 	$scope.getRecipes();
+	
+	$scope.recipeImageShow = function(recipeimage){
+		if(recipeimage ===''){
+			return true
+		} else if (recipeimage === 'none'){
+			return false
+		} else {
+			return true
+		}
+	}
 
 	$scope.unfavorite = function(recipeid){
 		var arr = $scope.user.favorites;

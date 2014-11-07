@@ -1,79 +1,97 @@
-<div class="viewer">
-	<div class="container">
-		
-		<h2>Search Your Recipes</h2>
-		<strong>
-		<p>**Our baby search engine is only robust enough to support search for a single <u>exact</u> term at this time.</p>
-		<p>Example: tomato will only return tomatoes, not tomatoes or tomato past</p>
-		</strong>
-
+<div class="viewer container">
 	
+		<div class="row">
+			<div class="col-md-12 search-view">
+				<div class="search-nav">
+					<h2>Search Your Recipes</h2>
+					<strong>
+					<p>**Our baby search engine is only robust enough to support search for a single <u>exact</u> term at this time.</p>
+					<p>Example: tomato will only return tomatoes, not tomatoes or tomato past</p>
+					</strong>
+
+				
+					
+
+					<h4>Choose a Search Term: </h4>
+					<select ng-change="searching()" ng-model="selected">
+						<option ng-repeat="search in searchTypes" value="{{search}}">{{search}}</option>
+					</select>
+				
+					<p></p>
+
+					<form ng-show='ingredient'>
+						<p> Search by Ingredient</p>
+						<input spellcheck='true' placeholder='Search an ingredient' ng-model="searchText"/>
+						<button ng-click="search()">Search</button>
+						
+					</form>
+					
+
+
+					<form role="form" name="typeForm" ng-show='location' novalidate>
+						<p> Use Search Term: Personal, Book, or Website</p>
+						<input spellcheck='true' placeholder="Personal, Book, or Website" ng-model="locationSearchText"/>
+						<button ng-click="searchLocation()" >Search</button>
+					</form>
+
+					<form ng-show='author'>
+						<p> Search by Author</p>
+						<input spellcheck='true' placeholder="Author" ng-model="authorSearchText"/>
+						<button ng-click="searchAuthor()">Search</button>
+					</form>
+
+					<form ng-show='recipeName'>
+						<p> Search by Recipe Name</p>
+						<input spellcheck='true' placeholder="Recipe Name" ng-model="recipeNameSearchText"/>
+						<button ng-click="searchRecipeName()">Search</button>
+					</form>
+				</div>
+
+				<div>
+					<h3>Results</h3>
+					<div><input placeholder="Filter results" ng-model="stuff"></div>
+				</div>
+			</div>
+				
+				<div class="col-md-5 search-recipe" ng-repeat="recipe in recipes|filter: stuff">
+					<div class="row">
+						<div class="col-md-4">
+							<a href="/#/recipe/{{recipe._id}}"><p>{{recipe.recipeName}} - {{recipe.author}}</p></a>
+							<p>{{recipe.bookTitle}} <a href='{{recipe.recipeUrl}}'>Original Recipe</a></p>
+							<p ng-show="checkForBook({{recipe.bookPageNumber}})">page:{{recipe.bookPageNumber}}</p>
+
+							<!-- Shows if user can delete -->
+							<a ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
+
+							<!-- Shows if not a favorite -->
+							<a ng-click="addToFavorites(recipe._id)" ng-show="checkFavorites(recipe._id)">  <i class="fa fa-star-o fa-lg"></i>  </a>
+							
+							<!-- shows up if a favorite -->
+							<a ng-click="unfavorite(recipe._id)" ng-show="checkFavorites2(recipe._id)">  <i class="fa fa-star fa-lg"></i>  </a> 
+
+							<!-- Shows up if can edit -->
+
+							<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"> <span class="iconPipe"> | </span> <i class="fa fa-pencil fa-lg"> </i> </a>
+
+							<br></br>
+							<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/>	
+						</div>
+						
+						<div class="col-md-8 recipe-border">
+							<p class='ingredients'>Ingredients</p>
+							<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
+
+
+						</div>
+					</div>
+				</div>
+
+
+			</div>
 		
-
-		<h4>Choose a Search Term: </h4>
-		<select ng-change="searching()" ng-model="selected">
-			<option ng-repeat="search in searchTypes" value="{{search}}">{{search}}</option>
-		</select>
-	
-		<p></p>
-
-		<form ng-show='ingredient'>
-			<p> Search by Ingredient
-			<input spellcheck='true' placeholder='Search an ingredient' ng-model="searchText"/>
-			<button ng-click="search()">Search by Ingredient</button>
-			
-		</form>
-		
-
-
-		<form role="form" name="typeForm" ng-show='location' novalidate>
-			<p> Use Search Term: Personal, Book, or Website</p>
-			<input spellcheck='true' placeholder="Personal, Book, or Website" ng-model="locationSearchText"/>
-			<button ng-click="searchLocation()" >Search</button>
-		</form>
-
-		<form ng-show='author'>
-			<p> Search by Author</p>
-			<input spellcheck='true' placeholder="Author" ng-model="authorSearchText"/>
-			<button ng-click="searchAuthor()">Search</button>
-		</form>
-
-		<form ng-show='recipeName'>
-			<p> Search by Recipe Name</p>
-			<input spellcheck='true' placeholder="Recipe Name" ng-model="recipeNameSearchText"/>
-			<button ng-click="searchRecipeName()">Search</button>
-		</form>
-
-
-
-		<h3>Results</h3>
-		<div><input placeholder="Filter results" ng-model="stuff"></div>
-		
-		<div class="col-md-2 recipe" ng-repeat="recipe in recipes|filter: stuff">
-			
-			<a href="/#/recipe/{{recipe._id}}"><p>{{recipe.recipeName}} - {{recipe.author}}</p></a>
-			<p>{{recipe.bookTitle}} <a>{{recipe.recipeUrl}}</a></p>
-			<p ng-show="checkForBook({{recipe.bookPageNumber}})">page:{{recipe.bookPageNumber}}</p>
-
-			<!-- Shows if user can delete -->
-			<a ng-click='removeRecipe(recipe._id)'> <i class="fa fa-trash fa-lg">  </i> <span class="iconPipe"> | </span></a>
-
-			<!-- Shows if not a favorite -->
-			<a ng-click="addToFavorites(recipe._id)" ng-show="checkFavorites(recipe._id)">  <i class="fa fa-star-o fa-lg"></i>  </a>
-			
-			<!-- shows up if a favorite -->
-			<a ng-click="unfavorite(recipe._id)" ng-show="checkFavorites2(recipe._id)">  <i class="fa fa-star fa-lg"></i>  </a> 
-
-			<!-- Shows up if can edit -->
-
-			<a ng-show="checkPermissions(recipe.permissionsTag)" href="/#/editRecipe/{{user._id}}/{{recipe._id}}"> <span class="iconPipe"> | </span> <i class="fa fa-pencil fa-lg"> </i> </a>
-
-
-			<p ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</p>
 		</div>
-		
 
-	</div>
+	
 
 </div>
 

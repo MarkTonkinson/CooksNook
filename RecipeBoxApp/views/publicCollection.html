@@ -1,8 +1,17 @@
 <div class="viewer container">
-
-<h2>{{collection.collectionName}}</h2>
-<br>
-<p ng-repeat="recipe in recipes"><a href='#/recipe/{{recipe._id}}'>{{recipe.recipeName}}</a></p>
+	<div class="row collection-view">
+		<div class ="col-md-4">
+			<h2>{{collection.collectionName}}</h2>
+			<br>
+		</div>
+		
+		<div class="col-md-8">
+			<div class="collection-recipe" ng-repeat="recipe in recipes">
+				<a href='#/recipe/{{recipe._id}}'><p>{{recipe.recipeName}}</p>
+				<img class="center-block" ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/></a>
+			</div>	
+		</div>
+	</div>
 
 </div>
 

@@ -23,6 +23,16 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 
 	console.log($scope.user)
 
+	$scope.recipeImageShow = function(recipeimage){
+		if(recipeimage ===''){
+			return true
+		} else if (recipeimage === 'none'){
+			return false
+		} else {
+			return true
+		}
+	}
+
 	$scope.checkPermissions = function(permish){
 		if($scope.user.admin === true){
 			return true
@@ -35,11 +45,15 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 		}
 	}
 
+	$scope.existsCollection = false;
 	$scope.getCollections = function(){
 		userService.getCollections($scope.user._id)
 		.then(function(res){
-			console.log(res)
-		$scope.collections = res;
+			//console.log(res)
+			$scope.collections = res;
+			if($scope.collections.length){
+				$scope.existsCollection = true;
+			}
 		})
 	}
 

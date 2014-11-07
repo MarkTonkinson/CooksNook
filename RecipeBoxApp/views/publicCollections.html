@@ -1,9 +1,16 @@
 <div class="viewer container">
-
-	<h2>Public Recipe Collections</h2>
-	<h4>Just click to add to your recipe book</h4>
-	
-	<div ng-repeat="collection in collections">
-		<a href='#/PublicCollection/{{collection._id}}/{{collection.collectionName}}'>{{collection.collectionName}}</a>
+	<div class="row collection-view">
+		
+		<div class="col-md-4">
+			<h2>Public Recipe Collections</h2>
+		</div>
+		
+		<div class="col-md-8">
+			<input class="input-on-white" ng-model="searchText" placeholder="Find a collection">
+			<div ng-repeat="collection in collections | filter: searchText">
+				<h4><a href='#/PublicCollection/{{collection._id}}/{{collection.collectionName}}'>{{collection.collectionName}}</a></h4>
+			</div>
+		</div>
+		
 	</div>
 </div>

@@ -1,5 +1,9 @@
 var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate', 'ngSanitize']);
 
+app.config(['$compileProvider', function($compileProvider) {   
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|javascript):/);
+}]);
+
 app.config(['$routeProvider', function($routeProvider){
 	$routeProvider
 	.when('/', {
@@ -89,6 +93,10 @@ app.config(['$routeProvider', function($routeProvider){
 				return userService.getRecipesInCollection($route.current.params.id);
 			}
 		}
+	})
+	.when('/CooksNookBookMarklet', {
+		templateUrl: '../views/bookmarklet.html',
+		controller: 'bookmarkletCtrl'
 	})
 	.otherwise({
 		redirectTo: '/'

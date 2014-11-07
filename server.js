@@ -14,10 +14,12 @@ connection.once('open', function(){
 	console.log('mongo listening on ' + mongoUri);
 })
 global.mongooseConnection = connection;
-//var port = 3000;
+// var port = 3000;
+// var domainName = 'localhost:3000'
+
 var port = 80;
 var domainName = 'cooknookcollection.com'
-//var domainName = 'localhost:3000'
+
 
 ////Models
 
@@ -172,6 +174,21 @@ app.get('/api/:user/search/:searchText', SearchController.getByIngredient);
 app.get('/api/:user/searchLocation/:searchText', SearchController.getByLocation);
 app.get('/api/:user/searchAuthor/:searchText', SearchController.getByAuthor)
 app.get('/api/:user/searchRecipeName/:searchText', SearchController.getByRecipeName)
+
+// app.listen(process.env.myport || 3000)
+
+
+// .bash_profile
+// editing text files on command line can be tricky
+
+// sudo nano 
+// ~/.bash_profile
+
+// export is kind of like saying var
+// export Express_Port = 80
+// press ctrl x to save and then it will ask if you want to save
+
+
 app.listen(port, function(){
 	console.log("listening on " + port)
 })

@@ -1,9 +1,7 @@
-<div class="viewer">
+<div class="viewer container">
 
-
-	<div class="container">
 		
-		<div class="row">
+		<div class="row collection-view">
 			
 			<div class="col-md-4">
 				<h2>{{user.userName}}'s Collections</h2>
@@ -12,7 +10,7 @@
 				<h4>Create New Collection</h4>
 				
 					<form name="createCollectionForm" novalidate>
-						<input ng-model="collectionName" required/>
+						<input class="input-on-white" ng-model="collectionName" required/>
 					    <button ng-disabled="createCollectionForm.$invalid" class="cook-button" ng-click="createCollection()">Create</button>
 					</form>
 			</div>
@@ -23,7 +21,7 @@
 				<p>Creator: {{collection.collectionCreator}}</p>
 			
 			</div>
-	</div>
+
 
 
 </div>
