@@ -29,7 +29,7 @@
 	function initMyBookmarklet() {
 		(window.myBookmarklet = function() {
 			//recipe constructor for all websites
-
+			var domainName = 'cooknookcollection.com'
 			var getLocal = function() {
 				
 				var uId = localStorage.getItem('local');
@@ -76,7 +76,7 @@
 					datatype: "json",
 					contentType: "application/json; charset=utf-8",	
 					type: 'POST',
-					url: 'http://localhost:3000/recipes/' + user,
+					url: 'http://' + domainName + '/recipes/' + user,
 					data: JSON.stringify(finalRecipe),
 					success : function(result){
 						alert(result);
