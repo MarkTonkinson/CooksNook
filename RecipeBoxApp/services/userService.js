@@ -9,7 +9,7 @@ app.service('userService', function($http, $q, $cookieStore){
 			var deferred = $q.defer();
 			$http ({
 				method: 'GET',
-				url: 'http://' + domainName + ':3000/me'
+				url: 'http://' + domainName + '/me'
 			}).then(function(res){
 				var fbUser = res.data;
 				$cookieStore.put('user', fbUser);
