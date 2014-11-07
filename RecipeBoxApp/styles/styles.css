@@ -3,30 +3,72 @@ body {
 	
 	background-color: #00899B;
 	background-color:rgba(179, 182, 148, .45);
+	
 	background-color:white;
+	
+
 	
 	color:black;
 	/*color:#4c2221;*/
 }
 /*MAIN BUTTONS*/
-.cook-button {
-	padding:5px;
-	width:10rem;
+button {
+	background-image: none;
+	width:14rem;
+	/*margin-left:1rem;*/
+	/*the margin left affects in some places . . .*/
+	padding:6px;
 	background-color:white;
+	border-style:none;
+	border: 1px solid #428bca;
+	box-shadow: 2px 5px 9px -2px rgba(0, 0, 0, .5);
+    
+    margin-right: -3px;
+    
+    border-radius: 8px;
+ 
+}
 
-	border-radius: 5px;
+button:disabled {
+	background-color: rgba(0, 0, 0, .78));
+}
+
+button:focus {
+	outline: 0;
+}
+
+select {
+	font-size:2rem;
+
+}
+
+a {
+	color:#1916A9;
+	text-decoration: none;
+}
+
+a:hover {
+	color:#F28C00;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: rgba(0, 0, 0, .78);
 }
 
 input {
 	padding:5px;
 	width: 30rem;
 	margin:1rem 0 1rem 0;
+	box-shadow: 2px 5px 9px -2px rgba(0, 0, 0, .5);
+	border-radius: 10px;
+	border-style: hidden;
 }
+
+
 /*The NavBar called search bar not to interfere- don't really search here*/
 .searchbar {
 	
 }
-
 
 .b {
 	/*padding:1rem;*/
@@ -38,17 +80,18 @@ input {
 	border: 1px solid #428bca;
 	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
     
-    margin-right: -3px;
+    margin-right: 3px;
+    margin-left:0px;
     
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
 .b:focus{
 	outline: 0;
 }
-.b a {
-	text-decoration: none;
-}
+
 
 /*BORDER ALONG TOP*/
 .top-border {
@@ -72,9 +115,10 @@ input {
 .page-num-input {
 	width:7rem;
 }
-/*This is for Radio Buttons*/
+/*This is for Radio Buttons and Checkboxes*/
 .overide-input {
 	width:2rem;
+	box-shadow: none;
 }
 
 /*Every view has a div defined by this- I may not need max-height . . .*/
@@ -92,6 +136,8 @@ input {
 	border-bottom-left-radius: 5px;
 	color:#428bca;
 	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
+	color:rgba(0, 0, 0, .78);
+	background-color: #428CCA;
 }
 .viewer  a {
 	text-decoration: none;
@@ -144,6 +190,9 @@ input {
 }
 .fa-pencil {
 	color: rgb(100,100,100);
+}
+.fa-plus {
+	margin-right: 1rem;
 }
 
 /*Single Recipe View*/

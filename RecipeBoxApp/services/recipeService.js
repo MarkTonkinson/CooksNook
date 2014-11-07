@@ -1,14 +1,14 @@
 var app = angular.module('RecipeBoxApp');
 
 app.service('recipeService', function($http, $q, $cookieStore){
-
+	var domainName = 'cooknookcollection.com'
 	this.addNewRecipe = function(recipe, userid){
 		console.log(recipe)
 		console.log(userid)
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: 'http://localhost:3000/recipes/' + userid,
+			url: 'http://' + domainName + '/recipes/' + userid,
 			data: recipe
 		}).then(function(res){
 			console.log('recipe id? ', res)
@@ -23,7 +23,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/user/update/' + user,
+			url: 'http://' + domainName + '/api/user/update/' + user,
 			data: user 
 		}).then(function(res){
 			updatedData = res.data;
@@ -39,7 +39,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://localhost:3000/recipes'
+			url: 'http://' + domainName + '/recipes'
 		}).then(function(res){
 			//console.log('recipes', res);
 			deferred.resolve(res.data);
@@ -53,7 +53,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://localhost:3000/api/user/recipes/' + facebookid
+			url: 'http://' + domainName + '/api/user/recipes/' + facebookid
 		}).then(function(res){
 			//console.log('recipes', res);
 			deferred.resolve(res.data);
@@ -66,7 +66,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'http://localhost:3000/api/get/recipe/' + recipeid
+			url: 'http://' + domainName + '/api/get/recipe/' + recipeid
 		}).then(function(res){
 			//console.log('got recipe by id', res.data)
 			deferred.resolve(res.data);
@@ -78,7 +78,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 		
 		return $http({
 			method: 'PUT',
-			url: 'http://localhost:3000/api/update/recipes/' + recipeid,
+			url: 'http://' + domainName + '/api/update/recipes/' + recipeid,
 			data: recipe
 		})
 	}
@@ -87,7 +87,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 		console.log(recipeId  + ' and ' + fbId)
 		$http({
 			method: 'DELETE',
-			url: 'http://localhost:3000/api/' +fbId +'/recipe/' + recipeId
+			url: 'http://' + domainName + '/api/' +fbId +'/recipe/' + recipeId
 		});
 
 	}

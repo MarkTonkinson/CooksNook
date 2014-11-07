@@ -1,27 +1,29 @@
 <div class="viewer">
 
 
-<div class="container">
-	<h2>All Collections of User</h2>
-	<h4>List of collection</h4>
-	{{user.userName}}
+	<div class="container">
+		
+		<div class="row">
+			
+			<div class="col-md-4">
+				<h2>{{user.userName}}'s Collections</h2>
+				
+
+				<h4>Create New Collection</h4>
+				
+					<form name="createCollectionForm" novalidate>
+						<input ng-model="collectionName" required/>
+					    <button ng-disabled="createCollectionForm.$invalid" class="cook-button" ng-click="createCollection()">Create</button>
+					</form>
+			</div>
 
 
-	<h4>Create New Collection</h4>
-	<div>
-		<form>
-			<input ng-model="collectionName"/>
-		    <button class="cook-button" ng-click="createCollection()">Create</button>
-		</form>
+			<div class="col-md-8" ng-repeat="collection in collections">
+				<a href="#/collection/{{collection._id}}/{{collection.collectionName}}"<p>Name: {{collection.collectionName}}</p></a>
+				<p>Creator: {{collection.collectionCreator}}</p>
+			
+			</div>
 	</div>
-
-
-	<div ng-repeat="collection in collections">
-		<a href="#/collection/{{collection._id}}/{{collection.collectionName}}"<p>Name: {{collection.collectionName}}</p></a>
-		<p>Creator: {{collection.collectionCreator}}</p>
-		<p>Access: {{collection.tag}}</p>
-	</div>
-</div>
 
 
 </div>

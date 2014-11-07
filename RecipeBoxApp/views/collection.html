@@ -5,16 +5,16 @@
 	<div class="col-md-12">
 		<h2>{{collection.collectionName}}</h2>
 		<h4>List of recipes</h4>
-		<h6>{{collection.recipes}}</h6>
 		
-		<button ng-show="checkPermissions()" ng-click="updateCollection()">Save Changes</button>
+		
+		
 	</div>
 	<div class="row" ng-repeat="recipe in recipes">
 		<!-- TODO: Write ng-show for collectionPermissions and change collection permissions to the userid -->
 		<div class="col-md-12">
 			<div class="checkbox">
 				<label ng-show="checkPermissions()">
-		 			<input  type="checkbox" ng-model="addornot" ng-true-value="spliceValue" ng-false-value="dontDelete" ng-change="checkCollection(addornot, recipe._id)" ng-checked="collection.recipes.indexOf(recipe._id) === -1"/>
+		 			<input class="overide-input"  type="checkbox" ng-model="addornot" ng-true-value="spliceValue" ng-false-value="dontDelete" ng-change="checkCollection(addornot, recipe._id)" ng-checked="collection.recipes.indexOf(recipe._id) === -1"/>
 		 		Remove?</label>
 		 		<a class="collection-divider" href="/#/recipe/{{recipe._id}}"> {{recipe.recipeName}}  - {{recipe.author}}</a>
 		 	</div>
@@ -23,7 +23,9 @@
 
 	</div>
 
-	<button ng-click="verifyDelete()" ng-show="checkPermissions()">Delete Your Collection</button>
+	<button class="cook-button" ng-show="checkPermissions()" ng-click="updateCollection()">Save Changes</button>
+
+	<button ng-click="verifyDelete()" ng-show="checkPermissions()">Delete Collection</button>
 
 	<div ng-show="verify">
 		Are you sure you want to delete this collection?

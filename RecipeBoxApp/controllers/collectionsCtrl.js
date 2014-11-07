@@ -19,7 +19,7 @@ app.controller('collectionsCtrl', function($scope, recipeService, $cookieStore, 
 		$scope.newCollection = {
 			collectionName: $scope.collectionName,
 			collectionCreator: $scope.user.userName,
-			tag: 'Private',	
+			tag: $scope.user._id	
 		}
 
 		userService.saveCollection($scope.newCollection, $scope.user._id)

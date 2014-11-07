@@ -5,7 +5,7 @@
 			<div class="col-md-4">
 				<a href="{{recipe.recipeUrl}}"><h2>{{recipe.recipeName}}</h2></a>
 
-				<button class="cook-button" ng-show='!hasRecipe' ng-click="addRecipe({{user._id}})">Add This Recipe</button>
+				<button class="cook-button" ng-show='!hasRecipe' ng-click="addRecipe(user._id)">Add This Recipe</button>
 				<!-- Shows if user can delete -->
 				
 				<!-- TODO: I may not need this now -->

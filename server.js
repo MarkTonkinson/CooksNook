@@ -14,7 +14,10 @@ connection.once('open', function(){
 	console.log('mongo listening on ' + mongoUri);
 })
 global.mongooseConnection = connection;
+//var port = 3000;
 var port = 80;
+var domainName = 'cooknookcollection.com'
+//var domainName = 'localhost:3000'
 
 ////Models
 
@@ -82,7 +85,7 @@ var user = {};
 Passport.use(new FacebookStrategy({
   clientID: '969410863074076',
   clientSecret: '61ed2b60d034d46303d14a65fad562f9',
-  callbackURL: 'http://localhost:3000/auth/facebook/callback'
+  callbackURL: 'http://' + domainName + '/auth/facebook/callback'
 }, function(token, refreshToken, profile, done) {
   //console.log('PROFILE', profile)
   user = profile;
