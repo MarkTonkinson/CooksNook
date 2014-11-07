@@ -15,9 +15,9 @@ connection.once('open', function(){
 })
 global.mongooseConnection = connection;
 // var port = 3000;
-// var domainName = 'localhost:3000'
+//var domainName = 'localhost:3000'
 
-var port = 80;
+var port = process.env.EXPRESS_PORT || 3000;
 var domainName = 'cooknookcollection.com'
 
 
