@@ -40,6 +40,7 @@ $scope.recipes = getCollectionRecipes;
 	$scope.deleteCollection = function(){
 		userService.deleteUserCollection($scope.collection._id, $scope.user._id)
 		.then(function(res){
+			alert($scope.collection.collectionName + ' succesfully deleted.')
 			$location.path('/collections/' + $scope.user.displayName);
 		})
 
