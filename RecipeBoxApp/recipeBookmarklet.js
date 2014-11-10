@@ -223,8 +223,14 @@
 				recipeUrl = recipeUrl.substring(0, n != -1 ? n : s.length);
 				
 
-				var author = document.getElementsByClassName('source-name')[0].innerText.replace('From', '');
-				
+				var auth1 = document.getElementsByClassName('source-name')[0].innerText.replace('From', '');
+				var auth2 = auth1.toLowerCase().split(' ');
+				var auth3 = []
+				for(var i = 0; i < auth2.length; i++){
+					auth3.push(auth2[i][0].toUpperCase() + auth2[i].splice(1))
+				}
+				var author = auth3.join(' ');
+
 				var recipeName = document.getElementsByClassName('primary')[1].getElementsByTagName('h1')[0].innerText;
 				var recipeImage = document.getElementsByClassName('image')[1].getElementsByTagName('img')[0].currentSrc;
 				//console.log(recipeImage)
