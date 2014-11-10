@@ -1,40 +1,40 @@
-<div class="viewer container">
+<div class="viewer container collection">
 
+	<div class="row collection-view">
 
-
-	<div class="col-md-12">
-		<h2>{{collection.collectionName}}</h2>
-		<h4>List of recipes</h4>
-		
-		
-		
-	</div>
-	<div class="row" ng-repeat="recipe in recipes">
-		<!-- TODO: Write ng-show for collectionPermissions and change collection permissions to the userid -->
 		<div class="col-md-12">
-			<div class="checkbox">
-				<label ng-show="checkPermissions()">
-		 			<input class="overide-input"  type="checkbox" ng-model="addornot" ng-true-value="spliceValue" ng-false-value="dontDelete" ng-change="checkCollection(addornot, recipe._id)" ng-checked="collection.recipes.indexOf(recipe._id) === -1"/>
-		 		Remove?</label>
-		 		<a class="collection-divider" href="/#/recipe/{{recipe._id}}"> {{recipe.recipeName}}  - {{recipe.author}}</a>
-		 	</div>
-		 	
+			<h2>{{collection.collectionName}}</h2>
+			
+			
+			<button class="button-on-white" ng-show="checkPermissions()" ng-click="updateCollection()">Save Changes</button>
+
+			<button class="button-on-white" ng-click="verifyDelete()" ng-show="checkPermissions()">Delete Collection</button>
+
+			<div ng-show="verify">
+				<p>Are you sure you want to delete this collection?</p>
+				<button class="button-on-white" ng-click="verifyDelete()">No</button>
+				<button class="button-on-white" ng-click="deleteCollection()">Yes</button>
+			</div>
+			
 		</div>
 
-	</div>
-
-	<button class="cook-button" ng-show="checkPermissions()" ng-click="updateCollection()">Save Changes</button>
-
-	<button ng-click="verifyDelete()" ng-show="checkPermissions()">Delete Collection</button>
-
-	<div ng-show="verify">
-		Are you sure you want to delete this collection?
-		<button ng-click="verifyDelete()">No</button>
-		<button ng-click="deleteCollection()">Yes</button>
-	</div>
-	
 	
 
+			
+ 		<div class='col-md-5 collection-recipe' ng-repeat="recipe in recipes">
+
+ 			<a href="/#/recipe/{{recipe._id}}"> {{recipe.recipeName}}  - {{recipe.author}}</a>
+ 			<img ng-show="recipeImageShow(recipe.recipeImage)" class='center-block' src='{{recipe.recipeImage}}'></img>
+ 			<div class="checkbox" ng-show="checkPermissions()">
+				<label>
+	 				<input class="overide-input"  type="checkbox" ng-model="addornot" ng-true-value="spliceValue" ng-false-value="dontDelete" ng-change="checkCollection(addornot, recipe._id)" ng-checked="collection.recipes.indexOf(recipe._id) === -1">
+	 			Remove?</label>
+ 			</div>
+ 		</div>
+
+
+	</div>
+	
 
 
 </div>

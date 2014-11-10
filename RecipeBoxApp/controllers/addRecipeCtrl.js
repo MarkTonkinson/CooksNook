@@ -51,11 +51,16 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 
 
 	$scope.submitRecipe = function(){
-		if($scope.newRecipe.location === "Personal"){
-			$scope.newRecipe.permissionsTag = user._id;
-		} else {
-			$scope.newRecipe.permissionsTag = "shared"
-		}
+		//for now I don't think I want hand typed recipes to go public . . . a lot of issues if people grab recipes from other sources
+		//and then the server automatically generates a colleciton for Alton Brown, A. Brown, a. brown, etc.
+		// if($scope.newRecipe.location === "Personal"){
+		// 	$scope.newRecipe.permissionsTag = user._id;
+		// } else {
+		// 	$scope.newRecipe.permissionsTag = "shared"
+		// }
+
+
+
 		
 		//stop from posting the empty objects
 		var arr = $scope.newRecipe.ingredients
@@ -68,15 +73,24 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 		}
 		$scope.newRecipe.ingredients = newIngArr;
 
-		var arr2 = $scope.newRecipe.instructions
-		console.log(arr2)
-		var instArr = []
-		for(var j = 0; j < arr2.length; j++){
-			if(Object.keys(arr2[j]).length >= 2){
-				instArr.push(arr2[j])
-			}		
+		if($scope.newRecipe.location === 'Website'){
+			$scope.newRecipe.instructions = [];
+			$scope.newRecipe.instructions.push("<a href='" + $scope.newRecipe.recipeUrl + "'> Link to original directions!</a>")
+		} else {
+			var arr2 = $scope.newRecipe.instructions
+			console.log(arr2)
+			var instArr = []
+			for(var j = 0; j < arr2.length; j++){
+				if(Object.keys(arr2[j]).length >= 2){
+					instArr.push(arr2[j])
+				}		
+			}
+			$scope.newRecipe.instructions = instArr;
 		}
-		$scope.newRecipe.instructions = instArr;
+
+
+
+		$scope.newRecipe.permissionsTag = user._id;
 		//console.log($scope.newRecipe);
 		recipeService.addNewRecipe($scope.newRecipe, user._id)
 		.then(function(res){

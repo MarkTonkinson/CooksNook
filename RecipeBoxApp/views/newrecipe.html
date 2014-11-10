@@ -82,7 +82,7 @@
 
 
 				    <!-- Instructions -->
-				    <div class="col-md-4">
+				    <div class="col-md-4" ng-show="newRecipe.location === 'Personal'">
 					    <h3>Instructions</h3>
 					    <div class="col-md-12" ng-repeat="instruction in newRecipe.instructions" class="form-group col-md-12">
 					    	<input class="instruction-input" ng-model="newRecipe.instructions[$index].step"/>
@@ -92,6 +92,8 @@
 					    	 <button class="button-on-white" ng-click="addStep()"><i class="fa fa-plus"></i> Step</button>
 					    </div>
 				    <div>
+
+
 			    </div>
 			    
 			   

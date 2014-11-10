@@ -1,7 +1,7 @@
 <div class="container viewer">
-	<div class="col-md-12">
+	<div class="col-md-12 add-recipe-view">
 		<h2>Edit Recipe</h2>
-		<button ng-disabled="editRecipeForm.$invalid" ng-click="editRecipe()">Save Changes <i class="fa fa-level-up"></i></button>
+		<button class="button-on-white" ng-disabled="editRecipeForm.$invalid" ng-click="editRecipe()">Save Changes</button>
 
 		<form name="editRecipeForm" class='form-inline' novalidate>
 			           
@@ -76,7 +76,7 @@
     
 
 			<!-- Instructions -->
-			<div class="col-md-4">
+			<div class="col-md-4" ng-show="recipe.location === 'Personal'">
 				<h3>Instructions</h3>
 			    <div ng-repeat="instruction in recipe.instructions" class="form-group">
 			    	<input ng-model='recipe.instructions[$index].step'/>

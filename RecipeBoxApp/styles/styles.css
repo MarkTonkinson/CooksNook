@@ -165,7 +165,7 @@ input:focus {
 
 .custom-htag {
 	color:#1916A9;
-	width: 33rem;
+	
 	background-color: white;
 	box-shadow: 2px -2px 5px 0px rgb(10,10,10);
 	padding: 2rem 4rem;
@@ -176,7 +176,7 @@ input:focus {
 
 .collection-manager-box {
 	color:#1916A9;
-	width: 45rem;
+	width: 46rem;
 	background-color: white;
 	box-shadow: 2px -2px 5px 0px rgb(10,10,10);
 	padding: 1rem 2rem;
@@ -272,7 +272,15 @@ input:focus {
 	margin: 2rem;
 	background-color: white;
 }
+/*On Collections views you don't want them to just look like a list */
 
+.collection-repeat {
+	border: 1px solid black;
+	padding: 1rem;
+	margin: 2rem 0;
+	border-radius: 5px;
+	box-shadow: 2px -2px 5px 0px rgb(180,180,180);
+}
 
 .collection-view {
 	padding: 2rem;
@@ -283,7 +291,8 @@ input:focus {
 
 .collection-recipe {
 	border: 1px solid black;
-	margin: 1rem 0 1rem 0;
+	margin: 4rem 0 1rem 4rem;
+	height: 20rem;
 	padding: 1rem;
 	width: 30rem;
 	border-radius: 5px;

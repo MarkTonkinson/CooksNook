@@ -7,7 +7,7 @@
 		
 		<div class="col-md-8">
 			<input class="input-on-white" ng-model="searchText" placeholder="Find a collection">
-			<div ng-repeat="collection in collections | filter: searchText">
+			<div class="collection-repeat" ng-repeat="collection in collections | filter: searchText">
 				<h4><a href='#/PublicCollection/{{collection._id}}/{{collection.collectionName}}'>{{collection.collectionName}}</a></h4>
 			</div>
 		</div>

@@ -16,9 +16,9 @@
 			</div>
 
 
-			<div class="col-md-8" ng-repeat="collection in collections">
-				<a href="#/collection/{{collection._id}}/{{collection.collectionName}}"<p>Name: {{collection.collectionName}}</p></a>
-				<p>Creator: {{collection.collectionCreator}}</p>
+			<div class="collection-repeat col-md-8" ng-repeat="collection in collections">
+				<h4><a href="#/collection/{{collection._id}}/{{collection.collectionName}}"><p>Name: {{collection.collectionName}}</p></a></h4>
+				<h5>Creator: {{collection.collectionCreator}}</5>
 			
 			</div>
 
