@@ -3,8 +3,8 @@ var app = angular.module('RecipeBoxApp');
 app.service('recipeService', function($http, $q, $cookieStore){
 	
 	this.addNewRecipe = function(recipe, userid){
-		console.log(recipe)
-		console.log(userid)
+		//console.log(recipe)
+		//console.log(userid)
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
@@ -19,7 +19,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 	}
 
 	this.updateUser = function(user){
-		console.log('on the way to update whatever', user);
+		//console.log('on the way to update whatever', user);
 		var deferred = $q.defer();
 		$http({
 			method: 'PUT',
@@ -29,7 +29,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 			updatedData = res.data;
 			$cookieStore.put('user', updatedData)
 			deferred.resolve(res);
-			console.log('user updated ', updatedData)
+			//console.log('user updated ', updatedData)
 		})
 		return deferred.promise
 	}
@@ -84,7 +84,7 @@ app.service('recipeService', function($http, $q, $cookieStore){
 	}
 
 	this.deleteRecipe = function(recipeId, fbId){
-		console.log(recipeId  + ' and ' + fbId)
+		//console.log(recipeId  + ' and ' + fbId)
 		$http({
 			method: 'DELETE',
 			url: '/api/' +fbId +'/recipe/' + recipeId

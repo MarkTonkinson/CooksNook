@@ -3,7 +3,7 @@ var app = angular.module('RecipeBoxApp');
 app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, recipeService, $location, $cookieStore){
 	$scope.getUsername();
 	 $scope.recipe = getRecipeToView
-	 console.log($scope.recipe)
+	 //console.log($scope.recipe)
 	
 
 	$scope.addRecipe = function(userid){
@@ -45,7 +45,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, rec
 			for(var i = 0; i < res.length; i++){
 				$scope.userRecipes.push(res[i]._id);
 			}
-			console.log($scope.userRecipes);
+			//console.log($scope.userRecipes);
 			$scope.checkIfHasRecipe()
 		})
 	}
@@ -96,7 +96,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, rec
 
 
 	$scope.checkForBook = function(page){
-		console.log('the page', page)
+		//console.log('the page', page)
 		if(page){
 			return true
 		} else {

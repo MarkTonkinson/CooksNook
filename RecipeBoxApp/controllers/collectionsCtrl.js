@@ -9,7 +9,7 @@ app.controller('collectionsCtrl', function($scope, recipeService, $cookieStore, 
 	$scope.getCollections = function(){
 		userService.getCollections($scope.user._id)
 		.then(function(res){
-			console.log(res)
+			//console.log(res)
 			$scope.collections = res;
 		})
 	}

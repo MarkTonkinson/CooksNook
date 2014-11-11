@@ -24,7 +24,7 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 			$scope.websiteRequired =false;
 			$scope.bookRequired = false; 
 		}
-		console.log("check requirement", $scope.websiteRequired + ' ' + $scope.bookRequired)
+		//console.log("check requirement", $scope.websiteRequired + ' ' + $scope.bookRequired)
 	}
 
 	$scope.editRecipe = function(){
@@ -33,7 +33,7 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 
 
 		var arr = $scope.recipe.ingredients
-		console.log(arr);
+		//console.log(arr);
 		var newIngArr=[];
 		for(var i=0; i < arr.length; i++){
 			if(Object.keys(arr[i]).length >= 2) { //always has a hash
@@ -43,7 +43,7 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 		}
 
 		var arr2 = $scope.recipe.instructions
-		console.log(arr2)
+		//console.log(arr2)
 		var instArr = []
 		for(var j = 0; j < arr2.length; j++){
 			if(Object.keys(arr2[j]).length > 0){

@@ -9,7 +9,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 	$scope.loginSpinner = false;
 
 	$scope.showLoginSpinner = function(){
-		console.log('did we make it?')
+		//console.log('did we make it?')
 		$scope.loginSpinner = true;
 	}
 	//TODO: why is this running several times?
@@ -18,7 +18,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 		if($scope.username){
 			return false
 		} else if ($location.$$path === '/'){
-			console.log('what is the path', $location.$$path)
+			//console.log('what is the path', $location.$$path)
 			return false
 		} else {
 			return true

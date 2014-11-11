@@ -55,7 +55,7 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 		})
 	}
 	$scope.checkForBook = function(page){
-		console.log('the page', page)
+		//console.log('the page', page)
 		if(page){
 			return true
 		} else {

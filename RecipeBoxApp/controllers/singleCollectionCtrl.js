@@ -8,7 +8,7 @@ $scope.user = $cookieStore.get('user')
 
 
 $scope.collection = getCollection;
-console.log($scope.collection)
+//console.log($scope.collection)
 
 $scope.recipes = getCollectionRecipes;
 //this saves us long enough to use it

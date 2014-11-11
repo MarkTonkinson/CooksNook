@@ -13,7 +13,7 @@ app.service('userService', function($http, $q, $cookieStore){
 			}).then(function(res){
 				var fbUser = res.data;
 				$cookieStore.put('user', fbUser);
-				console.log(res.data)
+				//console.log(res.data)
 				return deferred.resolve(fbUser);
 			})
 			return deferred.promise;
@@ -68,7 +68,7 @@ app.service('userService', function($http, $q, $cookieStore){
 	}
 
 	this.getRecipesInCollection = function(collectionid){
-		console.log(collectionid)
+		//console.log(collectionid)
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',

@@ -46,7 +46,7 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 			$scope.websiteRequired =false;
 			$scope.bookRequired = false; 
 		}
-		console.log("check requirement", $scope.websiteRequired + ' ' + $scope.bookRequired)
+		//console.log("check requirement", $scope.websiteRequired + ' ' + $scope.bookRequired)
 	}
 
 
@@ -78,7 +78,7 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 			$scope.newRecipe.instructions.push("<a href='" + $scope.newRecipe.recipeUrl + "'> Link to original directions!</a>")
 		} else {
 			var arr2 = $scope.newRecipe.instructions
-			console.log(arr2)
+			//console.log(arr2)
 			var instArr = []
 			for(var j = 0; j < arr2.length; j++){
 				if(Object.keys(arr2[j]).length >= 2){

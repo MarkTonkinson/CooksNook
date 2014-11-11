@@ -3,8 +3,8 @@ var app = angular.module('RecipeBoxApp');
 app.service('searchService', function($http, $q){
 	
 	this.search = function(searchText, userid){
-		console.log('service has search text ', searchText)
-		console.log('userid ', userid)
+		//console.log('service has search text ', searchText)
+		//console.log('userid ', userid)
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',

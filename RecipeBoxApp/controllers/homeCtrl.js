@@ -21,7 +21,7 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 	//how do you give a copy?- remove the id when it's gone?
 	var uId = $scope.user._id
 
-	console.log($scope.user)
+	//console.log($scope.user)
 
 	$scope.recipeImageShow = function(recipeimage){
 		if(recipeimage ===''){
