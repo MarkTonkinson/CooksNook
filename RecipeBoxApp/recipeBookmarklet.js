@@ -29,8 +29,8 @@
 	function initMyBookmarklet() {
 		(window.myBookmarklet = function() {
 			//recipe constructor for all websites
-			var domainName = 'cooknookcollection.com'
-			//var domainName='localhost:3000'
+			//var domainName = 'cooknookcollection.com'
+			var domainName='localhost:3000'
 			var getLocal = function() {
 				
 				var uId = localStorage.getItem('local');
@@ -210,7 +210,7 @@
 			//***************YUMMLY**************************
 			var getYummlyRecipe = function(){
 
-				recipeUrl = document.location.href
+
 				//console.log(recipeUrl[0].split(' '))
 				
 				// if(recipeUrl[0].split(' ').indexOf('external') === -1){
@@ -232,9 +232,11 @@
 				var author = auth3.join(' ');
 
 				var recipeName = document.getElementsByClassName('primary')[1].getElementsByTagName('h1')[0].innerText;
+
+
 				var recipeImage = document.getElementsByClassName('image')[1].getElementsByTagName('img')[0].currentSrc;
-				//console.log(recipeImage)
-				//console.log(recipeName)
+				// console.log(recipeImage)
+				console.log(recipeName)
 				var ings = document.getElementsByClassName("ingredient");
 
 				//console.log(ings);
@@ -251,9 +253,9 @@
 				//console.log("ingredients array ",  ingredients);
 				var yield = document.getElementsByClassName('yield')[0].innerText;
 
-				var finalRecipe = new Recipe(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions);
-				//console.log(finalRecipe);
-				postRecipe(finalRecipe);
+				// var finalRecipe = new Recipe(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions);
+				// //console.log(finalRecipe);
+				// postRecipe(finalRecipe);
 			}
 
 
@@ -274,7 +276,7 @@
 				}
 			}
 			checkDomain(host);
-			//TODO: REMOVE HARDCODED USER VALUE
+	
 			
 			
 

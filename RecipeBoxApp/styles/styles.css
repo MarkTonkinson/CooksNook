@@ -82,9 +82,13 @@ input:focus {
 
 
 
-/*The NavBar called search bar not to interfere- don't really search here*/
-.searchbar {
-	
+.heading-margin {
+	margin-top: 4rem;
+}
+
+.login-margin {
+	margin-top:1rem;
+	margin-bottom: -2rem;
 }
 
 .b {
@@ -182,6 +186,10 @@ input:focus {
 	padding: 1rem 2rem;
 	margin: 4rem;
 	border-radius:1rem;
+}
+
+.cmb-on-white {
+	background-color: #428CCA;
 }
 /*For Each Recipe in HOME and Search*/
 .recipe {
@@ -284,7 +292,7 @@ input:focus {
 
 .collection-view {
 	padding: 2rem;
-	margin: 3rem;
+	margin: 3.3rem 2rem;
 	background-color: white;
 
 }
@@ -307,6 +315,20 @@ input:focus {
 	margin-left:auto;
 	margin-right:auto;
 	border-radius: 5px;
+}
+
+.single-collection {
+	border-top: 1px solid black;
+	margin: 2rem;
+	height: 20rem;
+	overflow:scroll;
+
+
+}
+
+.single-collection img {
+	width:15rem;
+
 }
 
 /*Controls Ingredient head format in .recipe box*/
@@ -369,10 +391,7 @@ input:focus {
 	width:29rem;
 }
 
-/*For the SINGLE COLLECTION*/
-.collection-divider {
-	padding-left:2rem;
-}
+
 
 .bookmarklet {
 	background-color:#FFE69A;

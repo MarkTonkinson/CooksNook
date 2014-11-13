@@ -14,11 +14,11 @@ connection.once('open', function(){
 	console.log('mongo listening on ' + mongoUri);
 })
 global.mongooseConnection = connection;
-// var port = 3000;
-// var domainName = 'localhost:3000'
+var port = 3000;
+var domainName = 'localhost:3000'
 
-var port = 80;
-var domainName = 'cooknookcollection.com'
+// var port = 80;
+// var domainName = 'cooknookcollection.com'
 
 
 ////Models
@@ -73,12 +73,12 @@ app.use(Passport.session());
 // *****************Facebook Authorization **************************
 
 Passport.serializeUser(function(user, done) {
-  //console.log('serializing', user)
+  console.log('serializing')
   done(null, user);
 });
 
 Passport.deserializeUser(function(user, done) {
-  //console.log('deserializing ', user)
+  console.log('deserializing ')
   done(null, user);
 });
 
@@ -89,7 +89,7 @@ Passport.use(new FacebookStrategy({
   clientSecret: '61ed2b60d034d46303d14a65fad562f9',
   callbackURL: 'http://' + domainName + '/auth/facebook/callback'
 }, function(token, refreshToken, profile, done) {
-  //console.log('PROFILE', profile)
+  console.log('PROFILE', profile)
   user = profile;
   return done(null, profile);
 }));
@@ -102,7 +102,7 @@ app.get('/auth/facebook/callback', Passport.authenticate('facebook', {
   //successRedirect: '/me',
   failureRedirect: '/auth/facebook'
 }), function(req, res){
-  //console.log(user);
+  console.log('came to callback');
   res.redirect('/#/home/' + user.displayName)
 });
 

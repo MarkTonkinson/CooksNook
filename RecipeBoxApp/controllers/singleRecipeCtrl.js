@@ -1,6 +1,6 @@
 var app = angular.module('RecipeBoxApp');
 
-app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, recipeService, $location, $cookieStore){
+app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, userService, recipeService, $location, $cookieStore){
 	$scope.getUsername();
 	 $scope.recipe = getRecipeToView
 	 //console.log($scope.recipe)
@@ -88,8 +88,39 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, rec
 		}
 	}
 
+	//TODO: the collections are here so I can remove the recipe from the collections if the user does
+	//However, sometime soon, add functionality so the user can just assign the recipe to multiple collections
+	$scope.getCollections = function(){
+		userService.getCollections($scope.user._id)
+		.then(function(res){
+			console.log(res)
+			$scope.collections = res;
+			// if($scope.collections.length){
+			// 	$scope.existsCollection = true;
+			// }
+		})
+	}
+
+	$scope.getCollections();
+
+	$scope.updateCollection = function(){
+		userService.updateCollection($scope.selectedCollection, $scope.user._id)
+		.then(function(res){
+			$scope.selectedCollection = ''
+		})
+	}
 
 	$scope.removeRecipe = function(recipeId){
+
+		var arr = $scope.collections
+		for (var i = 0; i < arr.length; i++){
+			if(arr[i].recipes.indexOf(recipeId) > -1){
+				arr[i].recipes.splice(arr[i].recipes.indexOf(recipeId), 1)
+				$scope.selectedCollection = arr[i];
+				$scope.updateCollection()
+			}
+		}
+
 		recipeService.deleteRecipe(recipeId, $scope.user.facebookId);
 		$location.path('/home/' + $scope.username)
 	}

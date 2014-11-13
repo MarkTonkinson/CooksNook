@@ -95,16 +95,28 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 		})
 	}
 	$scope.getRecipes();
-	//TODO: Need to look in to which I'm using
+	
 	$scope.removeRecipe = function(recipeId){
+		//if you remove it from the page, you want to remove it from the collection as well.
+		var arr = $scope.collections
+		for (var i = 0; i < arr.length; i++){
+			if(arr[i].recipes.indexOf(recipeId) > -1){
+				arr[i].recipes.splice(arr[i].recipes.indexOf(recipeId), 1)
+				$scope.selectedCollection = arr[i];
+				$scope.updateCollection()
+			}
+		}
+
+
 		recipeService.deleteRecipe(recipeId, $scope.user.facebookId);
 		$scope.getRecipes();
 	}
 
-	$scope.softRemove = function(recipeid){
-		userService.updateUser($scope.user)
-		$scope.getRecipes();
-	}	
+	//All removes are soft now, unless logged in as admin, which have to fix elsewhere . . .
+	// $scope.softRemove = function(recipeid){
+	// 	userService.updateUser($scope.user)
+	// 	$scope.getRecipes();
+	// }	
 
 
 // **********FAVORITES FUNCTIONALITY*************

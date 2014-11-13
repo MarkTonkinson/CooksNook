@@ -20,8 +20,26 @@
 
 	
 
+
+ 		<div class="col-md-5 single-collection" ng-repeat="recipe in recipes">
+ 			<div class="row">
+ 				<div class="col-md-4">
+		 			<h5><a href="/#/recipe/{{recipe._id}}"> {{recipe.recipeName}}</a></h5>
+		 			<p>{{recipe.author}}</p>
+		 		</div>
+
+		 		<div class="col-md-4">
+		 			<div class="checkbox" ng-show="checkPermissions()">
+						<label>
+			 				<input class="overide-input"  type="checkbox" ng-model="addornot" ng-true-value="spliceValue" ng-false-value="dontDelete" ng-change="checkCollection(addornot, recipe._id)" ng-checked="collection.recipes.indexOf(recipe._id) === -1">
+			 			Remove?</label>
+		 			</div>
+		 		</div>
+ 			<p><img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'></img><p>
+
+ 		</div>
 			
- 		<div class='col-md-5 collection-recipe' ng-repeat="recipe in recipes">
+<!--  		<div class='col-md-5 collection-recipe' ng-repeat="recipe in recipes">
 
  			<a href="/#/recipe/{{recipe._id}}"> {{recipe.recipeName}}  - {{recipe.author}}</a>
  			<img ng-show="recipeImageShow(recipe.recipeImage)" class='center-block' src='{{recipe.recipeImage}}'></img>
@@ -30,7 +48,7 @@
 	 				<input class="overide-input"  type="checkbox" ng-model="addornot" ng-true-value="spliceValue" ng-false-value="dontDelete" ng-change="checkCollection(addornot, recipe._id)" ng-checked="collection.recipes.indexOf(recipe._id) === -1">
 	 			Remove?</label>
  			</div>
- 		</div>
+ 		</div> -->
 
 
 	</div>
