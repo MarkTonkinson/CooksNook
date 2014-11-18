@@ -60,6 +60,15 @@
 
 					{{instruction.step}}
 				</div>
+
+				<div>
+					<p><strong>Notes</strong></p>
+					<textarea rows="10" cols="40" ng-model="note.note"></textarea>
+					<p>Share with others?:<input type="checkbox" ng-false-value="private" ng-true-value="public" ng-model="note.share"></p>
+					<button class="button-on-white" ng-click="postNote()">Save</button>
+
+					{{note}}
+				</div>
 			</div>
 		
 

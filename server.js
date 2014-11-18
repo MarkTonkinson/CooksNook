@@ -28,7 +28,8 @@ var Recipe = require('./lib/models/recipeModel.js');
 
 var RecipeController = require('./lib/controllers/recipe-control');
 var SearchController = require('./lib/controllers/search-control');
-var CollectionController = require('./lib/controllers/collection-control')
+var CollectionController = require('./lib/controllers/collection-control');
+var NotesController = require('./lib/controllers/note-control');
 var app = Express();
 
 app.use(Cors());
@@ -152,6 +153,12 @@ app.post('/recipes/:userid', RecipeController.postExternal);
 //app.post('/recipes/internal/:userid', RecipeController.postInternal);
 app.delete('/api/:userid/recipe/:recipeid', RecipeController.deleteReceta); //can't use word delet(key word)
 app.put('/api/update/user/:userid', RecipeController.editUser)
+
+// ****************** Note Routes ************************
+app.get('/api/notes/:userid', NotesController.getNotes);
+app.post('/api/notes/:userid', NotesController.addNote);
+app.put('/api/notes/:userid', NotesController.editNote);
+
 
 //**********************COLLECTION ROUTES*****************************
 //these are better written routes

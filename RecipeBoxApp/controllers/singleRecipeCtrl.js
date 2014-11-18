@@ -88,12 +88,46 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 		}
 	}
 
+	$scope.getNotes = function(){
+		userService.getNotes($scope.user._id)
+		.then(function(res){
+			$scope.notes = res;
+			for(var i = 0; i < res.length; i++){
+				if(res[i].userid === $scope.user._id  && res[i].recipeid === $scope.recipe._id){
+					$scope.note = res[i];
+				}
+			}
+		})
+	}
+	$scope.getNotes();
+
+	$scope.postNote = function(){
+		if(!$scope.note._id){
+			$scope.note = {
+				userid: $scope.user._id,
+				recipeid: $scope.recipe._id
+			}
+
+			userService.postNote($scope.note)
+			.then(function(res){
+				console.log(res)
+				$scope.note = res;
+			})
+		} else if($scope.note._id){
+			userService.editNote($scope.note)
+			.then(function(res){
+				console.log('note edited ', res);
+				$scope.note=res;
+			})
+		}
+	}
+
 	//TODO: the collections are here so I can remove the recipe from the collections if the user does
 	//However, sometime soon, add functionality so the user can just assign the recipe to multiple collections
 	$scope.getCollections = function(){
 		userService.getCollections($scope.user._id)
 		.then(function(res){
-			console.log(res)
+			//console.log(res)
 			$scope.collections = res;
 			// if($scope.collections.length){
 			// 	$scope.existsCollection = true;

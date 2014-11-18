@@ -2,9 +2,9 @@ var app = angular.module('RecipeBoxApp');
 
 app.controller('publicCollectionCtrl', function($scope, $cookieStore, getCollection, getCollectionRecipes, recipeService, userService){
 	$scope.getUsername();
-	console.log($scope.getUsername());
-	//this may make it an issue if someone comes to see the site without logging in . . .
+	
 	$scope.user = $cookieStore.get('user');
+	
 	$scope.recipes = getCollectionRecipes;
 	$scope.collection = getCollection;
 
@@ -21,7 +21,7 @@ app.controller('publicCollectionCtrl', function($scope, $cookieStore, getCollect
 
 	//Need user recipes so you can save the recipes if they add it to the user.
 	// WRAPPER FUNCTION ANYTHING FOR USER HAS TO BE IN HERE
-	if($scope.getUsername() !== undefined){
+	if($scope.user){
 
 
 		$scope.getRecipes = function(){

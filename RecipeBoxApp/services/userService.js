@@ -1,6 +1,6 @@
 var app = angular.module('RecipeBoxApp');
 
-app.service('userService', function($http, $q, $cookieStore){
+app.service('userService', function($http, $q, $cookieStore, recipeService){
 	
 	this.getFacebookUser = function(){
 		if($cookieStore.get('user')){
@@ -101,5 +101,46 @@ app.service('userService', function($http, $q, $cookieStore){
 		return deferred.promise;
 
 	}
+
+	this.getNotes = function(userid){
+
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: '/api/notes/' + userid
+		}).then(function(res){
+
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
+
+	this.postNote = function(note){
+		
+		var deferred = $q.defer();
+		$http({
+			method: 'POST',
+			url: '/api/notes/' + note.userid,
+			data: note
+		}).then(function(res){
+
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
+
+	this.editNote = function(note){
+		var deferred = $q.defer();
+		$http({
+			method: 'PUT',
+			url: '/api/notes/' + note.userid,
+			data: note
+		}).then(function(res){
+			console.log('edit res ', res)
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;	
+	}
+
 
 })

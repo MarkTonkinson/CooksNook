@@ -105,36 +105,50 @@
 				var author = "Allrecipes";
 
 
+
 				var ings = document.getElementsByClassName("ingredient-name")
 				var amounts = document.getElementsByClassName("ingredient-amount")
-				for(var i = 0; i < amounts.length; i++){
-
-					//this splits the amounts into two pieces
-					var arr = amounts[i].innerText.split(' ');
-					//You have to run these tests for weird situations- slow cooker pork had 1 (4 pound)
-					var joinRest = function(qtyMeas){
-						var qty = [];
-						var meas = []
-						for (var j=0; j < qtyMeas.length; j++){
-								
-							
-							if(isNaN(parseInt(qtyMeas[j]))){
-								meas.push(qtyMeas[j]);
-								//console.log("what is a number " + qtyMeas[j])
-							} else {
-								qty.push(qtyMeas[j])
-							}
-						}
-
-						arr[0] = qty.join(' ');
-						arr[1] = meas.join(' ')//.replace('(', '').replace(')',''); - can do this to remove parens, but I actually think they help
-						//arr.slice(1).join(' ');
-						//console.log('the arr ' + arr)
+				
+				if (ings.length !== amounts.length){
+					var ings = document.getElementsByClassName('fl-ing');
+					for(var i = 0; i < ings.length; i++){
+						//ings[i].innerText
+						var ingObj = new Ingredient('','', ings[i].innerText);
+						ingredients.push(ingObj)
 					}
-					joinRest(arr);
-					var ingObj = new Ingredient(arr[0], arr[1], ings[i].innerText);
-					ingredients.push(ingObj);
-				};
+				} else {
+					for(var i = 0; i < amounts.length; i++){
+
+						//this splits the amounts into two pieces
+						var arr = amounts[i].innerText.split(' ');
+
+						//You have to run these tests for weird situations- slow cooker pork had 1 (4 pound)
+						var joinRest = function(qtyMeas){
+							var qty = [];
+							var meas = []
+							for (var j=0; j < qtyMeas.length; j++){
+									
+								
+								if(isNaN(parseInt(qtyMeas[j]))){
+									meas.push(qtyMeas[j]);
+									//console.log("what is a number " + qtyMeas[j])
+								} else {
+									qty.push(qtyMeas[j])
+								}
+							}
+
+							arr[0] = qty.join(' ');
+							arr[1] = meas.join(' ')//.replace('(', '').replace(')',''); - can do this to remove parens, but I actually think they help
+							//arr.slice(1).join(' ');
+							
+						}
+						joinRest(arr);
+						var ingObj = new Ingredient(arr[0], arr[1], ings[i].innerText);
+
+
+						ingredients.push(ingObj);
+					}
+				}
 
 				//console.log("ingredients array ",  ingredients);
 
