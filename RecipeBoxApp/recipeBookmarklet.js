@@ -29,8 +29,8 @@
 	function initMyBookmarklet() {
 		(window.myBookmarklet = function() {
 			//recipe constructor for all websites
-			//var domainName = 'cooknookcollection.com'
-			var domainName='localhost:3000'
+			var domainName = 'cooknookcollection.com'
+			//var domainName='localhost:3000'
 			var getLocal = function() {
 				
 				var uId = localStorage.getItem('local');
