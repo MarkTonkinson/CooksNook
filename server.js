@@ -14,11 +14,11 @@ connection.once('open', function(){
 	console.log('mongo listening on ' + mongoUri);
 })
 global.mongooseConnection = connection;
-var port = 3000;
-var domainName = 'localhost:3000'
+// var port = 3000;
+// var domainName = 'localhost:3000'
 
-// var port = 80;
-// var domainName = 'cooknookcollection.com'
+var port = 80;
+var domainName = 'cooknookcollection.com'
 
 
 ////Models
