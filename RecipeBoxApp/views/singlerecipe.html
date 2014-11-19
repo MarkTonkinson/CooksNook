@@ -66,8 +66,10 @@
 					<p><strong>Notes</strong></p>
 					<textarea rows="10" cols="40" ng-model="note.note"></textarea>
 					<p>Share with others?:<input class="input-checkbox" type="checkbox" ng-false-value="private" ng-true-value="public" ng-model="note.share"></p>
+					
+					<p ng-show="recipeSpinner">Saving . . .<i class="fa fa-spinner fa-1x fa-spin"></i></p>
 					<button class="button-on-white" ng-click="postNote()">Save</button>
-					<div ng-show="recipeSpinner">Saving . . .<i class="fa fa-spinner fa-2x fa-spin"></i></div>
+
 
 					
 				</div>
