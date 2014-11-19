@@ -136,7 +136,7 @@ app.service('userService', function($http, $q, $cookieStore, recipeService){
 			url: '/api/notes/' + note.userid,
 			data: note
 		}).then(function(res){
-			console.log('edit res ', res)
+			
 			return deferred.resolve(res.data);
 		})
 		return deferred.promise;	

@@ -133,8 +133,9 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 	}
 	$scope.getNotes();
 
-
+	$scope.recipeSpinner = false;
 	$scope.postNote = function(){
+		$scope.recipeSpinner = true;
 		if(!$scope.note._id){
 			$scope.note = {
 				userid: $scope.user._id,
@@ -145,13 +146,13 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 
 			userService.postNote($scope.note)
 			.then(function(res){
-				console.log(res)
+				$scope.recipeSpinner = false;
 				$scope.note = res;
 			})
 		} else if($scope.note._id){
 			userService.editNote($scope.note)
 			.then(function(res){
-				console.log('note edited ', res);
+				$scope.recipeSpinner = false;
 				$scope.note = res;
 			})
 		}
