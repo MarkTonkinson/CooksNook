@@ -35,6 +35,7 @@
 					<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/>
 					
 					<button class="button-on-white" ng-show='!hasRecipe' ng-click="addRecipe(user._id)">Add This Recipe</button>
+					<button ng-show="showNotesButton" class="button-on-white" ng-click="showPublicNotes()">See User Notes</button>
 			</div>
 		
 
@@ -61,17 +62,26 @@
 					{{instruction.step}}
 				</div>
 
-				<div>
+				<div ng-show="noteShow()">
 					<p><strong>Notes</strong></p>
 					<textarea rows="10" cols="40" ng-model="note.note"></textarea>
-					<p>Share with others?:<input type="checkbox" ng-false-value="private" ng-true-value="public" ng-model="note.share"></p>
+					<p>Share with others?:<input class="input-checkbox" type="checkbox" ng-false-value="private" ng-true-value="public" ng-model="note.share"></p>
 					<button class="button-on-white" ng-click="postNote()">Save</button>
 
-					{{note}}
+					
 				</div>
 			</div>
-		
+
+				
+				<div ng-show="seePublicNotes" class="col-md-4 public-notes" ng-repeat="publicnote in notes">
+					
+					<p><u><strong>{{publicnote.author}}</strong> - {{publicnote.noteDate | date: medium}}</u></p>
+
+					<p>{{publicnote.note}}</p>
+				</div>
+
 
 	</div>
+
 
 </div>

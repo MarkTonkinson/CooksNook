@@ -88,24 +88,56 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 		}
 	}
 
-	$scope.getNotes = function(){
-		userService.getNotes($scope.user._id)
-		.then(function(res){
-			$scope.notes = res;
-			for(var i = 0; i < res.length; i++){
-				if(res[i].userid === $scope.user._id  && res[i].recipeid === $scope.recipe._id){
-					$scope.note = res[i];
-				}
+	$scope.noteShow = function(){
+		if($scope.user){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	$scope.notes =[];
+	var setPublicNotes = function(){
+		var arr = $scope.recipe.notes
+		for(var i = 0; i < arr.length; i++){
+			if(arr[i].share === 'public'){
+				$scope.notes.push(arr[i])
 			}
-		})
+		}
+	}
+	setPublicNotes();
+
+	$scope.showNotesButton = false;
+	$scope.getNotes = function(){
+		if($scope.user){
+			userService.getNotes($scope.user._id)
+			.then(function(res){
+				
+				for(var i = 0; i < res.length; i++){
+					if(res[i].userid === $scope.user._id  && res[i].recipeid === $scope.recipe._id){
+						$scope.note = res[i];
+					}
+					if(res[i].share === "public" && res[i].recipeid === $scope.recipe._id){
+						$scope.notes.push(res[i]);
+					}
+				}
+				if($scope.notes.length){
+					$scope.showNotesButton = true;
+				}
+			})		
+		}
+
 	}
 	$scope.getNotes();
+
 
 	$scope.postNote = function(){
 		if(!$scope.note._id){
 			$scope.note = {
 				userid: $scope.user._id,
-				recipeid: $scope.recipe._id
+				recipeid: $scope.recipe._id,
+				note: $scope.note.note,
+				author: $scope.user.userName
 			}
 
 			userService.postNote($scope.note)
@@ -117,22 +149,27 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 			userService.editNote($scope.note)
 			.then(function(res){
 				console.log('note edited ', res);
-				$scope.note=res;
+				$scope.note = res;
 			})
 		}
 	}
-
+	$scope.seePublicNotes = false;
+	
+	$scope.showPublicNotes = function(){
+		$scope.seePublicNotes = true;
+		$scope.showNotesButton = false;
+	}
 	//TODO: the collections are here so I can remove the recipe from the collections if the user does
 	//However, sometime soon, add functionality so the user can just assign the recipe to multiple collections
 	$scope.getCollections = function(){
-		userService.getCollections($scope.user._id)
-		.then(function(res){
-			//console.log(res)
-			$scope.collections = res;
-			// if($scope.collections.length){
-			// 	$scope.existsCollection = true;
-			// }
-		})
+		if($scope.user){
+			userService.getCollections($scope.user._id)
+			.then(function(res){
+
+				$scope.collections = res;
+
+			})
+		}
 	}
 
 	$scope.getCollections();
@@ -201,7 +238,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 
 	}
 	
-	//TODO: Fix it if so can add to user
+	
 	$scope.addToFavorites = function(recipeid){
 		
 		$scope.user.favorites.push(recipeid);

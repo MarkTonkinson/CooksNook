@@ -80,6 +80,12 @@ input:focus {
 	border-color: rgba(0,0,0,.2);
 }
 
+.input-checkbox {
+	border-style: none;
+	box-shadow: none;
+	width: 4rem;
+
+}
 
 
 .heading-margin {
@@ -397,4 +403,12 @@ input:focus {
 	background-color:#FFE69A;
 }
 
-
+/*NOTES*/
+.public-notes {
+	min-height: 12rem;
+	padding: 1rem;
+	border: 2px solid #0A5A9C;
+	margin: 1rem 3rem;
+	color: #0A5A9C;
+	overflow: scroll;
+}
