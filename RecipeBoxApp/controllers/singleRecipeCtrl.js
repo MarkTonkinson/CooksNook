@@ -98,12 +98,15 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 
 	$scope.notes =[];
 	var setPublicNotes = function(){
-		var arr = $scope.recipe.notes
-		for(var i = 0; i < arr.length; i++){
-			if(arr[i].share === 'public'){
-				$scope.notes.push(arr[i])
+		if($scope.recipe.notes){
+			var arr = $scope.recipe.notes
+			for(var i = 0; i < arr.length; i++){
+				if(arr[i].share === 'public'){
+					$scope.notes.push(arr[i])
+				}
 			}
 		}
+
 	}
 	setPublicNotes();
 
