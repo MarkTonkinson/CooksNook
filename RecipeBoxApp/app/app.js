@@ -108,17 +108,17 @@ app.config(['$routeProvider', function($routeProvider){
 }])
 
 
-// app.config(function($httpProvider){
-// 	$httpProvider.interceptors.push(function($q, $location){
-// 		return {
-// 			'responseError': function(rejection){
-// 				if(rejection.status === 401){
-// 					$location.path('/');
-// 				}
-// 				return $q.reject(rejection)
-// 			}
-// 		}
-// 	})
-// })
+app.config(function($httpProvider){
+	$httpProvider.interceptors.push(function($q, $location){
+		return {
+			'responseError': function(rejection){
+				if(rejection.status === 401){
+					$location.path('/');
+				}
+				return $q.reject(rejection)
+			}
+		}
+	})
+})
 
 

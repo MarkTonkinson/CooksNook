@@ -2,9 +2,9 @@
 
 	<div class="row collection-view">
 
-		<div class="col-md-12">
+		<div class="col-md-6">
 			<h2>{{collection.collectionName}}</h2>
-			
+
 			
 			<button class="button-on-white" ng-show="checkPermissions()" ng-click="updateCollection()">Save Changes</button>
 
@@ -17,9 +17,15 @@
 			</div>
 			
 		</div>
-
-	
-
+		
+		<div class="col-md-6">
+			<div class="change-collection-name">
+				<h5>Change collection name: </h5>
+				<input class="input-on-white" ng-model="newCollectionName">
+			</div>
+		</div>
+		
+		<div class="col-md-12"></div>
 
  		<div class="col-md-5 single-collection" ng-repeat="recipe in recipes">
  			<div class="row">

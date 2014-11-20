@@ -38,6 +38,9 @@ button:disabled {
 button:focus {
 	outline: 0;
 }
+button:active {
+	box-shadow:none;
+}
 
 .button-on-white {
 	border: 1px solid rgba(0, 0, 0, .25);
@@ -196,6 +199,10 @@ input:focus {
 
 .cmb-on-white {
 	background-color: #428CCA;
+}
+
+.change-collection-name {
+	margin-top: 4rem;
 }
 /*For Each Recipe in HOME and Search*/
 .recipe {

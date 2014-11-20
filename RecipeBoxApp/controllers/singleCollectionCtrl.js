@@ -47,7 +47,7 @@ $scope.recipes = getCollectionRecipes;
 	}
 
 	$scope.updateCollection = function(){
-
+		$scope.collection.collectionName = $scope.newCollectionName;
 		userService.updateCollection($scope.collection, $scope.user._id)
 		.then(function(res){
 			$route.reload(); //so much simpler than everything i tried- unfortunately it means an extra server request

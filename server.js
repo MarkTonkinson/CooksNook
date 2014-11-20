@@ -60,14 +60,15 @@ app.use(Passport.session());
 //   next();
 // }
 
-// var requireAuth = function(req, res, next){
-//   if(!req.isAuthenticated()){
-//     res.status(401).json({success: false});
-//   } else {
-//     next();
-//   }
+var requireAuth = function(req, res, next){
+  if(!req.isAuthenticated()){
+    res.status(401).send("You do not have permission to be here.")
+  } else {
+    console.log("authenticated")
+    next();
+  }
   
-// }
+}
 
 
 
@@ -151,47 +152,47 @@ app.get('/api/user/:userid', function(req, res){
   })
 })
 
-app.get('/recipes', RecipeController.get);
-app.get('/api/get/recipe/:recipeid', RecipeController.getById);
-app.get('/api/user/recipes/:userid', RecipeController.getByUser);
+app.get('/recipes', requireAuth, RecipeController.get);
+app.get('/api/get/recipe/:recipeid', requireAuth, RecipeController.getById);
+app.get('/api/user/recipes/:userid', requireAuth, RecipeController.getByUser);
 //can use this over and over again . . .hopefully I didn't break it all  . . 
-app.put('/api/user/update/:userid', RecipeController.updateUser);
+app.put('/api/user/update/:userid', requireAuth, RecipeController.updateUser);
 
 
-app.put('/api/update/recipes/:recipeid', RecipeController.put);
-app.post('/recipes/:userid', RecipeController.postExternal);
+app.put('/api/update/recipes/:recipeid', requireAuth, RecipeController.put);
+app.post('/recipes/:userid', requireAuth, RecipeController.postExternal);
 //app.post('/recipes/internal/:userid', RecipeController.postInternal);
-app.delete('/api/:userid/recipe/:recipeid', RecipeController.deleteReceta); //can't use word delet(key word)
-app.put('/api/update/user/:userid', RecipeController.editUser)
+app.delete('/api/:userid/recipe/:recipeid', requireAuth, RecipeController.deleteReceta); //can't use word delet(key word)
+app.put('/api/update/user/:userid', requireAuth, RecipeController.editUser)
 
 // ****************** Note Routes ************************
-app.get('/api/usernotes/:userid', NotesController.getUserNotes);
-app.get('/api/recipenotes/:recipeid', NotesController.getRecipeNotes)
-app.post('/api/notes/:userid', NotesController.addNote);
-app.put('/api/notes/:userid', NotesController.editNote);
+app.get('/api/usernotes/:userid', requireAuth, NotesController.getUserNotes);
+app.get('/api/recipenotes/:recipeid', requireAuth, NotesController.getRecipeNotes)
+app.post('/api/notes/:userid', requireAuth, NotesController.addNote);
+app.put('/api/notes/:userid', requireAuth, NotesController.editNote);
 
 
 //**********************COLLECTION ROUTES*****************************
 //these are better written routes
 //the singular connection makes all the difference
-app.get('/api/collection/:collectionid', CollectionController.getCollection);
-app.delete('/api/collections/:collectionid/:userid', CollectionController.removeUserCollection);
-app.get('/api/collections/:userid', CollectionController.getUserCollections);
-app.post('/api/collections/:userid', CollectionController.postUserCollection);
-app.put('/api/collections/:userid', CollectionController.editUserCollection)
-app.get('/api/publicCollections', CollectionController.getPublicCollections);
-app.get('/api/recipesInCollection/:collectionid', CollectionController.getRecipesInCollection);
+app.get('/api/collection/:collectionid', requireAuth, CollectionController.getCollection);
+app.delete('/api/collections/:collectionid/:userid', requireAuth, CollectionController.removeUserCollection);
+app.get('/api/collections/:userid', requireAuth, CollectionController.getUserCollections);
+app.post('/api/collections/:userid', requireAuth, CollectionController.postUserCollection);
+app.put('/api/collections/:userid', requireAuth, CollectionController.editUserCollection)
+app.get('/api/publicCollections', requireAuth, CollectionController.getPublicCollections);
+app.get('/api/recipesInCollection/:collectionid', requireAuth, CollectionController.getRecipesInCollection);
   //may not need this route
-app.post('/api/publicCollections', CollectionController.postPublicCollections);
+app.post('/api/publicCollections', requireAuth, CollectionController.postPublicCollections);
 
 
 
 //**********************SEARCH ROUTES*****************************
 
-app.get('/api/:user/search/:searchText', SearchController.getByIngredient);
-app.get('/api/:user/searchLocation/:searchText', SearchController.getByLocation);
-app.get('/api/:user/searchAuthor/:searchText', SearchController.getByAuthor)
-app.get('/api/:user/searchRecipeName/:searchText', SearchController.getByRecipeName)
+app.get('/api/:user/search/:searchText', requireAuth, SearchController.getByIngredient);
+app.get('/api/:user/searchLocation/:searchText', requireAuth, SearchController.getByLocation);
+app.get('/api/:user/searchAuthor/:searchText', requireAuth, SearchController.getByAuthor)
+app.get('/api/:user/searchRecipeName/:searchText', requireAuth, SearchController.getByRecipeName)
 
 // app.listen(process.env.myport || 3000)
 
