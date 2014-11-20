@@ -130,6 +130,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 				}
 			}
 			$scope.notes.reverse()
+			console.log($scope.notes);
 			if($scope.notes.length){
 				$scope.showNotesButton = true;
 			}
