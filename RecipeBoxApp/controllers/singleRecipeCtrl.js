@@ -125,7 +125,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 		userService.getRecipeNotes($scope.recipe._id)
 		.then(function(res){
 			for(var i = 0; i < res.length; i++){			
-				if(res[i].note.length > 0){
+				if(res[i].note.length > 1){
 					$scope.notes.push(res[i]);		
 				}
 			}
