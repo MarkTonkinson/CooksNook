@@ -160,7 +160,7 @@ app.put('/api/user/update/:userid', requireAuth, RecipeController.updateUser);
 
 
 app.put('/api/update/recipes/:recipeid', requireAuth, RecipeController.put);
-app.post('/recipes/:userid', requireAuth, RecipeController.postExternal);
+app.post('/recipes/:userid', RecipeController.postExternal);
 //app.post('/recipes/internal/:userid', RecipeController.postInternal);
 app.delete('/api/:userid/recipe/:recipeid', requireAuth, RecipeController.deleteReceta); //can't use word delet(key word)
 app.put('/api/update/user/:userid', requireAuth, RecipeController.editUser)
