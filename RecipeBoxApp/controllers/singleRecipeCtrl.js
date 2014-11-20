@@ -89,7 +89,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 	}
 
 	$scope.noteShow = function(){
-		if($scope.user){
+		if($scope.user && $scope.user.recipes.indexOf($scope.recipe._id) > -1){
 			return true;
 		} else {
 			return false;
@@ -97,51 +97,56 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 	}
 
 	$scope.notes =[];
-	var setPublicNotes = function(){
-		if($scope.recipe.notes){
-			var arr = $scope.recipe.notes
-			for(var i = 0; i < arr.length; i++){
-				if(arr[i].share === 'public'){
-					$scope.notes.push(arr[i])
-				}
-			}
-		}
 
-	}
-	setPublicNotes();
+
 
 	$scope.showNotesButton = false;
-	$scope.getNotes = function(){
+	$scope.getUserNotes = function(){
 		if($scope.user){
-			userService.getNotes($scope.user._id)
+			userService.getUserNotes($scope.user._id)
 			.then(function(res){
-				
+
 				for(var i = 0; i < res.length; i++){
 					if(res[i].userid === $scope.user._id  && res[i].recipeid === $scope.recipe._id){
 						$scope.note = res[i];
 					}
-					if(res[i].share === "public" && res[i].recipeid === $scope.recipe._id){
-						$scope.notes.push(res[i]);
-					}
+
 				}
-				if($scope.notes.length){
-					$scope.showNotesButton = true;
-				}
+
 			})		
 		}
 
 	}
-	$scope.getNotes();
+	$scope.getUserNotes();
+
+	$scope.getRecipeNotes = function(){
+		userService.getRecipeNotes($scope.recipe._id)
+		.then(function(res){
+			for(var i = 0; i < res.length; i++){			
+				$scope.notes.push(res[i]);
+			}
+			$scope.notes.reverse()
+			if($scope.notes.length){
+				$scope.showNotesButton = true;
+			}
+
+
+		})
+	}
+	$scope.getRecipeNotes();
 
 	$scope.recipeSpinner = false;
+
 	$scope.postNote = function(){
 		$scope.recipeSpinner = true;
 		if(!$scope.note._id){
+
 			$scope.note = {
 				userid: $scope.user._id,
 				recipeid: $scope.recipe._id,
 				note: $scope.note.note,
-				author: $scope.user.userName
+				author: $scope.user.userName,
+				share: $scope.note.share
 			}
 
 			userService.postNote($scope.note)

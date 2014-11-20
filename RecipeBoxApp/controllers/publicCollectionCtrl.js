@@ -28,11 +28,11 @@ app.controller('publicCollectionCtrl', function($scope, $cookieStore, getCollect
 			recipeService.getUserRecipes($scope.user.facebookId)
 			.then(function(res){
 				$scope.userRecipes = []
-				console.log('res ', res)
+				//console.log('res ', res)
 				for(var i = 0; i < res.length; i++){
 					$scope.userRecipes.push(res[i]._id);
 				}
-				console.log($scope.userRecipes)
+				//console.log($scope.userRecipes)
 			})
 		}
 		$scope.getRecipes();
@@ -79,7 +79,7 @@ app.controller('publicCollectionCtrl', function($scope, $cookieStore, getCollect
 			
 			recipeService.updateUser(userRecipesReqBody)
 			.then(function(res){
-				console.log('recipes saved')
+				//console.log('recipes saved')
 			})
 
 			userService.updateCollection($scope.selectedCollection, $scope.user._id)

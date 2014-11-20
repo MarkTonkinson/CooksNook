@@ -65,7 +65,7 @@
 				<div ng-show="noteShow()">
 					<p><strong>Notes</strong></p>
 					<textarea rows="10" cols="40" ng-model="note.note"></textarea>
-					<p>Share with others?:<input class="input-checkbox" type="checkbox" ng-false-value="private" ng-true-value="public" ng-model="note.share"></p>
+					<p>Share with others?:<input class="input-checkbox" type="checkbox" ng-false-value="private" ng-true-value="public" ng-model="note.share" ng-checked="false"></p>
 					
 					<p ng-show="recipeSpinner">Saving . . .<i class="fa fa-spinner fa-1x fa-spin"></i></p>
 					<button class="button-on-white" ng-click="postNote()">Save</button>
@@ -75,10 +75,10 @@
 				</div>
 			</div>
 
-				
-				<div ng-show="seePublicNotes" class="col-md-4 public-notes" ng-repeat="publicnote in notes">
+								
+				<div ng-show="seePublicNotes" class="col-md-4 public-notes" ng-repeat="publicnote in notes | filter: {share: 'public'}">
 					
-					<p><u><strong>{{publicnote.author}}</strong> - {{publicnote.noteDate | date: medium}}</u></p>
+					<p><u><strong>{{publicnote.author}}</strong> - {{publicnote.noteDate | date: "EEE, MMM d, y 'at' h:mm a"}}</u></p>
 
 					<p>{{publicnote.note}}</p>
 				</div>

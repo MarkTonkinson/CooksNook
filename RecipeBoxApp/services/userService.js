@@ -20,6 +20,17 @@ app.service('userService', function($http, $q, $cookieStore, recipeService){
 		}
 	}
 	
+	this.getUser = function(userid){
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: '/api/user/' + userid,
+		}).then(function(res){
+			return deferred.resolve(res.data)
+		})
+		return deferred.promise
+
+	}
 	this.saveCollection = function(newCollection, userid){
 		var deferred = $q.defer();
 		$http({
@@ -102,12 +113,25 @@ app.service('userService', function($http, $q, $cookieStore, recipeService){
 
 	}
 
-	this.getNotes = function(userid){
+	this.getUserNotes = function(userid){
 
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: '/api/notes/' + userid
+			url: '/api/usernotes/' + userid
+		}).then(function(res){
+
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
+
+	this.getRecipeNotes = function(recipeid){
+
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: '/api/recipenotes/' + recipeid
 		}).then(function(res){
 
 			return deferred.resolve(res.data);

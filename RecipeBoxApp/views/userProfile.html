@@ -1,0 +1,23 @@
+<div class="viewer container">
+	<div class="row collection-view">
+		<h2>Profile: {{user.userName}}</h2>
+		<div class="col-md-6">
+			<p>Member Since: {{user.accountCreated | date: "longDate"}}
+			<p>Total Recipes: {{user.recipes.length}}</p>
+			<p>Total Collections: {{user.collections.length}}</p>
+		</div>
+		
+		<div class="col-md-6">
+			<h4>Your Collections</h4>
+
+			<div ng-repeat="collection in collections">
+				
+				<p><a href="/#/collection/{{collection._id}}/{{collection.collectionName}}">{{collection.collectionName}}</a> - {{collection.collectionCreator}}</p>
+				<ul>
+					<li>Contains {{collection.recipes.length}} Recipes </li>
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+</div>

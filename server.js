@@ -140,6 +140,16 @@ app.get('/logout', function(req, res){
 
 
 // ****************** Recipe Routes ************************
+app.get('/api/user/:userid', function(req, res){
+  var uId = req.params.userid;
+  User.findById(uId, function(err, user){
+    if(err){
+      console.log(err)
+    } else {
+      res.status(200).send(user);
+    }
+  })
+})
 
 app.get('/recipes', RecipeController.get);
 app.get('/api/get/recipe/:recipeid', RecipeController.getById);
@@ -155,7 +165,8 @@ app.delete('/api/:userid/recipe/:recipeid', RecipeController.deleteReceta); //ca
 app.put('/api/update/user/:userid', RecipeController.editUser)
 
 // ****************** Note Routes ************************
-app.get('/api/notes/:userid', NotesController.getNotes);
+app.get('/api/usernotes/:userid', NotesController.getUserNotes);
+app.get('/api/recipenotes/:recipeid', NotesController.getRecipeNotes)
 app.post('/api/notes/:userid', NotesController.addNote);
 app.put('/api/notes/:userid', NotesController.editNote);
 

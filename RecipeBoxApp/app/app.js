@@ -98,6 +98,10 @@ app.config(['$routeProvider', function($routeProvider){
 		templateUrl: '../views/bookmarklet.html',
 		controller: 'bookmarkletCtrl'
 	})
+	.when('/userProfile/:userName', {
+		templateUrl: '../views/userProfile.html',
+		controller: 'userProfileCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	})
