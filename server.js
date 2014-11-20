@@ -74,12 +74,12 @@ app.use(Passport.session());
 // *****************Facebook Authorization **************************
 
 Passport.serializeUser(function(user, done) {
-  console.log('serializing')
+  //console.log('serializing')
   done(null, user);
 });
 
 Passport.deserializeUser(function(user, done) {
-  console.log('deserializing ')
+  //console.log('deserializing ')
   done(null, user);
 });
 

@@ -19,5 +19,11 @@
 				
 			</div>
 		</div>
+		<div>
+			<h4>Edit Username</h4>
+			<input class="input-on-white" ng-model="user.userName">
+			<button ng-click="saveUser()" class="button-on-white">Save</button>
+			<p ng-show="saveSpinner">Saving . . .<i class="fa fa-spinner fa-1x fa-spin"></i></p>
+
 	</div>
 </div>
