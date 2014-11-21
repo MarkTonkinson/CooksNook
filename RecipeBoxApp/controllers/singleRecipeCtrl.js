@@ -91,7 +91,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 
 ///LOGIC FOR NOTES
 	$scope.noteShow = function(){
-		if($scope.user && $scope.user.recipes.indexOf($scope.recipe._id) > -1){
+		if($scope.user && $scope.userRecipes.indexOf($scope.recipe._id) > -1){
 			return true;
 		} else {
 			return false;
@@ -109,7 +109,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 			.then(function(res){
 
 				for(var i = 0; i < res.length; i++){
-					if(res[i].userid === $scope.user._id  && res[i].recipeid === $scope.recipe._id){
+					if(res[i].recipeid === $scope.recipe._id){
 						$scope.note = res[i];
 					}
 
@@ -130,7 +130,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 				}
 			}
 			$scope.notes.reverse()
-			console.log($scope.notes);
+			
 			if($scope.notes.length){
 				$scope.showNotesButton = true;
 			}
