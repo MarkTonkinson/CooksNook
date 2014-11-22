@@ -87,8 +87,8 @@ Passport.deserializeUser(function(user, done) {
 
 var user = {};
 Passport.use(new FacebookStrategy({
-  clientID: '969410863074076',
-  clientSecret: '61ed2b60d034d46303d14a65fad562f9',
+  clientID: process.env.CLIENT_ID,
+  clientSecret: process.env.FACEBOOK_SECRET,
   callbackURL: 'http://' + domainName + '/auth/facebook/callback'
 }, function(token, refreshToken, profile, done) {
   console.log('PROFILE', profile)
@@ -153,7 +153,7 @@ app.get('/api/user/:userid', function(req, res){
 })
 
 app.get('/recipes', requireAuth, RecipeController.get);
-app.get('/api/get/recipe/:recipeid', requireAuth, RecipeController.getById);
+app.get('/api/get/recipe/:recipeid', RecipeController.getById);
 app.get('/api/user/recipes/:userid', requireAuth, RecipeController.getByUser);
 //can use this over and over again . . .hopefully I didn't break it all  . . 
 app.put('/api/user/update/:userid', requireAuth, RecipeController.updateUser);
@@ -166,8 +166,8 @@ app.delete('/api/:userid/recipe/:recipeid', requireAuth, RecipeController.delete
 app.put('/api/update/user/:userid', requireAuth, RecipeController.editUser)
 
 // ****************** Note Routes ************************
-app.get('/api/usernotes/:userid', requireAuth, NotesController.getUserNotes);
-app.get('/api/recipenotes/:recipeid', requireAuth, NotesController.getRecipeNotes)
+app.get('/api/usernotes/:userid', NotesController.getUserNotes);
+app.get('/api/recipenotes/:recipeid', NotesController.getRecipeNotes)
 app.post('/api/notes/:userid', requireAuth, NotesController.addNote);
 app.put('/api/notes/:userid', requireAuth, NotesController.editNote);
 
@@ -177,7 +177,7 @@ app.put('/api/notes/:userid', requireAuth, NotesController.editNote);
 //the singular connection makes all the difference
 app.get('/api/collection/:collectionid', requireAuth, CollectionController.getCollection);
 app.delete('/api/collections/:collectionid/:userid', requireAuth, CollectionController.removeUserCollection);
-app.get('/api/collections/:userid', requireAuth, CollectionController.getUserCollections);
+app.get('/api/collections/:userid',  CollectionController.getUserCollections);
 app.post('/api/collections/:userid', requireAuth, CollectionController.postUserCollection);
 app.put('/api/collections/:userid', requireAuth, CollectionController.editUserCollection)
 app.get('/api/publicCollections', requireAuth, CollectionController.getPublicCollections);
@@ -208,7 +208,7 @@ app.get('/api/:user/searchRecipeName/:searchText', requireAuth, SearchController
 // press ctrl x to save and then it will ask if you want to save
 
 
-app.listen(port, function(){
+app.listen(process.env.EXPRESS_PORT || port, function(){
 	console.log("listening on " + port)
 })
 

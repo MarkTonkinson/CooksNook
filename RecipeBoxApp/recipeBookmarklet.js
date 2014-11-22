@@ -28,7 +28,7 @@
 	
 	function initMyBookmarklet() {
 		(window.myBookmarklet = function() {
-			//recipe constructor for all websites
+			
 			var domainName = 'cooknookcollection.com'
 			//var domainName='localhost:3000'
 			var getLocal = function() {
@@ -37,7 +37,7 @@
 				return JSON.parse(uId);
 			}
 			
-
+			//recipe constructor for all websites
 			var Recipe = function(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions){
 				this.author = author,
 				this.recipeName = recipeName,
@@ -72,7 +72,7 @@
 			//console.log('title, ' + document.title)
 			var postRecipe = function(finalRecipe){
 				var user = getLocal();
-				console.log(user);
+				//console.log(user);
 				$.ajax({
 					datatype: "json",
 					contentType: "application/json; charset=utf-8",	
