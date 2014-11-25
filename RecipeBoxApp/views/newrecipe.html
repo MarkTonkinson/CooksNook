@@ -9,23 +9,23 @@
 					
 			<!-- Checkboxes for choosing location of the recipe -->
 			    
-
+				<h4>Where is the recipe from?</h4>
 			    <p class="radio col-md-12">
 			        <label>
-				        <input class="overide-input" type="radio" ng-model="newRecipe.location" value="Personal" ng-change="require()" required >Personal
+				        <input class="overide-input" type="radio" ng-model="newRecipe.location" value="Personal" ng-change="require()" required >Personal Recipe
 				    </label>
 			    </p> 
 
 
 			    <p class="radio col-md-12">
 			        <label>
-			            <input class="overide-input" type="radio" ng-model="newRecipe.location" ng-change="require()" value="Website">Website
+			            <input class="overide-input" type="radio" ng-model="newRecipe.location" ng-change="require()" value="Website">From a Website
 				    </label>
 			    </p>
 
 			    <p class="radio col-md-12">
 			        <label>
-			            <input class="overide-input" type="radio" ng-model="newRecipe.location" ng-change='require()' value="Book">Book
+			            <input class="overide-input" type="radio" ng-model="newRecipe.location" ng-change='require()' value="Book">Out of a Cookbook
 				    </label>
 			    </p>
 			    
@@ -35,7 +35,7 @@
 				    <div class="col-md-12" ng-show="newRecipe.location === 'Website'" >
 				    	<input type="url" placeholder='Url' name="url" ng-model="newRecipe.recipeUrl" ng-required="websiteRequired" >
 				    </div>
-				    <p class="help-text" ng-show="websiteRequired">Don't forget complete url!</p>
+				    <p class="help-text" ng-show="websiteRequired">Don't a forget complete url!</p>
 
 				    <!-- BOOK HIDDEN DIV -->
 				    <div class="col-md-12" ng-show="newRecipe.location==='Book'">
@@ -58,10 +58,6 @@
 
 
 
-
-
-				<!-- Titles -->
-				<div class='col-md-12'> Quantity Measurement Ingredient </div>
 
 				<div class="row">
 				<!-- Ingredients -->

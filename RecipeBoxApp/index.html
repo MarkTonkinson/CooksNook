@@ -43,10 +43,10 @@
         
         
         <div class="searchbar col-md-12">
-            <div class="views"> 
-                <a href="#/search/{{username.userName}}"><button class="b">Search</button></a>  <!-- link to the state-->
-                <a href="#/home/{{username.userName}}"><button class="b">Home</button></a>
-                <a href="#/favorites/{{username.userName}}"><button class="b">Favorites</button></a>
+            <div class="views" ng-show="showLogout()"> 
+                <a ng-class="{active: tab-color, disabled: whatup}" href="#/search/{{username.userName}}"><button ng-class="myVar" ng-click="myVar='tab-class'" class="b">Search</button></a>  <!-- link to the state-->
+                <a href="#/home/{{username.userName}}"><button ng-class="myVar" class="b">Home</button></a>
+                <a href="#/favorites/{{username.userName}}"><button ng-class="" class="b">Favorites</button></a>
                 <a href="#/newRecipe/{{username.userName}}"><button class="b">Add Recipe</button></a>
                 <a href="#/collections/{{username.userName}}"><button class="b">Collections</button></a>
                 <a href="#/PublicCollections"><button class='b'>Public Collections</button></a>

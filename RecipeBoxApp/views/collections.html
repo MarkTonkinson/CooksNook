@@ -10,11 +10,33 @@
 				<h4>Create New Collection</h4>
 				
 					<form name="createCollectionForm" novalidate>
-						<input class="input-on-white" ng-model="collectionName" required/>
+						<input class="input-on-white" ng-model="collectionName" placeholder="New collection name" required/>
 					    <button ng-disabled="createCollectionForm.$invalid" class="cook-button" ng-click="createCollection()">Create</button>
 					</form>
 			</div>
 
+			<div class="col-md-12" ng-show="collections.length < 1">
+				<div class="help-note button-on-white">
+					<h3><u>Using Collections</u></h3>
+
+					<p>It can be hard to keep track of recipes.  After all, there are millions of recipes in the world.  The internet has more than its fair share. And, if you love food like we do, you probably also have a bookshelf of cookbooks and boxes of recipe cards.</p>
+					
+					<p>While having a plethora of recipes is great, sometimes less is more. We wanted to give you a tool for organizing the "cream of the crop" according to your liking.</p>
+
+					<h4><strong>The steps are simple:</strong></h4>
+
+					<ol>
+						<li>Create a new collection by giving it a name that describes the collection - like "Desserts", "Date Night", "Quick and Easy", or "Family Treasures"</li>
+						<li>Hit the create button. </li>
+						<li>Your collection page is ready, but empty.</li>
+						<li>Head on over to the home page where a "Manage Collections" tool will be available that makes adding or removing recipes from the collection just a few quick clicks.</li>
+						<li>Organize away!</li>
+					</ol>
+
+					
+				</div>
+
+			</div>
 
 			<div class="col-md-8" >
 				<div class="collection-repeat" ng-repeat="collection in collections">

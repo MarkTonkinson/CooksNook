@@ -10,7 +10,6 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
-
 					<div class="col-md-6">
 						<h3 class="custom-htag">{{user.userName}}'s Recipes</h3>
 
@@ -20,7 +19,19 @@
 					
 					</div>
 
-					
+					<div class="col-md-12" ng-show="recipes.length < 1">
+						<div class="help-note">
+							<h3><u>Thanks for joining Cook's Nook</u></h3>
+
+							<p>Think of this page as a mini online recipe book. We want you to be able to organize your very favorite recipes here.</p>
+							
+							<p>Start adding recipes by going to the <a href="#/newRecipe/{{user.userName}}"><u>Add Recipe tab</u></a> or by getting our handy <a href="#/CooksNookBookMarklet"><u>Bookmarklet</u></a>.</p>
+							
+							<p>Once you have some recipes, start organizing them by <a href="#/collections/{{username.userName}}"><u>creating collections.</u></a></p>
+						</div>
+
+					</div>
+
 					
 					
 					

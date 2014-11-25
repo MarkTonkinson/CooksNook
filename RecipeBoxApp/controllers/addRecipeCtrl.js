@@ -37,7 +37,6 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 			$scope.bookRequired = false;
 			$scope.newRecipe.bookTitle = '';
 			$scope.newRecipe.bookPageNumber = '';
-
 		} else if ($scope.newRecipe.location === 'Book'){
 			$scope.bookRequired = true;
 			$scope.websiteRequired = false;

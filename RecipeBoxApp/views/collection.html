@@ -24,6 +24,16 @@
 				<input class="input-on-white" ng-model="newCollectionName">
 			</div>
 		</div>
+
+		<div class="col-md-12" ng-show="recipes.length < 1">
+			<div class="help-note button-on-white">
+				<p>It appears you don't have any recipes yet!</p>
+				<p>Go to the <a href="#/home/{{username.userName}}"><u>home</u></a> page to add some recipes using the "Manage Collections" toolbox.</p>
+
+				
+			</div>
+
+		</div>
 		
 		<div class="col-md-12"></div>
 

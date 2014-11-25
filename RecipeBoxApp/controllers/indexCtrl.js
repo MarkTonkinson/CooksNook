@@ -2,6 +2,7 @@ var app = angular.module('RecipeBoxApp');
 
 app.controller('indexCtrl', function($scope, $cookieStore, userService, $location){
 	
+	
 	$scope.getUsername = function(){
 		$scope.username = $cookieStore.get('user');
 	}

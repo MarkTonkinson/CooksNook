@@ -1,8 +1,7 @@
 body {
 	font-family: 'Vollkorn', Georgia, serif;
-	
-	background-color: #00899B;
-	background-color:rgba(179, 182, 148, .45);
+	/*background-color: #00899B;
+	background-color:rgba(179, 182, 148, .45);*/
 	
 	background-color:white;
 /*	background-color: #FFC16C;
@@ -13,6 +12,20 @@ body {
 	color:black;
 	/*color:#4c2221;*/
 }
+
+/*@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+	body {
+		font-size: 2rem;
+	}
+	.b {
+		
+		display:none;
+	}
+	.recipe {
+		height: 20rem;
+	}
+
+}*/
 /*MAIN BUTTONS*/
 button {
 	background-image: none;
@@ -56,10 +69,20 @@ a {
 	color:#1916A9;
 	text-decoration: none;
 }
+a:link{
+	color: #1916A9;
+}
 
 a:hover {
 	color:#F28C00;
 }
+
+
+.b.tab-color {
+	background-color: #428CCA;
+}
+
+
 
 h1, h2, h3, h4, h5, h6 {
 	color: rgba(0, 0, 0, .78);
@@ -418,4 +441,14 @@ input:focus {
 	margin: 1rem 3rem;
 	color: #0A5A9C;
 	overflow: scroll;
+}
+
+/*For when users come to the pages and they don't have anything on them*/
+.help-note {
+	font-size: 2rem;
+	background-color: white;
+	box-shadow: 2px -2px 5px 0px rgb(10,10,10);
+	padding: 2rem 4rem;
+	margin: 4rem;
+	border-radius:1rem;
 }
