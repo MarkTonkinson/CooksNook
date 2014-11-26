@@ -1,4 +1,4 @@
-var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate', 'ngSanitize', 'nzSweetAlert']);
+var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate', 'ngSanitize']);
 
 app.config(['$compileProvider', function($compileProvider) {   
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|javascript):/);
