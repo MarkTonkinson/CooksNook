@@ -2,6 +2,7 @@ var app = angular.module('RecipeBoxApp');
 
 app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $routeParams, $location, $cookieStore){
 	$scope.recipe = getRecipe;
+	$scope.tabChange('other');
 	
 	$scope.getUsername();
 	var user = $cookieStore.get('user');

@@ -2,7 +2,7 @@ var app = angular.module('RecipeBoxApp');
 
 app.controller('indexCtrl', function($scope, $cookieStore, userService, $location){
 	
-	
+
 	$scope.getUsername = function(){
 		$scope.username = $cookieStore.get('user');
 	}
@@ -36,4 +36,85 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 	$scope.logout = function(){
 		$cookieStore.remove('user');
 	}	
+
+
+	var btab = 'b'
+	var selectedTab = 'b selected-tab'
+	
+	$scope.homeTab = btab
+	$scope.searchTab = btab
+	$scope.favTab = btab
+	$scope.addRecTab = btab
+	$scope.privColTab = btab
+	$scope.pubColTab = btab
+
+	$scope.tabChange = function(tab){
+		
+		switch(tab) {
+			case 'other':
+				$scope.homeTab = btab
+				$scope.searchTab = btab
+				$scope.favTab = btab
+				$scope.addRecTab = btab
+				$scope.privColTab = btab
+				$scope.pubColTab = btab
+				break;
+
+			case 'home':
+				$scope.homeTab = selectedTab
+				$scope.searchTab = btab
+				$scope.favTab = btab
+				$scope.addRecTab = btab
+				$scope.privColTab = btab
+				$scope.pubColTab = btab
+				break;
+			case 'search':
+				$scope.homeTab = btab
+				$scope.searchTab = selectedTab
+				$scope.favTab = btab
+				$scope.addRecTab = btab
+				$scope.privColTab = btab
+				$scope.pubColTab = btab
+				break;
+			case 'fav':
+				$scope.homeTab = btab
+				$scope.searchTab = btab
+				$scope.favTab = selectedTab
+				$scope.addRecTab = btab
+				$scope.privColTab = btab
+				$scope.pubColTab = btab
+				break;
+			case 'addRecipe':
+				$scope.homeTab = btab
+				$scope.searchTab = btab
+				$scope.favTab = btab
+				$scope.addRecTab = selectedTab
+				$scope.privColTab = btab
+				$scope.pubColTab = btab
+				break;
+			case 'privateCollections':
+				$scope.homeTab = btab
+				$scope.searchTab = btab
+				$scope.favTab = btab
+				$scope.addRecTab = btab
+				$scope.privColTab = selectedTab
+				$scope.pubColTab = btab
+				break;
+			case 'publicCollections':
+				$scope.homeTab = btab
+				$scope.searchTab = btab
+				$scope.favTab = btab
+				$scope.addRecTab = btab
+				$scope.privColTab = btab
+				$scope.pubColTab = selectedTab
+				break;
+		}	
+		
+
+
+
+	}
+
+	
+
 })

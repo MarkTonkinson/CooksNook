@@ -3,7 +3,7 @@ var app = angular.module('RecipeBoxApp');
 app.controller('singleCollectionCtrl', function($scope, getCollection, getCollectionRecipes, recipeService, $cookieStore, userService, $route, $location){
 
 $scope.getUsername();
-
+$scope.tabChange('other');
 $scope.user = $cookieStore.get('user')
 
 
@@ -40,7 +40,9 @@ $scope.recipes = getCollectionRecipes;
 	$scope.deleteCollection = function(){
 		userService.deleteUserCollection($scope.collection._id, $scope.user._id)
 		.then(function(res){
-			alert($scope.collection.collectionName + ' succesfully deleted.')
+
+			swal({   title: "Deleted!",   text: $scope.collection.collectionName + ' succesfully deleted.',   type: "success",   confirmButtonText: "Ok" });
+			//alert($scope.collection.collectionName + ' succesfully deleted.')
 			$location.path('/collections/' + $scope.user.displayName);
 		})
 

@@ -1,4 +1,4 @@
-var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate', 'ngSanitize']);
+var app = angular.module('RecipeBoxApp', ['ngRoute', 'ngCookies', 'ngAnimate', 'ngSanitize', 'nzSweetAlert']);
 
 app.config(['$compileProvider', function($compileProvider) {   
   $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|javascript):/);
@@ -109,10 +109,11 @@ app.config(['$routeProvider', function($routeProvider){
 
 
 app.config(function($httpProvider){
-	$httpProvider.interceptors.push(function($q, $location){
+	$httpProvider.interceptors.push(function($q, $location, $cookieStore){
 		return {
 			'responseError': function(rejection){
 				if(rejection.status === 401){
+					$cookieStore.remove('user');
 					$location.path('/');
 				}
 				return $q.reject(rejection)

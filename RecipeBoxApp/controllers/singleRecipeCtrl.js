@@ -1,14 +1,16 @@
 var app = angular.module('RecipeBoxApp');
 
-app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, userService, recipeService, $location, $cookieStore){
+app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, userService, recipeService, $location, $cookieStore, anchorSmoothScroll){
 	$scope.getUsername();
+	$scope.tabChange('other');
 	 $scope.recipe = getRecipeToView
-	 //console.log($scope.recipe)
+	
 	
 
 	$scope.addRecipe = function(userid){
 		if(!userid){
-			alert("Log in to add this recipe!")
+			swal({   title: "Not Logged In",   text: 'Login to add this recipe.',   type: "error",   confirmButtonText: "Ok" });
+			//alert("Log in to add this recipe!")
 		} else {
 			$scope.userRecipes.push($scope.recipe._id);
 				var updateUserReqBody = {
@@ -103,6 +105,7 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 
 
 	$scope.showNotesButton = false;
+	$scope.hideNotesButton = false;
 	$scope.getUserNotes = function(){
 		if($scope.user){
 			userService.getUserNotes($scope.user._id)
@@ -115,11 +118,17 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 
 				}
 
-			})		
+			})	
 		}
 
 	}
 	$scope.getUserNotes();
+
+	$scope.hideNotes = function(){
+		$scope.showNotesButton = true;
+		$scope.hideNotesButton = false;
+		$scope.seePublicNotes = false;
+	}
 
 	$scope.getRecipeNotes = function(){
 		userService.getRecipeNotes($scope.recipe._id)
@@ -169,9 +178,12 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 	}
 	$scope.seePublicNotes = false;
 	
+
 	$scope.showPublicNotes = function(){
+
 		$scope.seePublicNotes = true;
 		$scope.showNotesButton = false;
+		$scope.hideNotesButton = true;
 	}
 	//TODO: the collections are here so I can remove the recipe from the collections if the user does
 	//However, sometime soon, add functionality so the user can just assign the recipe to multiple collections
@@ -219,6 +231,8 @@ app.controller('singleRecipeCtrl', function($scope, $route, getRecipeToView, use
 			return false
 		}
 	}
+
+
 
 
 // **********FAVORITES FUNCTIONALITY*************

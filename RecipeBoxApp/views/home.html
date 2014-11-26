@@ -25,7 +25,7 @@
 
 							<p>Think of this page as a mini online recipe book. We want you to be able to organize your very favorite recipes here.</p>
 							
-							<p>Start adding recipes by going to the <a href="#/newRecipe/{{user.userName}}"><u>Add Recipe tab</u></a> or by getting our handy <a href="#/CooksNookBookMarklet"><u>Bookmarklet</u></a>.</p>
+							<p>Start adding recipes by going to the <a href="#/newRecipe/{{user.userName}}"><u>Add Recipe</u></a> tab or by getting our handy <a href="#/CooksNookBookMarklet"><u>Bookmarklet</u></a>.</p>
 							
 							<p>Once you have some recipes, start organizing them by <a href="#/collections/{{username.userName}}"><u>creating collections.</u></a></p>
 						</div>
@@ -73,8 +73,9 @@
 								</div>
 
 								<br>
-								<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/>	
-							</div>
+								<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/>
+								
+								</div>
 
 							<div class="col-md-8 recipe-border">
 								<!-- The List of Ingredients -->

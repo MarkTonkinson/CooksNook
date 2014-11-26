@@ -1,6 +1,6 @@
 var app = angular.module('RecipeBoxApp');
 
-app.controller('homeCtrl', function($scope, user, userService, recipeService, $cookieStore){
+app.controller('homeCtrl', function($scope, user, userService, recipeService, $cookieStore, $route){
 	
 	//The problem is that because those recipes are added externally the user doesn't get saved in cookie store when they come back
 	//so when the user gets updated, the recipes aren't in the recipe array, so the user data gets overwritten.
@@ -15,13 +15,17 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 	//that would just get more busy  . . .
 
 	$scope.getUsername();
+	$scope.tabChange('home');
 
 	$scope.user = $cookieStore.get('user');
+
 	//this solves one problem- but what if it is shared?
 	//how do you give a copy?- remove the id when it's gone?
 	var uId = $scope.user._id
 
 	//console.log($scope.user)
+
+	
 
 	$scope.recipeImageShow = function(recipeimage){
 		if(recipeimage ===''){

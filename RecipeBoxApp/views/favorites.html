@@ -2,8 +2,28 @@
 
 	<h3 class="custom-htag">{{user.userName}}'s Favorites</h3>
 	
+			<div class="col-md-12" ng-show="recipes.length < 1">
+				<div class="help-note">
+					<h3><u>Favorites</u></h3>
+
+					<p>Add recipes to your favorites page by clicking the yellow star on your favorite recipes.</p>
+					
+					<h4>This . . . </h4>
+					<img src="../images/favRecipe1.png">
+					<br></br>
+					<h4>Becomes this!</h4>
+					<p><small>(hint: look at the star!)</small></p>
+					<img src="../images/favRecipe2.png">
+
+				</div>
+
+			</div>
+
 	<div class="col-md-5 recipe" ng-repeat='recipe in recipes'>
 		<div class="row">
+
+
+
 			<div class="col-md-4">
 				<a href="/#/recipe/{{recipe._id}}"><p>{{recipe.recipeName}}  - {{recipe.author}} </p></a>
 

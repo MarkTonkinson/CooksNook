@@ -3,6 +3,7 @@ var app = angular.module("RecipeBoxApp");
 app.controller("searchCtrl", function($scope, searchService, $cookieStore, recipeService){
 	
 	$scope.getUsername();
+	$scope.tabChange('search');
 	$scope.user = $cookieStore.get('user');
 		var userid = $scope.user.facebookId;
 

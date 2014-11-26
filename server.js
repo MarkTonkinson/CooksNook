@@ -14,11 +14,12 @@ connection.once('open', function(){
 	console.log('mongo listening on ' + mongoUri);
 })
 global.mongooseConnection = connection;
-// var port = 3000;
-// var domainName = 'localhost:3000'
 
-var port = 80;
-var domainName = 'cooknookcollection.com'
+var port = 3000;
+var domainName = 'localhost:3000'
+
+// var port = 80;
+// var domainName = 'cooknookcollection.com'
 
 
 ////Models
@@ -38,6 +39,8 @@ app.use(Session ({secret: "@ll l0s secr3t0s"}));
 app.use(BodyParser.json());
 app.use(Passport.initialize());
 app.use(Passport.session());
+
+app.set('port', process.env.EXPRESS_PORT || 3000)
 
 
 //will this solve CORS issue?  possibly, i seem to remember talking about this
@@ -64,7 +67,7 @@ var requireAuth = function(req, res, next){
   if(!req.isAuthenticated()){
     res.status(401).send("You do not have permission to be here.")
   } else {
-    console.log("authenticated")
+    
     next();
   }
   
@@ -104,7 +107,7 @@ app.get('/auth/facebook/callback', Passport.authenticate('facebook', {
   //successRedirect: '/me',
   failureRedirect: '/auth/facebook'
 }), function(req, res){
-  console.log('came to callback');
+  
   res.redirect('/#/home/' + user.displayName)
 });
 
@@ -194,21 +197,10 @@ app.get('/api/:user/searchLocation/:searchText', requireAuth, SearchController.g
 app.get('/api/:user/searchAuthor/:searchText', requireAuth, SearchController.getByAuthor)
 app.get('/api/:user/searchRecipeName/:searchText', requireAuth, SearchController.getByRecipeName)
 
-// app.listen(process.env.myport || 3000)
 
 
-// .bash_profile
-// editing text files on command line can be tricky
 
-// sudo nano 
-// ~/.bash_profile
-
-// export is kind of like saying var
-// export Express_Port = 80
-// press ctrl x to save and then it will ask if you want to save
-
-
-app.listen(process.env.EXPRESS_PORT || port, function(){
+app.listen(port, function(){
 	console.log("listening on " + port)
 })
 

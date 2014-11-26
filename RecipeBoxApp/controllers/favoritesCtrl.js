@@ -2,7 +2,7 @@ var app = angular.module('RecipeBoxApp');
 
 app.controller('favoritesCtrl', function($scope, $location, recipeService, $cookieStore){
 	$scope.getUsername();
-
+	$scope.tabChange('fav');
 	$scope.user = $cookieStore.get('user');
 	//console.log($scope.user.favorites)
 

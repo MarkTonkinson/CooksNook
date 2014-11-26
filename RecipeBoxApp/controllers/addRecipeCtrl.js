@@ -1,6 +1,8 @@
 var app = angular.module("RecipeBoxApp");
 
 app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $location, $routeParams){
+	
+	$scope.tabChange('addRecipe');
 	//get the user's info
 	$scope.getUsername();
 	var user = $cookieStore.get('user');
@@ -10,7 +12,8 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 	$scope.recipeNameUsed = false;
 	$scope.newRecipe = {
 		ingredients: [{},{},{},{},{},{}],   //why do I have to specify?  What will happen when I submit 3 ingredients instead of the max?
-		instructions:[{},{},{},{},{},{}]
+		instructions:[{},{},{},{},{},{}],
+		recipeImage: "../images/default.png"
 	}
 	
 	$scope.addIngredient = function(){

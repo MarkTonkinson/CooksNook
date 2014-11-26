@@ -35,7 +35,8 @@
 					<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/>
 					
 					<button class="button-on-white" ng-show='!hasRecipe' ng-click="addRecipe(user._id)">Add This Recipe</button>
-					<button ng-show="showNotesButton" class="button-on-white" ng-click="showPublicNotes()">See User Notes</button>
+					<button ng-show="showNotesButton" class="button-on-white" ng-click="showPublicNotes()">See Notes</button>
+					<button ng-show="hideNotesButton" class="button-on-white" ng-click="hideNotes()">Hide Notes</button>
 			</div>
 		
 
@@ -56,10 +57,11 @@
 			<div class="col-md-4">
 				<h2 class="hide-it">I'm Invisible</h2>
 				<p><strong>Instructions</strong></p>
+				
 				<div ng-repeat="instruction in recipe.instructions">
-					<p ng-bind-html="recipe.instructions[0]"></p>
+					<p ng-show="recipe.location === 'Website'" ng-bind-html="recipe.instructions[0]"></p>
 
-					{{instruction.step}}
+					<p ng-show="recipe.location === 'Personal'">{{$index + 1}} - {{instruction.step}} </p>
 				</div>
 
 				<div ng-show="noteShow()">
@@ -75,7 +77,7 @@
 				</div>
 			</div>
 
-								
+				<a id="notes"></a>				
 				<div ng-show="seePublicNotes" class="col-md-4 public-notes" ng-repeat="publicnote in notes | filter: {share: 'public'}">
 					
 					<p><u><strong>{{publicnote.author}}</strong> - {{publicnote.noteDate | date: "EEE, MMM d, y 'at' h:mm a"}}</u></p>

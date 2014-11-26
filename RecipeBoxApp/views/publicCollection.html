@@ -14,12 +14,12 @@
 
 		</div>
 		
-		<div class="col-md-5 collection-recipe" ng-repeat="recipe in recipes">
+		<div class="col-md-5 single-collection" ng-repeat="recipe in recipes">
 				<a href='#/recipe/{{recipe._id}}'><p>{{recipe.recipeName}}</p>
-				<img class="center-block" ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/></a>
+				<img ng-show="recipeImageShow(recipe.recipeImage)" src='{{recipe.recipeImage}}'/></a>
 				<div ng-show="selectedCollection">
-					<p>Add To Collection?</p>
-				 	<input  class="overide-input" type="checkbox" ng-model="addornot" ng-true-value="pushRecipe" ng-false-value="spliceValue" ng-change="checkCollection(addornot, recipe._id)" ng-checked="selectedCollection.recipes.indexOf(recipe._id) > -1">
+					<p>Add To Collection?
+				 	<input  class="overide-input" type="checkbox" ng-model="addornot" ng-true-value="pushRecipe" ng-false-value="spliceValue" ng-change="checkCollection(addornot, recipe._id)" ng-checked="selectedCollection.recipes.indexOf(recipe._id) > -1"></p>
 				</div>
 		</div>	
 	

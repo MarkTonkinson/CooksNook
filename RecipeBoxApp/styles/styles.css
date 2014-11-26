@@ -44,6 +44,8 @@ button {
  
 }
 
+
+
 button:disabled {
 	background-color: rgba(0, 0, 0, .78));
 }
@@ -75,11 +77,6 @@ a:link{
 
 a:hover {
 	color:#F28C00;
-}
-
-
-.b.tab-color {
-	background-color: #428CCA;
 }
 
 
@@ -145,6 +142,9 @@ input:focus {
 	outline: 0;
 }
 
+.selected-tab {
+	background-color: rgba(0,0,0,.33);
+}
 
 /*BORDER ALONG TOP*/
 .top-border {
@@ -229,7 +229,8 @@ input:focus {
 }
 /*For Each Recipe in HOME and Search*/
 .recipe {
-	height: 300px;
+	height: 35rem;
+	
 	min-width:200px;
 	margin:2rem 5rem 2rem 4rem;
 /*	margin-left: 4rem;
@@ -356,7 +357,7 @@ input:focus {
 .single-collection {
 	border-top: 1px solid black;
 	margin: 2rem;
-	height: 20rem;
+	height: 25rem;
 	overflow:scroll;
 
 
@@ -433,9 +434,19 @@ input:focus {
 	background-color:#FFE69A;
 }
 
+.bookmark-help-image {
+	height:28rem;
+	border: 1px solid black;
+}
+
+.bookmark-help-image2 {
+	height:14.8rem;
+	border: 1px solid black;
+}
+
 /*NOTES*/
 .public-notes {
-	min-height: 12rem;
+	min-height: 20rem;
 	padding: 1rem;
 	border: 2px solid #0A5A9C;
 	margin: 1rem 3rem;
