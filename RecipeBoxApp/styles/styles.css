@@ -144,6 +144,9 @@ input:focus {
 
 .selected-tab {
 	background-color: rgba(0,0,0,.33);
+	background-color: #428bca;
+	color: white;
+
 }
 
 /*BORDER ALONG TOP*/
@@ -446,7 +449,7 @@ input:focus {
 
 /*NOTES*/
 .public-notes {
-	min-height: 20rem;
+	height: 23rem;
 	padding: 1rem;
 	border: 2px solid #0A5A9C;
 	margin: 1rem 3rem;
@@ -462,4 +465,9 @@ input:focus {
 	padding: 2rem 4rem;
 	margin: 4rem;
 	border-radius:1rem;
+}
+
+.contact-page {
+	font-size: 1.8rem;
+
 }

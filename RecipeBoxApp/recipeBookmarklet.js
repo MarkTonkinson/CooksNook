@@ -268,14 +268,64 @@
 				var yield = document.getElementsByClassName('yield')[0].innerText;
 
 				var finalRecipe = new Recipe(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions);
-				//console.log(finalRecipe);
+				
 				postRecipe(finalRecipe);
 			}
 
+			//***********************************Food Network Recipe! ***********************************************
+			var getFoodNetworkRecipe = function(){
+				var author = document.getElementsByClassName('avatar')[0].getElementsByTagName('span')[0].innerText.trim();
+				if(author === "The Pioneer Woman"){
+					author = "Pioneer Woman"
+				}
+				if(author === "Ree Drummond"){
+					author = "Pioneer Woman"
+				}
+				var recipeName = document.getElementsByClassName('tier-3')[0].innerText;
+				
+				if(document.getElementById('video')!== null){
+					var recipeImage = document.getElementById('video').getElementsByTagName('img')[0].src
+				} else if(document.getElementsByClassName('single-photo-recipe')[0].getElementsByTagName('img')[0].src){
+					var recipeImage = document.getElementsByClassName('single-photo-recipe')[0].getElementsByTagName('img')[0].src
+				}
+				var yield = document.getElementsByClassName('difficulty')[1].getElementsByTagName('dd')[0].innerText
+				if(document.getElementsByClassName('ingredients') === null){
+					ingredients.push("<a href='" + recipeUrl + "'> Ingredients on original site.</a>")
+				} else {
+					var ingsArr = document.getElementsByClassName('ingredients')[0].getElementsByTagName('li')
+					for(var i = 0; i < ingsArr.length; i++){
+						var wholeIng = ingsArr[i].innerText.split(' ')
+
+						//console.log('whole ing ', wholeIng)
+						if(wholeIng.length < 3){
+							qty=''
+							meas=''
+							ing = ingsArr[i].innerText		
+						} else if(wholeIng.length === 3){
+							qty = wholeIng[0]
+							meas = wholeIng[1]
+							ing = wholeIng[2]
+						} else if(wholeIng.length > 3){
+							qty = wholeIng[0]
+							meas = wholeIng[1]
+							ing = wholeIng.splice(2, wholeIng.length-1).join(' ')
+							//console.log('ing ', ing)
+						}
+
+						var ingredient = new Ingredient(qty, meas, ing);
+						ingredients.push(ingredient)
+					}
+				}
+				//console.log(ingredients)
+				var finalRecipe = new Recipe(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions);
+				console.log(finalRecipe)
+				postRecipe(finalRecipe)
+			}
 
 			//**********************************DON'T WRITE BELOW HERE!*************************************
 			///NEEDS TO BE AT BOTTOM SO THAT THE GET RECIPE FUNCTIONS ARE DEFINED - else it tries to find it and it doesn't exist!
 			var checkDomain = function(host){
+
 				if(host === 'allrecipes.com'){
 					getRecipeFromAllRecipes();
 				} else if(host === 'thepioneerwoman.com'){
@@ -285,6 +335,8 @@
 				// 	alert("Cook's Nook- make sure you verify that SkinnyTaste recipes come out right.  Email us if there are errors.")
 				} else if(host === 'www.yummly.com'){
 					getYummlyRecipe();
+				} else if (host === 'www.foodnetwork.com'){
+					getFoodNetworkRecipe();
 				} else {
 					alert("Cook's Nook: Sorry, we can't get a recipe from this site :(")
 				}
@@ -292,14 +344,7 @@
 			checkDomain(host);
 	
 			
-			
-
-			//experiment :)
-			// var p = document.createElement("p");
-			// var text = document.createTextNode("hello there, thanks for using me")
-			// p.appendChild(text)
-			// document.getElementsByTagName("body")[0].appendChild(p)
-
+		
 
 
 		})();

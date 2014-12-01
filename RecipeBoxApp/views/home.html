@@ -4,7 +4,6 @@
 
 	<!-- The other way it could go is to have one input box and just ng-repeat to display each added ingredient
 	but I think the current way is more intuitive -->
-	
 
 	<!-- <div class="container"> -->
 		<div class="row">
@@ -80,6 +79,7 @@
 							<div class="col-md-8 recipe-border">
 								<!-- The List of Ingredients -->
 								<p class='ingredients'>Ingredients</p>
+								<p ng-show="recipe.ingredients.length === 1 && recipe.location === 'Website'" ng-bind-html="recipe.ingredients[0]"></p>
 								<li ng-repeat='ingredient in recipe.ingredients'>  {{ingredient.qty}} {{ingredient.meas}}  {{ingredient.ing}}</li>
 							</div>
 						</div>  

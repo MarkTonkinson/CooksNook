@@ -21,7 +21,7 @@
             <h5>Make Connections. Organize. Eat more variety with less.<h5>
         </header>
     
-
+       
         <div class="row">
                 
             <div class="top-border col-md-12">
@@ -35,9 +35,11 @@
     
     <div class="container">
     <div class="row">
+
         <div class="col-md-10 heading-margin"></div>
-        <div class="col-md-2 login-margin">{{username.userName}} <a ng-show="showLogout()" ng-click="logout()" href='/logout'>Logout<a>
-        <p ng-show="showLogout()"><a href="#/CooksNookBookMarklet">Add Bookmarklet</a></p>
+        <div class="col-md-2 login-margin">{{username.userName}} <a ng-show="showLogout()" ng-click="logout()" href='/logout'>Logout</a>
+        <div style="font-size:12px" ng-show="showLogout()"><a href="#/CooksNookBookMarklet">Add Bookmarklet</a> / <a href="#/Contact">Contact Us</a> </div>
+        
         <div ng-show="showLogin()">
         <a ng-click="login()" href="/auth/facebook">Login</a>
         or <a href="#/"> Register</a>
@@ -65,7 +67,9 @@
     
 
 
-    </div>  
+    </div>
+
+
 
   
 

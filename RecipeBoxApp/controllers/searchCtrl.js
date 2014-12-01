@@ -1,7 +1,8 @@
 var app = angular.module("RecipeBoxApp");
 
 app.controller("searchCtrl", function($scope, searchService, $cookieStore, recipeService){
-	
+	$scope.searchSpinner = false;
+	$scope.searchResultsText = false;
 	$scope.getUsername();
 	$scope.tabChange('search');
 	$scope.user = $cookieStore.get('user');
@@ -36,8 +37,10 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 		}
 	}
 
+	//am i still using this?  TODO: FIND OUT AND DELETE OTHERWISE
 	$scope.search = function(){
-		
+		$scope.searchResultsText = false;
+		$scope.searchSpinner = true;
 		searchService.search($scope.searchText, userid)
 		.then(function(res){
 			var arr = res.data
@@ -46,13 +49,19 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 			// 	newArr.push(arr[i].ingredients)
 			// }
 			$scope.recipes = res.data;
+			$scope.searchSpinner = false;
+			$scope.searchResultsText = true;
 		})
 	}
 
 	$scope.searchLocation = function(){
+		$scope.searchResultsText = false;
+		$scope.searchSpinner = true;
 		searchService.searchLocation($scope.locationSearchText, userid)
 		.then(function(res){
 			$scope.recipes = res.data
+			$scope.searchSpinner = false;
+			$scope.searchResultsText = true;
 		})
 	}
 	$scope.checkForBook = function(page){
@@ -65,16 +74,24 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 	}
 
 	$scope.searchAuthor = function(){
+		$scope.searchResultsText = false;
+		$scope.searchSpinner = true;
 		searchService.searchAuthor($scope.authorSearchText, userid)
 		.then(function(res){
 			$scope.recipes = res.data;
+			$scope.searchSpinner = false;
+			$scope.searchResultsText = true;
 		})
 	}
 
 	$scope.searchRecipeName = function(){
+		$scope.searchResultsText = false;
+		$scope.searchSpinner = true;
 		searchService.searchRecipeName($scope.recipeNameSearchText, userid)
 		.then(function(res){
 			$scope.recipes = res.data;
+			$scope.searchSpinner = false;
+			$scope.searchResultsText = true;
 		})
 	}
 

@@ -45,7 +45,9 @@
 			<div class="col-md-4">
 				<h2 class="hide-it">I'm Invisible</h2>
 				<p><strong>Ingredients</strong></p>
+				<p ng-show="recipe.ingredients.length === 1" ng-bind-html="recipe.ingredients[0]"></p>
 				<p ng-repeat="ingredient in recipe.ingredients">
+
 					{{ingredient.qty}} {{ingredient.meas}} {{ingredient.ing}}
 				</p>
 			

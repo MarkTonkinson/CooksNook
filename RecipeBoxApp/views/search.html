@@ -45,6 +45,12 @@
 						<input spellcheck='true' placeholder="Recipe Name" ng-model="recipeNameSearchText"/>
 						<button ng-click="searchRecipeName()">Search</button>
 					</form>
+
+					<div ng-show="searchSpinner">Loading your recipes . . .<i class="fa fa-spinner fa-2x fa-spin"></i></div>
+
+					<div ng-show="searchResultsText">
+						<h4>See {{recipes.length}} recipes from your recipe book below.</h4>
+					</div>
 				</div>
 
 				<div>
