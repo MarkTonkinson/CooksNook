@@ -15,37 +15,35 @@
 <body ng-controller='indexCtrl'>
 
 
-    <div class="container">
+
+    
+<div class="container">
+    <div class="row">
+
         <header>
             <h1>Cook's Nook<h1>
             <h5>Make Connections. Organize. Eat more variety with less.<h5>
         </header>
-    
-       
-        <div class="row">
-                
-            <div class="top-border col-md-12">
+
+        <div class="top-border col-md-12">
                     
-                <img src="images/fruitTarts.jpg"/>
-                <img src="images/capreseSalad.jpg"/>
-                <img src="images/inTheKitchen.jpg"/>
+<!--        <img src="images/fruitTarts.jpg"/>
+            <img src="images/capreseSalad.jpg"/>
+            <img src="images/inTheKitchen.jpg"/> -->
+        </div>
+        
+        <div class="row">
+            <div class="col-md-10 heading-margin"></div>
+            
+            <div class="col-md-2 login-margin">{{username.userName}} <a ng-show="showLogout()" ng-click="logout()" href='/logout'>Logout</a>
+                <div ng-show="showLogout()"><a href="#/CooksNookBookMarklet">Add Bookmarklet</a> / <a href="#/Contact">Contact</a> </div>
+                
+                <div ng-show="showLogin()">
+                    <a ng-click="login()" href="/auth/facebook">Login</a>
+                    or <a href="#/"> Register</a>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div class="container">
-    <div class="row">
-
-        <div class="col-md-10 heading-margin"></div>
-        <div class="col-md-2 login-margin">{{username.userName}} <a ng-show="showLogout()" ng-click="logout()" href='/logout'>Logout</a>
-        <div style="font-size:12px" ng-show="showLogout()"><a href="#/CooksNookBookMarklet">Add Bookmarklet</a> / <a href="#/Contact">Contact Us</a> </div>
-        
-        <div ng-show="showLogin()">
-        <a ng-click="login()" href="/auth/facebook">Login</a>
-        or <a href="#/"> Register</a>
-        </div>
-        </div>
-        
         
         <div class="searchbar col-md-12">
             <div class="views" ng-show="showLogout()"> 
@@ -58,16 +56,22 @@
                 
             </div>
         </div>
-      
+        <div class="searchbar2 col-md-12">
+                <li><a href="#/home/{{username.userName}}">Home</a></li>
+                <li><a href="#/favorites/{{username.userName}}">Favorites</a></li>
+                <li><a href="#/newRecipe/{{username.userName}}">Add Recipe</a></li>
+                <li><a href="#/search/{{username.userName}}">Search</a></li> 
+                <li><a href="#/collections/{{username.userName}}">Collections</a></li>
+                <li><a href="#/PublicCollections">Public Collections</a></li>
         </div>
   
        
     
-            <div ng-view></div>
+        <div ng-view></div>
     
+    </div> <!-- End row -->
 
-
-    </div>
+</div>  <!-- End container -->
 
 
 

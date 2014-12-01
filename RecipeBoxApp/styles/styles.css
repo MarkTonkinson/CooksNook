@@ -1,31 +1,34 @@
 body {
 	font-family: 'Vollkorn', Georgia, serif;
-	/*background-color: #00899B;
-	background-color:rgba(179, 182, 148, .45);*/
-	
 	background-color:white;
-/*	background-color: #FFC16C;
-	background-color: #0A5A9C;*/
-	
-
-	
 	color:black;
-	/*color:#4c2221;*/
+
 }
 
-/*@media only screen and (min-device-width : 320px) and (max-device-width : 767px) {
+
+@media screen and (min-device-width : 320px) and (max-device-width : 767px) {
 	body {
-		font-size: 2rem;
+		font-size: 1.5rem;
 	}
-	.b {
-		
-		display:none;
-	}
+
 	.recipe {
 		height: 20rem;
 	}
+	.searchbar {
+		display: none;
 
-}*/
+	}
+	.searchbar2 {
+		display: block !important;
+
+	}
+	.login-margin {
+		margin-bottom:1rem;
+	}
+
+
+
+}
 /*MAIN BUTTONS*/
 button {
 	background-image: none;
@@ -112,19 +115,24 @@ input:focus {
 
 
 .heading-margin {
-	margin-top: 4rem;
+	/*margin-top: 4rem;*/
 }
 
 .login-margin {
 	margin-top:1rem;
-	margin-bottom: -2rem;
+	/*margin-bottom: -2rem;*/
+}
+
+.searchbar2 {
+	display: none;
+	margin-bottom: 1rem;
 }
 
 .b {
-	/*padding:1rem;*/
+
 	background-image: none;
 	width:14rem;
-	/*height:50px;*/
+	
 	background-color:white;
 	border-style:none;
 	border: 1px solid #428bca;
@@ -151,10 +159,10 @@ input:focus {
 
 /*BORDER ALONG TOP*/
 .top-border {
-	height:12rem;
-	background-color:rgba(0,0,0,.78);
-	padding-left:0;
-	background-color:#0A5A9C;
+	height: 3rem;
+	background-color: rgba(0,0,0,.78);
+	padding-left: 0;
+	/*background-color:#0A5A9C;*/
 }
 .top-border img {
 	height:12rem;
@@ -178,6 +186,9 @@ input:focus {
 	box-shadow: none;
 }
 
+.searchbar {
+	margin-left: -1.4rem;
+}
 /*Every view has a div defined by this- I may not need max-height . . .*/
 .viewer {
 	border: 2px solid black;
