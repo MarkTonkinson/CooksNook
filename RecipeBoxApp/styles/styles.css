@@ -113,6 +113,9 @@ input:focus {
 
 }
 
+.ngview-margin {
+	margin-left: -1.4rem;
+}
 
 .heading-margin {
 	/*margin-top: 4rem;*/
