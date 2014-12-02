@@ -28,10 +28,14 @@
 
 		<div class="col-md-12">
 			<p>Friends:</p>
-			<p ng-repeat="friend in friends">{{friend}}</p>
+			<p ng-repeat="friend in friends"><a href="#/publicProfile/{{friend.facebookId}}">{{friend.userName}}</a></p>
 
 			<p>Pending Friends</p>
-			<p ng-repeat="request in friendRequests">{{request}}</p>
+			<div ng-repeat="friendRequest in friendRequests">
+				<p>{{friendRequest.userName}}</p>
+				<button class="button-on-white" ng-click="approveFriend(friendRequest)">Accept</button>
+				<button class="button-on-white" ng-click="reject(friendRequest)">Reject</button>
+			</div>
 		</div>
 		<div class="col-md-12">
 			Find and add friends.
@@ -39,7 +43,7 @@
 			<button ng-click="searchFriend()" class="button-on-white">Find</button>
 			<p ng-show="friendSpinner">Searching users . . . <i class="fa fa-spinner fa-1x fa-spin"></i><p>
 			<div ng-show="user.friends.indexOf(peep._id === -1)" ng-repeat="peep in people">
-				{{peep}}
+				{{peep.userName}}
 				<button class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
 			</div>
 		</div>

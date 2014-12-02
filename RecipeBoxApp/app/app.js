@@ -105,6 +105,15 @@ app.config(['$routeProvider', function($routeProvider){
 	.when('/Contact', {
 		templateUrl: '../views/contact.html'
 	})
+	.when('/publicProfile/:id', {
+		templateUrl: '../views/publicProfile.html',
+		controller: 'publicProfileCtrl',
+		resolve: {
+			getFriendProfile: function($route, userService){
+				return userService.getFriendProfile($route.current.params.id)
+			}
+		}
+	})
 	.otherwise({
 		redirectTo: '/'
 	})

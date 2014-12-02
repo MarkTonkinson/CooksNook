@@ -15,11 +15,11 @@ connection.once('open', function(){
 })
 global.mongooseConnection = connection;
 
-var port = 3000;
-var domainName = 'localhost:3000'
+// var port = 3000;
+// var domainName = 'localhost:3000'
 
-// var port = 80;
-// var domainName = 'cooknookcollection.com'
+var port = 80;
+var domainName = 'cooknookcollection.com'
 
 
 ////Models
@@ -66,8 +66,8 @@ app.set('port', process.env.EXPRESS_PORT || 3000)
 
 var requireAuth = function(req, res, next){
   if(!req.isAuthenticated()){
-    next();
-    //res.status(401).send("You do not have permission to be here.")
+    //next();
+    res.status(401).send("You do not have permission to be here.")
   } else {
     
     next();
@@ -173,9 +173,10 @@ app.put('/api/update/user/:userid', requireAuth, RecipeController.editUser)
 
 
 // ****************** Friend Routes ************************
+app.get('/api/friendProfile/:facebookid', requireAuth, FriendsController.getFriendProfile)
 app.get('/api/userfriends/:userid', requireAuth, FriendsController.getFriends);
 app.get('/api/userFriendRequests/:userid', requireAuth, FriendsController.getFriendRequests);
-
+app.put('/api/friend/:friendid', requireAuth, FriendsController.updateFriend);
 // ****************** Note Routes ************************
 app.get('/api/usernotes/:userid', NotesController.getUserNotes);
 app.get('/api/recipenotes/:recipeid', NotesController.getRecipeNotes)

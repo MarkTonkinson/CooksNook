@@ -1,0 +1,33 @@
+<div class="viewer container">
+	<div class="row collection-view">
+
+
+		<h2>Profile: {{profile.userName}}</h2>
+		<div class="col-md-6">
+			<p>Member Since: {{profile.accountCreated | date: "longDate"}}
+			<p>Total Recipes: {{profile.recipes.length}}</p>
+			<p>Total Collections: {{profile.collections.length}}</p>
+		</div>
+		
+		<div class="col-md-6">
+			<h4>{{profile.userName}}'s Collections</h4>
+
+			<div ng-repeat="collection in collections">
+				
+				<p><a href="/#/collection/{{collection._id}}/{{collection.collectionName}}">{{collection.collectionName}}</a> - {{collection.collectionCreator}}</p>
+				<ul>
+					<li>Contains {{collection.recipes.length}} Recipes </li>
+				</ul>
+				
+			</div>
+		</div>
+
+
+		<div class="col-md-12">
+			<p>Friends:</p>
+			<p ng-repeat="friend in friends"><a href="#/publicProfile/{{friend.facebookId}}">{{friend.userName}}</a></p>
+		</div>
+
+
+	</div>
+</div>
