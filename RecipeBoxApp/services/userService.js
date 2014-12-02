@@ -166,5 +166,30 @@ app.service('userService', function($http, $q, $cookieStore, recipeService){
 		return deferred.promise;	
 	}
 
+	this.getFriends = function(userid){
+		
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: '/api/userfriends/' + userid
+		}).then(function(res){
+
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+	}
+
+	this.getFriendRequests = function(userid){
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: '/api/userFriendRequests/' + userid
+		}).then(function(res){
+
+			return deferred.resolve(res.data);
+		})
+		return deferred.promise;
+
+	}
 
 })

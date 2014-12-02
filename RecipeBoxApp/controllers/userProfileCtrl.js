@@ -16,6 +16,17 @@ app.controller('userProfileCtrl', function($scope, userService, recipeService, $
 		$scope.user = res;
 	})
 	$scope.saveSpinner = false;
+
+	userService.getFriends($scope.getter._id).
+	then(function(res){
+		$scope.friends = res;
+	})
+
+	userService.getFriendRequests($scope.getter._id).
+	then(function(res){
+		$scope.friendRequests = res;
+	})
+		
 	
 	//Todo- have to check that the username is unique? Technically the facebook name could be the same
 	//but we don't want them both having the same name.
@@ -55,8 +66,23 @@ app.controller('userProfileCtrl', function($scope, userService, recipeService, $
 		searchService.findUsers($scope.friendSearchTerm.toLowerCase())
 		.then(function(res){
 			$scope.people = res;
+			$scope.friendSpinner = false;
 		})
 	}
 
+	$scope.addFriend = function(friend) {
+		if($scope.user.waitingOnFriend.indexOf(friend._id === -1)  && $scope.user.friendRequests.indexOf(friend._id === -1)){
+			$scope.user.waitingOnFriend.push(friend._id);
+			//else show pending
+		}
+		if(friend.friendRequests.indexOf($scope.user._id) === -1){
+			friend.friendRequests.push($scope.user._id);
+		}
+
+		recipeService.updateUser(friend)
+		.then(function(res){
+			$scope.saveUser();
+		})
+	}
 
 });

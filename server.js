@@ -31,6 +31,7 @@ var RecipeController = require('./lib/controllers/recipe-control');
 var SearchController = require('./lib/controllers/search-control');
 var CollectionController = require('./lib/controllers/collection-control');
 var NotesController = require('./lib/controllers/note-control');
+var FriendsController = require('./lib/controllers/friend-control');
 var app = Express();
 
 app.use(Cors());
@@ -159,6 +160,7 @@ app.get('/api/user/:userid', function(req, res){
 app.get('/recipes', requireAuth, RecipeController.get);
 app.get('/api/get/recipe/:recipeid', RecipeController.getById);
 app.get('/api/user/recipes/:userid', requireAuth, RecipeController.getByUser);
+
 //can use this over and over again . . .hopefully I didn't break it all  . . 
 app.put('/api/user/update/:userid', requireAuth, RecipeController.updateUser);
 
@@ -168,6 +170,11 @@ app.post('/recipes/:userid', RecipeController.postExternal);
 //app.post('/recipes/internal/:userid', RecipeController.postInternal);
 app.delete('/api/:userid/recipe/:recipeid', requireAuth, RecipeController.deleteReceta); //can't use word delet(key word)
 app.put('/api/update/user/:userid', requireAuth, RecipeController.editUser)
+
+
+// ****************** Friend Routes ************************
+app.get('/api/userfriends/:userid', requireAuth, FriendsController.getFriends);
+app.get('/api/userFriendRequests/:userid', requireAuth, FriendsController.getFriendRequests);
 
 // ****************** Note Routes ************************
 app.get('/api/usernotes/:userid', NotesController.getUserNotes);

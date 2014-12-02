@@ -25,13 +25,22 @@
 			<button ng-click="saveUser()" class="button-on-white">Save</button>
 			<p ng-show="saveSpinner">Saving . . .<i class="fa fa-spinner fa-1x fa-spin"></i></p>
 		</div>
-		<div>
+
+		<div class="col-md-12">
+			<p>Friends:</p>
+			<p ng-repeat="friend in friends">{{friend}}</p>
+
+			<p>Pending Friends</p>
+			<p ng-repeat="request in friendRequests">{{request}}</p>
+		</div>
+		<div class="col-md-12">
 			Find and add friends.
 			<input class="input-on-white" ng-model="friendSearchTerm">
 			<button ng-click="searchFriend()" class="button-on-white">Find</button>
 			<p ng-show="friendSpinner">Searching users . . . <i class="fa fa-spinner fa-1x fa-spin"></i><p>
-			<div ng-repeat="peep in people">
-				{{peep.userName}}
+			<div ng-show="user.friends.indexOf(peep._id === -1)" ng-repeat="peep in people">
+				{{peep}}
+				<button class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
 			</div>
 		</div>
 	</div>
