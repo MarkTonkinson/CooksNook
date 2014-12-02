@@ -48,4 +48,15 @@ app.service('searchService', function($http, $q){
 		})
 		return deferred.promise;
 	}
+
+	this.findUsers = function(searchText){
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: '/api/findUsers/' + searchText
+		}).then(function(users){
+			deferred.resolve(users.data);
+		})
+		return deferred.promise;
+	}
 })

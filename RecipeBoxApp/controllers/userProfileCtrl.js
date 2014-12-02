@@ -1,6 +1,6 @@
 var app = angular.module("RecipeBoxApp");
 
-app.controller('userProfileCtrl', function($scope, userService, recipeService, $cookieStore){
+app.controller('userProfileCtrl', function($scope, userService, recipeService, $cookieStore, searchService){
 	
 	$scope.getUsername();
 	$scope.getter = $cookieStore.get('user');
@@ -46,6 +46,16 @@ app.controller('userProfileCtrl', function($scope, userService, recipeService, $
 		})
 		
 
+	}
+
+	$scope.friendSpinner = false;
+	$scope.searchFriend = function(){
+		$scope.friendSpinner = true;
+		console.log($scope.friendSearchTerm)
+		searchService.findUsers($scope.friendSearchTerm.toLowerCase())
+		.then(function(res){
+			$scope.people = res;
+		})
 	}
 
 

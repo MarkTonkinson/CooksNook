@@ -15,11 +15,11 @@ connection.once('open', function(){
 })
 global.mongooseConnection = connection;
 
-// var port = 3000;
-// var domainName = 'localhost:3000'
+var port = 3000;
+var domainName = 'localhost:3000'
 
-var port = 80;
-var domainName = 'cooknookcollection.com'
+// var port = 80;
+// var domainName = 'cooknookcollection.com'
 
 
 ////Models
@@ -65,7 +65,8 @@ app.set('port', process.env.EXPRESS_PORT || 3000)
 
 var requireAuth = function(req, res, next){
   if(!req.isAuthenticated()){
-    res.status(401).send("You do not have permission to be here.")
+    next();
+    //res.status(401).send("You do not have permission to be here.")
   } else {
     
     next();
@@ -194,9 +195,9 @@ app.post('/api/publicCollections', requireAuth, CollectionController.postPublicC
 
 app.get('/api/:user/search/:searchText', requireAuth, SearchController.getByIngredient);
 app.get('/api/:user/searchLocation/:searchText', requireAuth, SearchController.getByLocation);
-app.get('/api/:user/searchAuthor/:searchText', requireAuth, SearchController.getByAuthor)
-app.get('/api/:user/searchRecipeName/:searchText', requireAuth, SearchController.getByRecipeName)
-
+app.get('/api/:user/searchAuthor/:searchText', requireAuth, SearchController.getByAuthor);
+app.get('/api/:user/searchRecipeName/:searchText', requireAuth, SearchController.getByRecipeName);
+app.get('/api/findUsers/:searchText', requireAuth, SearchController.getUsers);
 
 
 

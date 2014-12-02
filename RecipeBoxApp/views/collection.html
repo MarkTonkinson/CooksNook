@@ -4,6 +4,7 @@
 
 		<div class="col-md-6">
 			<h2>{{collection.collectionName}}</h2>
+			<div ng-show="!checkPermissions()">Collection by {{collection.collectionCreator}}</div>
 
 			
 			<button class="button-on-white" ng-show="checkPermissions()" ng-click="updateCollection()">Save Changes</button>
@@ -19,7 +20,7 @@
 		</div>
 		
 		<div class="col-md-6">
-			<div class="change-collection-name">
+			<div class="change-collection-name" ng-show="checkPermissions()">
 				<h5>Change collection name: </h5>
 				<input class="input-on-white" ng-model="newCollectionName">
 			</div>
