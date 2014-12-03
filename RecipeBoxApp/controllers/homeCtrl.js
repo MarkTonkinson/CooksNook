@@ -112,8 +112,11 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 		}
 
 
-		recipeService.deleteRecipe(recipeId, $scope.user.facebookId);
-		$scope.getRecipes();
+		recipeService.deleteRecipe(recipeId, $scope.user.facebookId)
+		.then(function(res){
+			$scope.getRecipes();
+		})
+		
 	}
 
 	//All removes are soft now, unless logged in as admin, which have to fix elsewhere . . .

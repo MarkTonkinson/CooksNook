@@ -35,7 +35,7 @@
 			
 			<div ng-show="user.friends.indexOf(peep._id === -1)" ng-repeat="peep in people">
 				
-				<button ng-show="user.waitingOnFriend.indexOf(peep._id) === -1 && user.friends.indexOf(peep._id) === -1 && user.friendRequests.indexOf(peep._id) === -1" class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
+				<button ng-show="user._id !== peep._id && user.waitingOnFriend.indexOf(peep._id) === -1 && user.friends.indexOf(peep._id) === -1 && user.friendRequests.indexOf(peep._id) === -1" class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
 				<span ng-show="user.waitingOnFriend.indexOf(peep._id) > -1">Friend Request Sent - </span>
 				<span ng-show="user.friends.indexOf(peep._id) > -1"> Already Friends - </span>
 				<span ng-show="user.friendRequests.indexOf(peep._id) > -1">Waiting Your Approval - </span>

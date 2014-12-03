@@ -83,11 +83,14 @@ app.service('recipeService', function($http, $q, $cookieStore){
 	}
 
 	this.deleteRecipe = function(recipeId, fbId){
-		//console.log(recipeId  + ' and ' + fbId)
+		var deferred = $q.defer();
 		$http({
 			method: 'DELETE',
 			url: '/api/' +fbId +'/recipe/' + recipeId
-		});
+		}).then(function(res){
+			deferred.resolve(res.data);
+		})
+		return deferred.promise;
 
 	}
 
