@@ -94,7 +94,7 @@ app.controller('homeCtrl', function($scope, user, userService, recipeService, $c
 		recipeService.getUserRecipes($scope.user.facebookId)
 		.then(function(res){
 			
-			$scope.recipes = res;
+			$scope.recipes = res.reverse();
 			$scope.recipeSpinner = false		
 		})
 	}

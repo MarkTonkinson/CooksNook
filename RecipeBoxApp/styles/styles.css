@@ -80,6 +80,7 @@ a:link{
 
 a:hover {
 	color:#F28C00;
+	cursor: pointer;
 }
 
 
@@ -189,13 +190,18 @@ input:focus {
 	box-shadow: none;
 }
 
+/*this is on the search page*/
+.filter-input {
+	margin: 0rem;
+}
+
 .searchbar {
 	margin-left: -1.4rem;
 }
 /*Every view has a div defined by this- I may not need max-height . . .*/
 .viewer {
 	border: 2px solid black;
-	min-height:500px;
+	/*/min-height:500px;*/
 	max-height:2000px;
 	overflow-x:hidden;
 	overflow-y:scroll;
@@ -250,11 +256,9 @@ input:focus {
 	
 	min-width:200px;
 	margin:2rem 5rem 2rem 4rem;
-/*	margin-left: 4rem;
-	margin-right: 5rem;
-	margin-bottom:2rem;*/
+
 	border:1px solid black;
-	/*border-radius:5px;*/
+
 	color:black;
 	background-color: white;
 	overflow:scroll;
@@ -284,10 +288,8 @@ input:focus {
 
 	padding: 2rem;
 	margin: 3rem;
-	min-height: 40rem;
+
 	max-height:200rem;
-	/*background-color: white;
-	border: 1px double black;*/
 
 	overflow: scroll;
 }
@@ -484,4 +486,9 @@ input:focus {
 .contact-page {
 	font-size: 1.8rem;
 
+}
+
+
+.profile-view {
+	font-size: 1.5rem;
 }

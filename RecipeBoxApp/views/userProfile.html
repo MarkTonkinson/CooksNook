@@ -1,51 +1,66 @@
 <div class="viewer container">
-	<div class="row collection-view">
-		<h2>Profile: {{user.userName}}</h2>
+	<div class="row collection-view profile-view">
+		
 		<div class="col-md-6">
+			<h3>Profile: {{user.userName}}</h3>
 			<p>Member Since: {{user.accountCreated | date: "longDate"}}
 			<p>Total Recipes: {{user.recipes.length}}</p>
 			<p>Total Collections: {{user.collections.length}}</p>
+
+
+		<div>
+			<p>Friends ( {{friends.length}} ) :</p>
+			<ul>
+				<li ng-repeat="friend in friends"><a href="#/publicProfile/{{friend.facebookId}}">{{friend.userName}}</a></li>
+			</ul>
+			<p>Requests ( {{friendRequests.length}} ) :</p>
+			<div ng-repeat="friendRequest in friendRequests">
+				<ul>
+					<li>{{friendRequest.userName}}
+						<a ng-click="approveFriend(friendRequest)">Accept </a> /
+						<a ng-click="reject(friendRequest)"> Reject</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 		
-		<div class="col-md-6">
-			<h4>Your Collections</h4>
-
-			<div ng-repeat="collection in collections">
-				
-				<p><a href="/#/collection/{{collection._id}}/{{collection.collectionName}}">{{collection.collectionName}}</a> - {{collection.collectionCreator}}</p>
-				<ul>
-					<li>Contains {{collection.recipes.length}} Recipes </li>
-				</ul>
-				
-			</div>
-		</div>
-		<div class="col-md-12">
-			<h4>Edit Username</h4>
-			<input class="input-on-white" ng-model="user.userName">
-			<button ng-click="saveUser()" class="button-on-white">Save</button>
-			<p ng-show="saveSpinner">Saving . . .<i class="fa fa-spinner fa-1x fa-spin"></i></p>
-		</div>
-
-		<div class="col-md-12">
-			<p>Friends:</p>
-			<p ng-repeat="friend in friends"><a href="#/publicProfile/{{friend.facebookId}}">{{friend.userName}}</a></p>
-
-			<p>Pending Friends</p>
-			<div ng-repeat="friendRequest in friendRequests">
-				<p>{{friendRequest.userName}}</p>
-				<button class="button-on-white" ng-click="approveFriend(friendRequest)">Accept</button>
-				<button class="button-on-white" ng-click="reject(friendRequest)">Reject</button>
-			</div>
-		</div>
-		<div class="col-md-12">
-			Find and add friends.
+		<div>
+			
+			<h4>Find and add friends:</h4>
 			<input class="input-on-white" ng-model="friendSearchTerm">
 			<button ng-click="searchFriend()" class="button-on-white">Find</button>
 			<p ng-show="friendSpinner">Searching users . . . <i class="fa fa-spinner fa-1x fa-spin"></i><p>
 			<div ng-show="user.friends.indexOf(peep._id === -1)" ng-repeat="peep in people">
-				{{peep.userName}}
-				<button class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
+				
+				<button ng-show="user.waitingOnFriend.indexOf(peep._id) === -1 && user.friends.indexOf(peep._id) === -1" class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
+				<span ng-show="user.waitingOnFriend.indexOf(peep._id) > -1">Friend Request Sent - </span>
+				<span ng-show="user.friends.indexOf(peep._id) > -1"> Already Friends - </span>
+				<span ng-show="user.friendRequests.indexOf(peep._id) > -1">Waiting Your Approval - </span>
+				 {{peep.userName}}
 			</div>
 		</div>
+		</div>
+		
+		<div class="col-md-6">
+			<h3>Your Collections</h3>
+
+			<div ng-repeat="collection in collections">
+				
+				
+				<ul>
+
+					<li><a href="/#/collection/{{collection._id}}/{{collection.collectionName}}">{{collection.collectionName}}</a> - {{collection.recipes.length}} Recipes </li>
+				</ul>
+				
+			</div>
+		</div>
+		<!-- <div class="col-md-12">
+			<h4>Edit Username</h4>
+			<input class="input-on-white" ng-model="user.userName">
+			<button ng-click="saveUser()" class="button-on-white">Save</button>
+			<p ng-show="saveSpinner">Saving . . .<i class="fa fa-spinner fa-1x fa-spin"></i></p>
+		</div> -->
+
+
 	</div>
 </div>

@@ -43,6 +43,8 @@ app.use(Passport.session());
 
 app.set('port', process.env.EXPRESS_PORT || 3000)
 
+var userDate = new Date()
+
 
 //will this solve CORS issue?  possibly, i seem to remember talking about this
 
@@ -124,7 +126,7 @@ app.get('/me', function(req, res){
       new User({
         userName: req.user._json.name,
         facebookId: req.user.id,
-        accountCreated: req.user._json.updated_time
+        accountCreated: userDate,
       }).save(function(err, user){
         console.log('user 2', user)
         if(err){

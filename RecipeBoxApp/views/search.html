@@ -4,59 +4,58 @@
 			<div class="col-md-12 search-view">
 				<div class="search-nav">
 					<h2>Search Your Recipes</h2>
-					<strong>
-					<p>**Our baby search engine is only robust enough to support a single search term at this time.</p>
-					<p>Example: 'milk' will find evaporated milk, skim, whole milk, etc. But 'whole milk' will find no results.</p>
-					</strong>
-
-				
-					
-
 					<h4>Choose a Search Term: </h4>
+
 					<select ng-change="searching()" ng-model="selected">
 						<option ng-repeat="search in searchTypes" value="{{search}}">{{search}}</option>
 					</select>
 				
 					<p></p>
+					<div class="row">
+						<div class="col-md-8">
+							
+							<form ng-show='ingredient'>
+								<p> Search by Ingredient</p>
+								<input spellcheck='true' placeholder='Search an ingredient' ng-model="searchText"/>
+								<button ng-click="search()">Search</button>
+								
+							</form>
+							
 
-					<form ng-show='ingredient'>
-						<p> Search by Ingredient</p>
-						<input spellcheck='true' placeholder='Search an ingredient' ng-model="searchText"/>
-						<button ng-click="search()">Search</button>
-						
-					</form>
-					
 
+							<form role="form" name="typeForm" ng-show='location' novalidate>
+								<p> Use Search Term: Personal, Book, or Website</p>
+								<input spellcheck='true' placeholder="Personal, Book, or Website" ng-model="locationSearchText"/>
+								<button ng-click="searchLocation()" >Search</button>
+							</form>
 
-					<form role="form" name="typeForm" ng-show='location' novalidate>
-						<p> Use Search Term: Personal, Book, or Website</p>
-						<input spellcheck='true' placeholder="Personal, Book, or Website" ng-model="locationSearchText"/>
-						<button ng-click="searchLocation()" >Search</button>
-					</form>
+							<form ng-show='author'>
+								<p> Search by Author</p>
+								<input spellcheck='true' placeholder="Author" ng-model="authorSearchText"/>
+								<button ng-click="searchAuthor()">Search</button>
+							</form>
 
-					<form ng-show='author'>
-						<p> Search by Author</p>
-						<input spellcheck='true' placeholder="Author" ng-model="authorSearchText"/>
-						<button ng-click="searchAuthor()">Search</button>
-					</form>
+							<form ng-show='recipeName'>
+								<p> Search by Recipe Name</p>
+								<input spellcheck='true' placeholder="Recipe Name" ng-model="recipeNameSearchText"/>
+								<button ng-click="searchRecipeName()">Search</button>
+							</form>
 
-					<form ng-show='recipeName'>
-						<p> Search by Recipe Name</p>
-						<input spellcheck='true' placeholder="Recipe Name" ng-model="recipeNameSearchText"/>
-						<button ng-click="searchRecipeName()">Search</button>
-					</form>
+							<div ng-show="searchSpinner">Loading your recipes . . .<i class="fa fa-spinner fa-2x fa-spin"></i></div>
 
-					<div ng-show="searchSpinner">Loading your recipes . . .<i class="fa fa-spinner fa-2x fa-spin"></i></div>
+							<div ng-show="searchResultsText">
+								<h4>See {{recipes.length}} recipes from your recipe book below.</h4>
+							</div>
+						</div>
 
-					<div ng-show="searchResultsText">
-						<h4>See {{recipes.length}} recipes from your recipe book below.</h4>
+						<div ng-show="searchResultsText" class="col-md-4">
+							<h4> Search Results </h4>
+							<input class="filter-input" placeholder="Filter results" ng-model="stuff">
+						</div>
 					</div>
+
 				</div>
 
-				<div>
-					<h3>Results</h3>
-					<div><input placeholder="Filter results" ng-model="stuff"></div>
-				</div>
 			</div>
 				
 				<div class="col-md-5 search-recipe" ng-repeat="recipe in recipes|filter: stuff">
