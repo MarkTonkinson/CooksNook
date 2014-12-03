@@ -244,7 +244,9 @@
 					auth3.push(auth2[i][0].toUpperCase() + auth2[i].slice(1))
 				}
 				var author = auth3.join(' ');
-
+				if(author === "The Pioneer Woman"){
+					author = "Pioneer Woman"
+				}
 				var recipeName = document.getElementsByClassName('primary')[1].getElementsByTagName('h1')[0].innerText;
 
 
