@@ -13,8 +13,8 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 	$scope.newRecipe = {
 		ingredients: [{},{},{},{},{},{}],   //why do I have to specify?  What will happen when I submit 3 ingredients instead of the max?
 		instructions:[{},{},{},{},{},{}],
-		recipeImage: "../images/default.png"
 	}
+
 	
 	$scope.addIngredient = function(){
 		$scope.newRecipe.ingredients.push({});
@@ -61,7 +61,9 @@ app.controller('addRecipeCtrl', function($scope, recipeService, $cookieStore, $l
 		// 	$scope.newRecipe.permissionsTag = "shared"
 		// }
 
-
+		if($scope.newRecipe.recipeImage === ''){
+			$scope.newRecipe.recipeImage = "../images/default.png"
+		}
 
 		
 		//stop from posting the empty objects

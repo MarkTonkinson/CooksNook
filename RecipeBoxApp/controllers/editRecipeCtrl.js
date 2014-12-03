@@ -17,7 +17,7 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 			$scope.recipe.bookTitle = '';
 			$scope.recipe.bookPageNumber = '';
 
-		} else if ($scope.newRecipe.location === 'Book'){
+		} else if ($scope.recipe.location === 'Book'){
 			$scope.bookRequired = true;
 			$scope.websiteRequired = false;
 			$scope.recipe.recipeUrl = '';
@@ -32,6 +32,9 @@ app.controller('editRecipeCtrl', function($scope, getRecipe, recipeService, $rou
 		var paramsid = $routeParams //comes back as an object, very interesting
 		var id = paramsid.recipeid;
 
+		if($scope.recipe.recipeImage === ''){
+			$scope.recipe.recipeImage = "../images/default.png"
+		}
 
 		var arr = $scope.recipe.ingredients
 		//console.log(arr);

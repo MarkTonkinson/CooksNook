@@ -32,13 +32,14 @@
 			    <!-- HIDDEN DIVS DEPENDING ON RADIO OPTION -->
 			    <!-- WEBSITE HIDDEN DIV -->
 			    <div class="col-md-12">
-				    <div class="col-md-12" ng-show="newRecipe.location === 'Website'" >
+				    <div class="col-md-12" ng-show="websiteRequired" >
 				    	<input type="url" placeholder='Url' name="url" ng-model="newRecipe.recipeUrl" ng-required="websiteRequired" >
+				    	<p class="help-text">Don't a forget complete url!</p>
 				    </div>
-				    <p class="help-text" ng-show="websiteRequired">Don't a forget complete url!</p>
+
 
 				    <!-- BOOK HIDDEN DIV -->
-				    <div class="col-md-12" ng-show="newRecipe.location==='Book'">
+				    <div class="col-md-12" ng-show="bookRequired">
 				    	<input placeholder='Book Title' ng-required='bookRequired' ng-model='newRecipe.bookTitle'>
 				    	<input class="page-num-input" placeholder='Page#' ng-required='bookRequired' ng-model='newRecipe.bookPageNumber'>
 				    </div>
@@ -53,10 +54,14 @@
 				    	<input ng-model="newRecipe.recipeName" placeholder="Recipe Name" required/>
 				    	<p  ng-show="recipeNameUsed">Please pick a different name for your recipe, you've already used this one.</p>
 				    </div>
+				    
+				    <div class='from-group col-md-12'>
+				   		<input ng-model="newRecipe.recipeImage" placeholder="Image URL">
+				   		<p ng-show="bookRequired"> Consider using an image of the book. </p>
+					</div>
+
+
 				</div>
-
-
-
 
 
 				<div class="row">

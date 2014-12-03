@@ -9,19 +9,19 @@
 		<!-- Checkboxes for choosing location of the recipe -->
 	    <p class="radio col-md-12">
             <label>
-		        <input class="overide-input" type="radio" ng-model="recipe.location" value="Personal" required>Personal
+		        <input class="overide-input" type="radio" ng-model="recipe.location" ng-change="require()" value="Personal" required>Personal
 		    </label>
         </p> 
 
         <p class="radio col-md-12">
             <label>
-                <input class="overide-input" type="radio" ng-model="recipe.location" value="Website">Website
+                <input class="overide-input" type="radio" ng-model="recipe.location" ng-change="require()" value="Website">Website
 		    </label>
         </p>
 
         <p class="radio col-md-12">
             <label>
-                <input class="overide-input" type="radio" ng-model="recipe.location" value="Book">Book
+                <input class="overide-input" type="radio" ng-model="recipe.location" ng-change="require()" value="Book">Book
 		    </label>
 	    </p>
 
@@ -29,13 +29,14 @@
 	    <!-- WEBSITE HIDDEN DIV -->
     <div class="col-md-12">
 	    
-	    <div class="col-md-12" ng-show="recipe.location === 'Website'" >
+	    <div class="col-md-12" ng-show="websiteRequired" >
 	    	<input type="url" placeholder='Url' name="url" ng-model="recipe.recipeUrl" ng-required="websiteRequired" >
+	    	<p class="help-text">Don't forget complete url!</p>
 	    </div>
-	    <p class="help-text" ng-show="websiteRequired">Don't forget complete url!</p>
+	    
 
 	    <!-- BOOK HIDDEN DIV -->
-	    <div class="col-md-12" ng-show="recipe.location==='Book'">
+	    <div class="col-md-12" ng-show="bookRequired">
 	    	<input placeholder='Book Title' ng-required='bookRequired' ng-model='recipe.bookTitle'>
 	    	<input class="page-num-input" placeholder='Page#' ng-required='bookRequired' ng-model='recipe.bookPageNumber'>
 	    </div>
@@ -50,13 +51,17 @@
 	    	
 	    </div>
 
+		<div class='from-group col-md-12'>
+			<input ng-model="recipe.recipeImage" placeholder="Image URL">
+			<p ng-show="bookRequired"> Consider using an image of the book. </p>
+		</div>
 	</div>
 
 
 		
 	    
 	<!-- Titles -->
-	<div class='col-md-12'> Quantity Measurement Ingredient </div>
+
 	<div class="row">
 		<!-- Ingredients -->
 		<div class="col-md-8">

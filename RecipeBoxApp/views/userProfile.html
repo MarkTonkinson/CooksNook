@@ -27,17 +27,21 @@
 		<div>
 			
 			<h4>Find and add friends:</h4>
+			<form>
 			<input class="input-on-white" ng-model="friendSearchTerm">
 			<button ng-click="searchFriend()" class="button-on-white">Find</button>
+			</form>
 			<p ng-show="friendSpinner">Searching users . . . <i class="fa fa-spinner fa-1x fa-spin"></i><p>
+			
 			<div ng-show="user.friends.indexOf(peep._id === -1)" ng-repeat="peep in people">
 				
-				<button ng-show="user.waitingOnFriend.indexOf(peep._id) === -1 && user.friends.indexOf(peep._id) === -1" class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
+				<button ng-show="user.waitingOnFriend.indexOf(peep._id) === -1 && user.friends.indexOf(peep._id) === -1 && user.friendRequests.indexOf(peep._id) === -1" class="button-on-white" ng-click="addFriend(peep)">Add as a friend</button>
 				<span ng-show="user.waitingOnFriend.indexOf(peep._id) > -1">Friend Request Sent - </span>
 				<span ng-show="user.friends.indexOf(peep._id) > -1"> Already Friends - </span>
 				<span ng-show="user.friendRequests.indexOf(peep._id) > -1">Waiting Your Approval - </span>
 				 {{peep.userName}}
 			</div>
+
 		</div>
 		</div>
 		

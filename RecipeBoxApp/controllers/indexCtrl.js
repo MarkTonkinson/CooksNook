@@ -47,6 +47,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 	$scope.addRecTab = btab
 	$scope.privColTab = btab
 	$scope.pubColTab = btab
+	$scope.userProfileTab = btab
 
 	$scope.tabChange = function(tab){
 		
@@ -58,6 +59,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 				$scope.addRecTab = btab
 				$scope.privColTab = btab
 				$scope.pubColTab = btab
+				$scope.userProfileTab = btab
 				break;
 
 			case 'home':
@@ -67,6 +69,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 				$scope.addRecTab = btab
 				$scope.privColTab = btab
 				$scope.pubColTab = btab
+				$scope.userProfileTab = btab
 				break;
 			case 'search':
 				$scope.homeTab = btab
@@ -75,6 +78,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 				$scope.addRecTab = btab
 				$scope.privColTab = btab
 				$scope.pubColTab = btab
+				$scope.userProfileTab = btab
 				break;
 			case 'fav':
 				$scope.homeTab = btab
@@ -83,6 +87,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 				$scope.addRecTab = btab
 				$scope.privColTab = btab
 				$scope.pubColTab = btab
+				$scope.userProfileTab = btab
 				break;
 			case 'addRecipe':
 				$scope.homeTab = btab
@@ -91,6 +96,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 				$scope.addRecTab = selectedTab
 				$scope.privColTab = btab
 				$scope.pubColTab = btab
+				$scope.userProfileTab = btab
 				break;
 			case 'privateCollections':
 				$scope.homeTab = btab
@@ -99,6 +105,7 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 				$scope.addRecTab = btab
 				$scope.privColTab = selectedTab
 				$scope.pubColTab = btab
+				$scope.userProfileTab = btab
 				break;
 			case 'publicCollections':
 				$scope.homeTab = btab
@@ -107,6 +114,16 @@ app.controller('indexCtrl', function($scope, $cookieStore, userService, $locatio
 				$scope.addRecTab = btab
 				$scope.privColTab = btab
 				$scope.pubColTab = selectedTab
+				$scope.userProfileTab = btab
+				break;
+			case 'userProfile':
+				$scope.homeTab = btab
+				$scope.searchTab = btab
+				$scope.favTab = btab
+				$scope.addRecTab = btab
+				$scope.privColTab = btab
+				$scope.pubColTab = btab
+				$scope.userProfileTab = selectedTab
 				break;
 		}	
 		

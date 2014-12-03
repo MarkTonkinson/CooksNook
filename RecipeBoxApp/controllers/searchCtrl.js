@@ -1,6 +1,6 @@
 var app = angular.module("RecipeBoxApp");
 
-app.controller("searchCtrl", function($scope, searchService, $cookieStore, recipeService){
+app.controller("searchCtrl", function($scope, searchService, $cookieStore, recipeService, userService){
 	$scope.searchSpinner = false;
 	$scope.searchResultsText = false;
 	$scope.getUsername();
@@ -10,6 +10,29 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 
 	$scope.searchTypes = ["Ingredient", "Type", "Author", "RecipeName"];
 	
+
+
+	$scope.updateCollection = function(){
+		userService.updateCollection($scope.selectedCollection, $scope.user._id)
+		.then(function(res){
+			$scope.selectedCollection = ''
+		})
+	}	
+
+	$scope.getCollections = function(){
+		userService.getCollections($scope.user._id)
+		.then(function(res){
+			//console.log(res)
+			$scope.collections = res;
+			// if($scope.collections.length){
+			// 	$scope.existsCollection = true;
+			// }
+		})
+	}
+
+	$scope.getCollections();
+	
+
 	$scope.selected = $scope.ingredient;
 	$scope.searching = function(){
 		if($scope.selected === 'Ingredient'){
@@ -171,8 +194,25 @@ app.controller("searchCtrl", function($scope, searchService, $cookieStore, recip
 		}
 		recipeService.updateUser(unfavoriteReqBody)
 		.then(function(res){
-			$scope.getRecipes();
+			$scope.search()
 		})
+	}
+
+	$scope.removeRecipe = function(recipeId, index){
+		//if you remove it from the page, you want to remove it from the collection as well.
+		var arr = $scope.collections
+		for (var i = 0; i < arr.length; i++){
+			if(arr[i].recipes.indexOf(recipeId) > -1){
+				arr[i].recipes.splice(arr[i].recipes.indexOf(recipeId), 1)
+				$scope.selectedCollection = arr[i];
+				$scope.updateCollection()
+			}
+		}
+
+
+		recipeService.deleteRecipe(recipeId, $scope.user.facebookId);
+		$scope.recipes.splice(index, 1);
+
 	}
 
 })
