@@ -218,4 +218,12 @@ app.service('userService', function($http, $q, $cookieStore, recipeService){
 	
 	}
 
+	this.deletePublicCollection = function(collectionid){
+		console.log('cid ', collectionid)
+		$http({
+			method: 'DELETE',
+			url: '/api/deletePublicCollection/' + collectionid
+		})
+	}
+
 })

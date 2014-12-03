@@ -71,7 +71,7 @@ var requireAuth = function(req, res, next){
     //next();
     res.status(401).send("You do not have permission to be here.")
   } else {
-    
+    console.log('authorized')
     next();
   }
   
@@ -198,7 +198,7 @@ app.get('/api/publicCollections', requireAuth, CollectionController.getPublicCol
 app.get('/api/recipesInCollection/:collectionid', requireAuth, CollectionController.getRecipesInCollection);
   //may not need this route
 app.post('/api/publicCollections', requireAuth, CollectionController.postPublicCollections);
-
+app.delete('/api/deletePublicCollection/:collectionid', requireAuth, CollectionController.deletePublicCollection)
 
 
 //**********************SEARCH ROUTES*****************************

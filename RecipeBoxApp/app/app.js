@@ -114,6 +114,10 @@ app.config(['$routeProvider', function($routeProvider){
 			}
 		}
 	})
+	.when('/admin', {
+		templateUrl: '../views/admin.html',
+		controller: 'adminCtrl'
+	})
 	.otherwise({
 		redirectTo: '/'
 	})

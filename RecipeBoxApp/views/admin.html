@@ -1,0 +1,32 @@
+{{test}}
+
+Edit Recipe
+
+<div>
+<input placeholder="recipe id" ng-model="searchid">
+<button ng-click="findRecipe()">Find Recipe</button>
+
+</div>
+
+
+<div>
+{{recipe}}
+<p><input ng-model="recipe.author"></p>
+
+</div>
+
+<p>Collection ID where you want to move it</p>
+<p><input ng-model="colid" placeholder="colid"></p>
+<button ng-click="moveRecipe()">Preview the Change</button>
+
+<div ng-repeat="collection in collections">
+
+<input ng-model="id" placeholder="recipeid">
+<button ng-click="addToRecipes(collection, id)">Add</button>
+{{collection._id}}  is {{collection.collectionName}} from {{collection.collectionCreator}}
+
+<p>Recipes: {{collection.recipes}}<p>
+<p>Index: {{$index}}</p>
+<button ng-click="saveCollection(collection)">Save Change to Collection</button>
+<button ng-click="deleteCollection(collection._id)">WARNING DELETING COLLECTION</button>
+</div>
