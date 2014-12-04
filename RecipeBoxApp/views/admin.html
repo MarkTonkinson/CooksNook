@@ -12,12 +12,9 @@ Edit Recipe
 <div>
 {{recipe}}
 <p><input ng-model="recipe.author"></p>
-
+<button ng-click="updateRecipe(recipe._id, recipe)">Update Recipe</button>
 </div>
 
-<p>Collection ID where you want to move it</p>
-<p><input ng-model="colid" placeholder="colid"></p>
-<button ng-click="moveRecipe()">Preview the Change</button>
 
 <div ng-repeat="collection in collections">
 

@@ -1,14 +1,21 @@
 var app = angular.module('RecipeBoxApp');
 
-app.controller('adminCtrl', function($scope, recipeService, userService, $cookieStore){
+app.controller('adminCtrl', function($scope, recipeService, userService, $cookieStore, $location){
 
 	$scope.test = "hello world"
 	$scope.user = $cookieStore.get('user');
+	if($scope.user.userName !== 'Mark Tonkinson'){
+		$location.path('/')
+	}
 	$scope.findRecipe = function(){
 		recipeService.getRecipeById($scope.searchid).
 		then(function(res){
 			$scope.recipe = res;
 		})
+	}
+
+	$scope.updateRecipe = function(recipeid, recipe){
+		recipeService.editRecipe(recipeid, recipe);
 	}
 
 	var getPublicCollections = function(){
