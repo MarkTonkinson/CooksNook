@@ -287,9 +287,12 @@
 				
 				if(document.getElementById('video')!== null){
 					var recipeImage = document.getElementById('video').getElementsByTagName('img')[0].src
-				} else if(document.getElementsByClassName('single-photo-recipe')[0].getElementsByTagName('img')[0].src){
+				} else if(document.getElementsByClassName('single-photo-recipe')!== null){
 					var recipeImage = document.getElementsByClassName('single-photo-recipe')[0].getElementsByTagName('img')[0].src
+				} else {
+					var recipeImage = 'none';
 				}
+
 				var yield = document.getElementsByClassName('difficulty')[1].getElementsByTagName('dd')[0].innerText
 				if(document.getElementsByClassName('ingredients') === null){
 					ingredients.push("<a href='" + recipeUrl + "'> Ingredients on original site.</a>")
@@ -320,9 +323,40 @@
 				}
 				//console.log(ingredients)
 				var finalRecipe = new Recipe(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions);
-				console.log(finalRecipe)
+				//console.log(finalRecipe)
 				postRecipe(finalRecipe)
 			}
+
+			//***********************************Food Network Recipe! ***********************************************
+			var getTheKitchnRecipe = function(){
+				if(document.getElementById('recipe') !== null){
+					var author = "the kitchn";
+					var recipeName = document.getElementById('recipe').getElementsByTagName('h3')[0].innerText;
+					var yield = '';
+					var recipeImage = document.getElementsByClassName('mt-image-center')[0].getElementsByTagName('img')[0].src;
+					var ingsArr = document.getElementById('recipe').getElementsByTagName('span');
+					for(var i = 0; i < ingsArr.length; i++){
+						var wholeIng = ingsArr[i].innerText.split(' ')
+
+						qty = wholeIng[0];
+						meas = wholeIng[1];
+						ing = wholeIng.splice(2, wholeIng.length-1).join(' ')
+						var ingredient = new Ingredient(qty, meas, ing);
+						ingredients.push(ingredient)
+					}
+					//console.log(ingredients);
+
+					var finalRecipe = new Recipe(author, recipeName, recipeImage, location, recipeUrl, recipeImage, ingredients, yield, permissionsTag, instructions);
+					//console.log(finalRecipe)
+					postRecipe(finalRecipe);					
+				} else {
+					alert("Cook's Nook: Sorry, we can't get a recipe from this site :(")
+				}
+				
+
+			}
+
+
 
 			//**********************************DON'T WRITE BELOW HERE!*************************************
 			///NEEDS TO BE AT BOTTOM SO THAT THE GET RECIPE FUNCTIONS ARE DEFINED - else it tries to find it and it doesn't exist!
@@ -339,6 +373,8 @@
 					getYummlyRecipe();
 				} else if (host === 'www.foodnetwork.com'){
 					getFoodNetworkRecipe();
+				} else if (host === 'www.thekitchn.com') {
+					getTheKitchnRecipe();
 				} else {
 					alert("Cook's Nook: Sorry, we can't get a recipe from this site :(")
 				}
