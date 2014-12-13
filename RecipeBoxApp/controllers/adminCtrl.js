@@ -1,6 +1,6 @@
 var app = angular.module('RecipeBoxApp');
 
-app.controller('adminCtrl', function($scope, recipeService, userService, $cookieStore, $location){
+app.controller('adminCtrl', function($scope, recipeService, userService, adminService, $cookieStore, $location){
 
 	$scope.test = "hello world"
 	$scope.user = $cookieStore.get('user');
@@ -42,4 +42,17 @@ app.controller('adminCtrl', function($scope, recipeService, userService, $cookie
 	$scope.deleteCollection = function(collectionid){
 		userService.deletePublicCollection(collectionid);
 	}
+
+	$scope.findUser = function(userId){
+
+	}
+
+	$scope.getUsers = function(){
+		adminService.getUsers().then(function(res){
+			$scope.users = res;
+			console.log("USERS, ", res)
+		})
+		
+	}
+	$scope.getUsers();
 })

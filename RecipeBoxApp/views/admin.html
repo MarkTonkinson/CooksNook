@@ -1,4 +1,4 @@
-{{test}}
+
 
 Edit Recipe
 
@@ -27,3 +27,30 @@ Edit Recipe
 <button ng-click="saveCollection(collection)">Save Change to Collection</button>
 <button ng-click="deleteCollection(collection._id)">WARNING DELETING COLLECTION</button>
 </div>
+
+Users
+<table ng-repeat="user in users">
+	<tr>
+		<td>{{user.userName}}</td>
+
+		<td>{{user.accountCreated}}</td>
+	</tr>
+	
+</table>
+
+<table>
+  <tr>
+    <td>John</td>
+    <td>Doe</td>
+  </tr>
+  <tr>
+    <td>Jane</td>
+    <td>Doe</td>
+  </tr>
+</table>
+
+Edit User
+<input placeholder="user id" ng-model="userId">
+<button ng-click="findUser()">Find User</button>
+
+{{editUser}}

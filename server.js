@@ -15,11 +15,11 @@ connection.once('open', function(){
 })
 global.mongooseConnection = connection;
 
-// var port = 3000;
-// var domainName = 'localhost:3000'
+var port = 3000;
+var domainName = 'localhost:3000'
 
-var port = 80;
-var domainName = 'cooknookcollection.com'
+// var port = 80;
+// var domainName = 'cooknookcollection.com'
 
 
 ////Models
@@ -32,6 +32,7 @@ var SearchController = require('./lib/controllers/search-control');
 var CollectionController = require('./lib/controllers/collection-control');
 var NotesController = require('./lib/controllers/note-control');
 var FriendsController = require('./lib/controllers/friend-control');
+var AdminController = require('./lib/controllers/admin-control');
 var app = Express();
 
 app.use(Cors());
@@ -209,8 +210,9 @@ app.get('/api/:user/searchAuthor/:searchText', requireAuth, SearchController.get
 app.get('/api/:user/searchRecipeName/:searchText', requireAuth, SearchController.getByRecipeName);
 app.get('/api/findUsers/:searchText', requireAuth, SearchController.getUsers);
 
-
-
+//*******************ADMIN ROUTES********************
+app.get('/admin/getUsers', AdminController.getUsers)
+//app.get('/admin/getUser/:userid')
 app.listen(port, function(){
 	console.log("listening on " + port)
 })
