@@ -212,7 +212,8 @@ app.get('/api/findUsers/:searchText', requireAuth, SearchController.getUsers);
 
 //*******************ADMIN ROUTES********************
 app.get('/admin/getUsers', AdminController.getUsers)
-//app.get('/admin/getUser/:userid')
+app.get('/admin/getUser/:userid', AdminController.getUser)
+app.put('/admin/updateUser/:userid', AdminController.updateUser)
 app.listen(port, function(){
 	console.log("listening on " + port)
 })

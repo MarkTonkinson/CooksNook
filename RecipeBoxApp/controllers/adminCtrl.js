@@ -2,7 +2,7 @@ var app = angular.module('RecipeBoxApp');
 
 app.controller('adminCtrl', function($scope, recipeService, userService, adminService, $cookieStore, $location){
 
-	$scope.test = "hello world"
+	$scope.getUsername()
 	$scope.user = $cookieStore.get('user');
 	if($scope.user.userName !== 'Mark Tonkinson'){
 		$location.path('/')
@@ -43,8 +43,11 @@ app.controller('adminCtrl', function($scope, recipeService, userService, adminSe
 		userService.deletePublicCollection(collectionid);
 	}
 
-	$scope.findUser = function(userId){
-
+	$scope.findUser = function(userid){
+		adminService.getUser(userid)
+		.then(function(res){
+			$scope.editUser = res;
+		})
 	}
 
 	$scope.getUsers = function(){
@@ -53,6 +56,13 @@ app.controller('adminCtrl', function($scope, recipeService, userService, adminSe
 			console.log("USERS, ", res)
 		})
 		
+	}
+
+	$scope.updateUser = function(){
+		adminService.updateUser($scope.editUser)
+		.then(function(res){
+			$scope.editUser = ''
+		})	
 	}
 	$scope.getUsers();
 })

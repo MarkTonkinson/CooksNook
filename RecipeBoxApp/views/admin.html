@@ -11,12 +11,12 @@ Edit Recipe
 
 <div>
 {{recipe}}
-<p><input ng-model="recipe.author"></p>
+<p><input placeholder="recipe author" ng-model="recipe.author"></p>
 <button ng-click="updateRecipe(recipe._id, recipe)">Update Recipe</button>
 </div>
 
 
-<div ng-repeat="collection in collections">
+<!-- <div ng-repeat="collection in collections">
 
 <input ng-model="id" placeholder="recipeid">
 <button ng-click="addToRecipes(collection, id)">Add</button>
@@ -26,31 +26,34 @@ Edit Recipe
 <p>Index: {{$index}}</p>
 <button ng-click="saveCollection(collection)">Save Change to Collection</button>
 <button ng-click="deleteCollection(collection._id)">WARNING DELETING COLLECTION</button>
-</div>
+</div> -->
 
 Users
 <table ng-repeat="user in users">
 	<tr>
-		<td>{{user.userName}}</td>
+		<td> {{user.userName}} </td>
 
-		<td>{{user.accountCreated}}</td>
+		<td> {{user.accountCreated}} </td>
+
+		<td> {{user._id}} </td>
 	</tr>
 	
 </table>
 
-<table>
-  <tr>
-    <td>John</td>
-    <td>Doe</td>
-  </tr>
-  <tr>
-    <td>Jane</td>
-    <td>Doe</td>
-  </tr>
-</table>
+
 
 Edit User
 <input placeholder="user id" ng-model="userId">
-<button ng-click="findUser()">Find User</button>
+<button ng-click="findUser(userId)">Find User</button>
 
-{{editUser}}
+<div>
+	<ul>
+		<li><input ng-model="editUser.userName"></li>
+		<li><input ng-model="editUser.accountCreated"></li>
+		<li>{{editUser.accountCreated | date: "longDate"}}</li>
+		<li><input placeholder="Add an email address" ng-model="editUser.email"></li>
+
+	</ul>
+
+<button ng-click="updateUser()">Update User</button>
+</div>
